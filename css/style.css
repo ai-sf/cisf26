@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'HeaderFont';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Regular.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -93,7 +93,7 @@
 
 .header-text {
   font-family: 'HeaderFont';
-  src: url("https://github.com/ai-sf/cisf26/tree/main/font/Mini-Regular.otf") format("opentype");
+  src: url("https://github.com/ai-sf/cisf26/raw/main/font/Mini-Regular.otf") format("opentype");
   color: #DD9426;
   text-align: center;
   font-size: 75px;
@@ -131,7 +131,7 @@
 
 .section-title {
   font-family: 'CustomH2Font';
-  src: url("https://github.com/ai-sf/cisf26/tree/main/font/Mini-Regular.otf") format("opentype");
+  src: url("https://github.com/ai-sf/cisf26/raw/main/font/Mini-Regular.otf") format("opentype");
   font-size: 1.5rem;
   color: #eee;
   margin: 0;
@@ -162,7 +162,7 @@
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Regular.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -186,7 +186,7 @@
 }
 .about-title {
   font-family: 'MyCustomFont';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Regular.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Regular.otf') format('opentype');
   font-size: 2.5rem;
   color: #295763;
   margin-bottom: 1rem;
@@ -194,7 +194,7 @@
 }
 .about-text-col p {
   font-family: 'MyCustomFont';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Regular.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Regular.otf') format('opentype');
   color: #295763;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -261,7 +261,7 @@
 .panoramica-header2 {
   color: #849290;
   font-family: 'Panoramica-font1';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Medium.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Medium.otf') format('opentype');
   
   padding-left: 5%;
   font-size: 2.5rem;
@@ -272,7 +272,7 @@
 
   color: #849290;
   font-family: 'panoramicaheader6';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Medium.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Medium.otf') format('opentype');
   max-width: 50%;
   padding-left: 5%;
   font-size: 1.5rem;
@@ -286,7 +286,7 @@
 
   color: #849290;
   font-family: 'panoramicaheader';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Medium.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Medium.otf') format('opentype');
   margin-left: 50%;
   width: 50%;
   display: block;
@@ -441,7 +441,7 @@
 .chi-siamo-header{
   color: #DD9426;
   font-family: 'chisiamofont';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Medium.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Medium.otf') format('opentype');
   
   font-size: 2.5rem;
   text-align: center;
@@ -455,7 +455,7 @@
 .scheda-strutture{
   height: 300px;
   font-family: 'schedafont';
-  src: url('https://github.com/ai-sf/cisf26/tree/main/font/Mini-Medium.otf') format('opentype');
+  src: url('https://github.com/ai-sf/cisf26/raw/main/font/Mini-Medium.otf') format('opentype');
   color: #295763;
   display: flex;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
