@@ -801,20 +801,19 @@ html, body {
 }
 
 .sponsor-section {
-  /* spessori cornice che scalano dolcemente */
-  --outer: clamp(24px, 3.5vw, 44px);   /* #993701 */
-  --gap:   clamp(10px, 1.5vw, 18px);   /* #EAEAEA (stacco) */
-  --inner: clamp( 8px, 1.2vw, 14px);   /* #DD9426 */
-  --safe:  clamp(16px, 3.5vw, 40px);   /* aria interna al bordo dorato */
+  /* spessori (puoi tenere i tuoi) */
+  --frame-outer: clamp(24px, 3.5vw, 44px);  /* #993701 */
+  --frame-gap:   clamp(10px, 1.5vw, 18px);  /* #EAEAEA */
+  --frame-inner: clamp( 8px, 1.2vw, 14px);  /* #DD9426 */
+  --safe:        clamp(16px, 3.5vw, 40px);
 
   background: #EAEAEA;
 
-  /* 3 anelli concentrici, dall’esterno verso l’interno */
+  /* ORDINE CORRETTO (dal PIÙ PICCOLO al PIÙ GRANDE) */
   box-shadow:
-    inset 0 0 0 calc(var(--outer) + var(--gap) + var(--inner)) #993701,
-    inset 0 0 0 calc(var(--gap)   + var(--inner))              #EAEAEA,
-    inset 0 0 0 var(--inner)                                   #DD9426;
+    inset 0 0 0 var(--frame-inner)                                              #DD9426,  /* bordo interno sopra */
+    inset 0 0 0 calc(var(--frame-gap)   + var(--frame-inner))                   #EAEAEA,  /* gap (stacco) in mezzo */
+    inset 0 0 0 calc(var(--frame-outer) + var(--frame-gap) + var(--frame-inner)) #993701; /* bordo esterno sotto */
 
-  /* il contenuto parte sempre dentro al bordo interno + aria di sicurezza */
-  padding: calc(var(--inner) + var(--safe));
+  padding: calc(var(--frame-inner) + var(--safe));
 }
