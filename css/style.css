@@ -800,75 +800,21 @@ html, body {
   }
 }
 
-/* === Sponsor: Cornice pura CSS + layout robusto === */
 .sponsor-section {
-  /* spessori della cornice (scalano in modo dolce) */
-  --frame-outer: clamp(24px, 3.5vw, 44px);  /* #993701 */
-  --frame-gap:   clamp(10px, 1.5vw, 18px);  /* #EAEAEA "vuoto" */
-  --frame-inner: clamp( 8px, 1.2vw, 14px);  /* #DD9426 */
-
-  /* margine di sicurezza tra testo/loghi e bordo interno dorato */
-  --safe: clamp(16px, 3.5vw, 40px);
+  /* spessori cornice che scalano dolcemente */
+  --outer: clamp(24px, 3.5vw, 44px);   /* #993701 */
+  --gap:   clamp(10px, 1.5vw, 18px);   /* #EAEAEA (stacco) */
+  --inner: clamp( 8px, 1.2vw, 14px);   /* #DD9426 */
+  --safe:  clamp(16px, 3.5vw, 40px);   /* aria interna al bordo dorato */
 
   background: #EAEAEA;
 
-  /* Cornice doppia senza immagini: 3 inset box-shadow a spessori cumulativi
-     Ordine importante (dall'esterno verso l'interno):
-      1) outer+gap+inner = anello esterno #993701 (mostrerà solo i primi 44px)
-      2) gap+inner       = "vuoto" #EAEAEA (crea lo stacco tra i bordi)
-      3) inner           = bordo interno #DD9426
-  */
+  /* 3 anelli concentrici, dall’esterno verso l’interno */
   box-shadow:
-    inset 0 0 0 calc(var(--frame-outer) + var(--frame-gap) + var(--frame-inner)) #993701,
-    inset 0 0 0 calc(var(--frame-gap)   + var(--frame-inner))                   #EAEAEA,
-    inset 0 0 0 var(--frame-inner)                                              #DD9426;
+    inset 0 0 0 calc(var(--outer) + var(--gap) + var(--inner)) #993701,
+    inset 0 0 0 calc(var(--gap)   + var(--inner))              #EAEAEA,
+    inset 0 0 0 var(--inner)                                   #DD9426;
 
-  /* il contenuto parte SEMPRE dentro al bordo interno + un po' di aria */
-  padding: calc(var(--frame-inner) + var(--safe));
-
-  /* griglia 2 colonne centrata, senza wrapper extra */
-  display: grid;
-  grid-template-columns:
-    minmax(0, min(52ch, 90vw))
-    minmax(0, min(520px, 42vw));
-  gap: clamp(16px, 4vw, 48px);
-  justify-content: center;   /* centra le colonne dentro la sezione */
-  align-content: center;     /* centra verticalmente */
-  min-height: min(72vh, 700px); /* opzionale, regola l’altezza della sezione */
+  /* il contenuto parte sempre dentro al bordo interno + aria di sicurezza */
+  padding: calc(var(--inner) + var(--safe));
 }
-
-/* Testo: niente overflow a righe lunghe */
-.sponsor-section h1,
-.sponsor-section h2,
-.sponsor-section p {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  margin: 0.25em 0;
-}
-
-/* Colonne interne esistenti */
-.sponsor-section .text-col { align-self: center; }
-.sponsor-section .right-col { align-self: center; }
-
-/* Loghi sponsor reattivi */
-.sponsor-section .logos-col {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(8px, 2vw, 20px);
-}
-.sponsor-section .logos-col img {
-  max-width: 100%;
-  height: auto;
-  max-height: clamp(32px, 8vw, 72px);
-}
-
-/* Mobile: stack verticale, tutto centrato */
-@media (max-width: 900px) {
-  .sponsor-section {
-    grid-template-columns: 1fr;
-    text-align: center;
-    min-height: auto; /* lascia che cresca con il contenuto */
-  }
-}
-
