@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'HeaderFont';
-  src: url('../font/Mini-Regular.otf') format('opentype');
+  src: url('../fonts/Mini-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .hamburger {
@@ -53,7 +54,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 .nav-links li + li {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #EAEAEA;
 }
 .nav-links a {
   display: block;
@@ -76,7 +77,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 auto;
 }
 .responsive-img-silhouette {
@@ -84,7 +85,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  margin: 1rem auto;
+  margin: 0 ;
 }
 
 
@@ -92,7 +93,7 @@
 
 .header-text {
   font-family: 'HeaderFont';
-  /*src: url("../font/Mini-Regular.otf") format("opentype");*/
+  /*src: url("../fonts/Mini-Regular.otf") format("opentype");*/
   color: #DD9426;
   text-align: center;
   font-size: 75px;
@@ -108,7 +109,7 @@
   
 }
 .sponsor-section {
-  background-color: #993701;
+  
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -126,13 +127,14 @@
   padding-left: 5%;
   padding-top: 7%;
   padding-bottom: 7%;
+  color:#2D2D2D
 }
 
 .section-title {
   font-family: 'CustomH2Font';
-  src: url("../font/Mini-Regular.otf") format("opentype");
+  src: url("../fonts/Mini-Regular.otf") format("opentype");
   font-size: 1.5rem;
-  color: #eee;
+  color: #2D2D2D;
   margin: 0;
   text-align: left;
 }
@@ -161,7 +163,7 @@
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('../font/Mini-Regular.otf') format('opentype');
+  src: url('../fonts/Mini-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -193,7 +195,7 @@
 }
 .about-text-col p {
   font-family: 'MyCustomFont';
-  src: url('../font/Mini-Regular.otf') format('opentype');
+  src: url('../fonts/Mini-Regular.otf') format('opentype');
   color: #295763;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -260,7 +262,7 @@
 .panoramica-header2 {
   color: #849290;
   font-family: 'Panoramica-font1';
-  src: url('../font/Mini-Medium.otf') format('opentype');
+  src: url('../fonts/Mini-Medium.otf') format('opentype');
   
   padding-left: 5%;
   font-size: 2.5rem;
@@ -271,7 +273,7 @@
 
   color: #849290;
   font-family: 'panoramicaheader6';
-  src: url('../font/Mini-Medium.otf') format('opentype');
+  src: url('../fonts/Mini-Medium.otf') format('opentype');
   max-width: 50%;
   padding-left: 5%;
   font-size: 1.5rem;
@@ -285,7 +287,7 @@
 
   color: #849290;
   font-family: 'panoramicaheader';
-  src: url('../font/Mini-Medium.otf') format('opentype');
+  src: url('../fonts/Mini-Medium.otf') format('opentype');
   margin-left: 50%;
   width: 50%;
   display: block;
@@ -421,141 +423,6 @@
   background-color: #295763;
 }
 
-:root {
-  --pill-img-max-h: none;   /* fallback: nessun limite */
-}
-
-
-.pill {
-  display: flex;
-  width: 450px;
-  height: 260px;
-  border-radius: 130px;      /* metà dell’altezza = pill shape */
-  background: rgba(255,255,255,1);
-  box-shadow: 0 0 50px rgba(0,0,0,0.4); /* ombra sfumata */
-}
-
-.pill-container {
-  display: flex;
-  flex-direction: row;    /* mobile first: pill in colonna */
-  gap: 15rem;
-  align-items: center;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  overflow: hidden;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
-.pill-left {
-  flex: 0 0 50%;
-  
-  
-  max-width: 40%;          /* larghezza fissa al 50% del .pill */
-  display: flex;
-  justify-content: center;/* centra l’icona orizzontalmente */
-  align-items: center;    /* centra l’icona verticalmente */
-}
-
-/* Lato destro: 50% per il testo */
-.pill-right {
-  flex: 0 0 50%;          /* anche questa metà fissata al 50% */
-  display: flex;
-  max-width: 40%;
-  
-    /* centra verticalmente il testo */
-  padding-left: 1rem; 
-  align-items: center;    /* un po’ di margine interno */
-  justify-content: flex-start;
-  box-sizing: border-box;
-}
-
-.pill-icon {
-  max-width: 80%;
-  max-height: 80%;
-  width: 100%;               /* dimensione esempio */
-  height: 100%;
-  object-fit: cover;
-  align-items: left;
-}
-
-/* Stile del testo dentro la pill */
-.pill-text {
-  font-family: 'pilltext';
-  src: url('../font/Mini-Regular.otf') format('opentype');
-  font-size: 18px;
-  color: #295763;
-}
-
-.ospiti-separator{
-  display: flex;
-  width: 100%;
-  max-width: auto;
-}
-
-.bg {
-  background-color: #295763;
-}
-
-/* media query per schermi stretti */
-@media (max-width: 600px) {
-  .pill-container{
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem 1rem;
-  }
-
-  .pill{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-    /*max-height: 600px;*/
-    max-height: var(--pill-img-max-h);
-    margin: 0 auto;
-
-  }
-
-  .pill-left,
-  .pill-right {
-    flex:none;
-    width: 100%;
-    max-width: 100%;
-    align-items: center;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  .pill-left{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    height: 50%;
-    max-height: var(--pill-img-max-h)/2;
-  }
-  .pill-right{
-    margin-bottom: 3rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-
-  }
-  .pill-icon{
-    max-height: inherit;
-    align-items: center;
-    object-fit: contain;
-    height: 50%;
-    width: 100%;
-  }
-  .images img,
-  .ospiti-separator img{
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-}
-
-
 
 
 
@@ -575,7 +442,7 @@
 .chi-siamo-header{
   color: #DD9426;
   font-family: 'chisiamofont';
-  src: url('../font/Mini-Medium.otf') format('opentype');
+  src: url('../fonts/Mini-Medium.otf') format('opentype');
   
   font-size: 2.5rem;
   text-align: center;
@@ -589,7 +456,7 @@
 .scheda-strutture{
   height: 300px;
   font-family: 'schedafont';
-  src: url('../font/Mini-Medium.otf') format('opentype');
+  src: url('../fonts/Mini-Medium.otf') format('opentype');
   color: #295763;
   display: flex;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -630,3 +497,324 @@
   height: auto;
 }
 
+
+
+
+
+
+
+
+
+:root {
+  --pill-padding: 1rem;
+  --pill-gap: 1rem;
+  --pill-img-max-h: none; /* verrà sovrascritta da JS in mobile */
+}
+
+/* Reset base */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Background full-page */
+.bg {
+  background-color: #295763;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Separator responsive */
+.images, .ospiti-separator {
+  width: 100%;
+  text-align: center;
+}
+.images img,
+.ospiti-separator img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 4rem 12%;
+  align-items: center;
+  align-content: flex-start;
+  padding: 60px 3%;
+  overflow: hidden;
+  
+}
+
+.pill {
+  display: flex;
+  flex-direction: row;
+  width: 450px;
+  height: 260px;
+  border-radius: 130px;
+  background: #EAEAEA;
+  box-shadow: 0 0 50px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+.pill-front,
+.pill-back {
+  width: 450px;
+  height: 260px;
+  border-radius: 130px;
+  background: #EAEAEA;              /* stesso colore di prima */
+  box-shadow: 0 0 50px rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0; left: 0;
+  backface-visibility: hidden;
+  display: flex;
+  overflow: hidden;
+}
+
+/* front = row, back = center content */
+.pill-front {
+  flex-direction: row;
+}
+.pill-back {
+  transform: rotateY(180deg);
+  justify-content: center;
+  align-items: center;
+}
+
+/* immagine / testo all’interno della front */
+.pill-front .pill-left {
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pill-front .pill-right {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* flip 3D */
+.flip-container {
+  perspective: 1000px;
+}
+.pill-inner {
+  position: relative;
+  width: 450px;   /* fissa lo spazio del cubo */
+  height: 260px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.flip-container.flipped .pill-inner {
+  transform: rotateY(180deg);
+}
+
+/* dimensioni icon e testo rimangono invariate */
+.pill-icon {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  max-width: 80%;
+  max-height: 80%;
+}
+.pill-text {
+  font-size: 18px;
+  color: #295763;
+  text-align: flex-start;
+}
+
+/* ——— MOBILE OVERRIDES (≤600px) ——— */
+@media (max-width: 600px) {
+  /* container in colonna */
+  .pill-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    justify-content: center;
+  }
+
+  .flip-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ridimensiona il cubo 3D */
+  .pill-inner {
+    width: 80vw;
+    height: 80vh;
+  }
+
+  /* facce in colonna */
+  .pill-front,
+  .pill-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+  .pill-front {
+    flex-direction: column;
+  }
+
+  /* immagine 50% + testo 50% */
+  .pill-front .pill-left,
+  .pill-front .pill-right {
+    width: 100%;
+    height: 50%;
+  }
+  .pill-front .pill-right {
+    padding: 1rem;
+    justify-content: center;
+  }
+}
+
+.pill-front,
+.pill-back {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* --- al passaggio del mouse (o al tap su mobile) scurisco l’ombra --- */
+.flip-container:hover .pill-front,
+.flip-container:hover .pill-back,
+.flip-container:active .pill-front,
+.flip-container:active .pill-back {
+  /* aumentiamo leggermente l’intensità e il raggio dell’ombra */
+  box-shadow: 0 0 40px #EAEAEA;
+}
+
+/* --- puntatore a mano sul desktop per indicare che è cliccabile --- */
+.flip-container {
+  cursor: pointer;
+}
+
+
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+/* --- Corpo tabella: flex row di 5 colonne --- */
+.schedule-body {
+  display: flex;
+  gap: 1rem;
+  max-width: 90vw;
+}
+
+/* --- Ogni colonna di un giorno --- */
+.day-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid #EAEAEA;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 90vw;
+}
+
+/* --- Titolo giorno --- */
+.date-header {
+  background-color: #295763;
+  color: #EAEAEA;
+  text-align: center;
+  padding: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* --- Card orario + evento (pill) --- */
+.schedule-card {
+  background: #EAEAEA;
+  border-radius: 16px;
+  box-shadow: 0 4px 4px #2D2D2D;
+  padding: 1rem;
+  margin: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 90vw;
+}
+
+/* --- Orario con icona --- */
+.schedule-card .time {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #004466;
+  margin-bottom: 0.5rem;
+  max-width: 90vw;
+}
+.clock-icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* --- Descrizione evento --- */
+.schedule-card .event-cell {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #2D2D2D;
+  text-align: center;
+  max-width: 90vw;
+}
+
+/* --- Evidenziazioni --- */
+.schedule-card.highlight .event-cell {
+  color: #993701;
+  background: rgba(211,47,47,0.1);
+  text-align: center;
+}
+.schedule-card.highlight-alt .event-cell {
+  color: #DD9426;
+  background: rgba(211,130,2,0.1);
+  text-align: center;
+}
+
+/* --- Responsive Mobile: schede impilate --- */
+@media (max-width: 768px) {
+  .schedule-container{
+    width: 100%;
+    max-width: 90vw;
+    padding: 1rem;
+  }
+  .schedule-body {
+    flex-direction: column;
+  }
+  .day-col {
+    width: 100%;
+  }
+  .schedule-card {
+    width: 75vw;
+    margin: 0.75rem auto;
+  }
+}
+
+.sponsor-section {
+  /* spessori (puoi tenere i tuoi) */
+  --frame-outer: clamp(24px, 3.5vw, 44px);  /* #993701 */
+  --frame-gap:   clamp(10px, 1.5vw, 18px);  /* #EAEAEA */
+  --frame-inner: clamp( 8px, 1.2vw, 14px);  /* #DD9426 */
+  --safe:        clamp(16px, 3.5vw, 40px);
+
+  background: #EAEAEA;
+
+  /* ORDINE CORRETTO (dal PIÙ PICCOLO al PIÙ GRANDE) */
+  box-shadow:
+    inset 0 0 0 var(--frame-inner)                                              #DD9426,  /* bordo interno sopra */
+    inset 0 0 0 calc(var(--frame-gap)   + var(--frame-inner))                   #EAEAEA,  /* gap (stacco) in mezzo */
+    inset 0 0 0 calc(var(--frame-outer) + var(--frame-gap) + var(--frame-inner)) #993701; /* bordo esterno sotto */
+
+  padding: calc(var(--frame-inner) + var(--safe));
+}
