@@ -1,9 +1,5 @@
 @font-face {
-  font-family: 'HeaderFont';
-  src: url('../fonts/Mini-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'TBJ Endgraph Mini', sans-serif;
 }
 
 .navbar {
@@ -92,7 +88,6 @@
 
 
 .header-text {
-  font-family: 'HeaderFont';
   /*src: url("../fonts/Mini-Regular.otf") format("opentype");*/
   color: #DD9426;
   text-align: center;
@@ -131,8 +126,6 @@
 }
 
 .section-title {
-  font-family: 'CustomH2Font';
-  src: url("../fonts/Mini-Regular.otf") format("opentype");
   font-size: 1.5rem;
   color: #2D2D2D;
   margin: 0;
@@ -162,8 +155,6 @@
 }
 
 @font-face {
-  font-family: 'MyCustomFont';
-  src: url('../fonts/Mini-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -186,16 +177,12 @@
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 .about-title {
-  font-family: 'MyCustomFont';
-  src: url('../fonts/Mini-Regular.otf') format('opentype');
   font-size: 2.5rem;
   color: #295763;
   margin-bottom: 1rem;
   text-align: left;
 }
 .about-text-col p {
-  font-family: 'MyCustomFont';
-  src: url('../fonts/Mini-Regular.otf') format('opentype');
   color: #295763;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -261,8 +248,6 @@
 
 .panoramica-header2 {
   color: #849290;
-  font-family: 'Panoramica-font1';
-  src: url('../fonts/Mini-Medium.otf') format('opentype');
   
   padding-left: 5%;
   font-size: 2.5rem;
@@ -272,8 +257,6 @@
 .panoramica-header6 {
 
   color: #849290;
-  font-family: 'panoramicaheader6';
-  src: url('../fonts/Mini-Medium.otf') format('opentype');
   max-width: 50%;
   padding-left: 5%;
   font-size: 1.5rem;
@@ -286,8 +269,6 @@
 .panoramica-header-right {
 
   color: #849290;
-  font-family: 'panoramicaheader';
-  src: url('../fonts/Mini-Medium.otf') format('opentype');
   margin-left: 50%;
   width: 50%;
   display: block;
@@ -441,8 +422,6 @@
 
 .chi-siamo-header{
   color: #DD9426;
-  font-family: 'chisiamofont';
-  src: url('../fonts/Mini-Medium.otf') format('opentype');
   
   font-size: 2.5rem;
   text-align: center;
@@ -455,8 +434,6 @@
 
 .scheda-strutture{
   height: 300px;
-  font-family: 'schedafont';
-  src: url('../fonts/Mini-Medium.otf') format('opentype');
   color: #295763;
   display: flex;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
