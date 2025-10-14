@@ -1,0 +1,18 @@
+<!-- Desktop -->
+<div class="desktop-navbar-container">
+    <div class="site-logo">
+        <a href="{{ .Site.BaseURL | relURL }}">
+            <img src="{{ .Site.Params.image | relURL }}" alt="{{ .Site.Params.alt }}">
+        </a>
+    </div>
+    <nav class="desktop-navigation-items-container">
+        <ul class="nav-menu">
+            {{ $currentPage := . }}
+            {{- range sort (where .Site.Menus.main "Params.show_desktop" true) "Params.desktop_sort" "asc" }}
+            <li class="nav-item">
+                <a href="{{ .URL }}" class="nav-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">{{ .Name }}</a>
+            </li>
+            {{- end }}
+        </ul>
+    </nav>
+</div>

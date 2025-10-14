@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+  <head>
+      <link rel="shortcut icon" href="{{ "images/favicon.ico" | relURL }}">
+    {{ partial "head.html" . }}
+    <title>{{ .Site.Title }}</title>
+  <body>
+    <header class="site-header">
+      {{ partial "header.html" . }}
+    </header>
+    <main>
+      {{ block "main" . }} {{ end }}
+    </main>
+
+    <footer class="footer">
+      {{ partial "footer.html" . }}
+    </footer>
+    <nav>
+        {{ partial "butterfly-bar.html" . }}
+    </nav>
+
+    {{/* Get the main JS file, build it if needed, minify, and fingerprint */}}
+    {{ $jsMain := resources.Get "js/main.js" }}
+    {{ if $jsMain }}
+    {{ $bundle := $jsMain | js.Build | fingerprint }}
+    <script src="{{ $bundle.Permalink }}" defer></script>
+    {{ else }}
+    {{ errorf "Could not find main JavaScript file at %s" "js/main.js" }}
+    {{ end }}
+
+  </body>
+</html>

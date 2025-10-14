@@ -1,0 +1,54 @@
+{{ define "main" }}
+<div class="page-content schedule-grid">
+    <div id="speaker-modal" class="base-modal">
+        <div class="base-modal-content">
+            <img class="modal-speaker image" src="" alt="">
+            <h3 class="modal-speaker name"></h3>
+            <p class="modal-speaker role"></p>
+            <div class="modal-speaker bio"></div>
+
+            <button class="close-modal">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <section class="schedule-intro">
+        {{ .Content }}
+    </section>
+
+    <div class="filters-container">
+        {{ $contextPages := site.GetPage "section" "contexts" }}
+        {{ range $contextPages.RegularPages }}
+        <button class="filter-button" data-filter="{{ .Params.name | urlize }}">
+            {{ .Params.label }}
+        </button>
+        {{ end }}
+    </div>
+
+    {{ $events := (where (site.GetPage "section" "scheduled-event").RegularPages "Draft" false) }}
+    {{ $byDay := dict }}
+    {{ range $events }}
+    {{ $day := .Params.day | default "ALTRO" }}
+    {{ $list := (index $byDay $day | default (slice)) | append . }}
+    {{ $byDay = merge $byDay (dict $day $list) }}
+    {{ end }}
+
+    <div class="days-scroll">
+        {{ range $day := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
+        {{ with index $byDay $day }}
+        <div class="day-column">
+            <div class="day-title-container">
+                <h2 class="day-title">{{ i18n (printf "days.%s" (lower $day)) }}</h2>
+            </div>
+
+            {{ range sort . "Params.weight" }}
+            {{ partial "event-card.html" . }}
+            {{ end }}
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+
+</div>
+{{ end }}

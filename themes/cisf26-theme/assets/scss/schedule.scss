@@ -1,0 +1,235 @@
+// schedule specific style
+
+.schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.schedule-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Days */
+.days-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  height: calc(100vh - 250px);
+
+  /* scrollbar desktop */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+}
+
+.day-column {
+  display: block;
+  flex: 0 0 320px;
+  //display: flex;
+  flex-direction: column;
+  //background: #fff8f0;
+  //padding: 1rem;
+  //border-radius: 10px;
+  //border: 1px solid #ddd;
+  scroll-snap-align: start;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 3px;
+  }
+
+  .day-title-container {
+    padding: .3rem;
+    background: $secondary-color;
+    border-radius: 15px;
+    position: sticky;
+    z-index: 5;
+
+    .day-title {
+      color: $light-grey;
+      top: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 0;
+    }
+  }
+}
+
+/* Desktop */
+@media (min-width: $breakpoint-lg) {
+  .days-scroll {
+    justify-content: flex-start;
+    padding: 0 2rem;
+    scroll-snap-type: none;
+  }
+}
+
+.base-modal.open {
+  text-align: center;
+}
+
+.modal-speaker {
+  text-align: center;
+  &.image {
+    max-width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  &.name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &.role {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+    font-weight: bold;
+  }
+
+  &.bio {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+    text-align: left;
+  }
+}
+
+.speakers-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+
+  & i {
+    color: $accent-color-1;
+    font-size: 1.25rem;
+  }
+}
+
+.speaker-avatar {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.speaker-avatar img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  //border: 2px solid #ccc;
+  transition: transform 0.2s, border-color 0.2s;
+  border: 3px solid rgba($accent-color-2, 0.5);
+}
+
+.speaker-avatar img:hover {
+  transform: scale(1.1);
+  //border-color: #999;
+}
+
+.event-time {
+  background: $light-grey;
+  color: $accent-color-1;
+  font-weight: bold;
+  padding: 0.25rem .8rem;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  width: fit-content;
+  user-select: none;
+  transition: font-size 0.25s ease, padding 0.25s ease;
+}
+
+.event-time.no-cover {
+  position: static;
+  background: $light-grey;
+  box-shadow: none;
+  top: auto;
+  left: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.event-title {
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  //font-size: 1.1rem;
+  margin: 0.5rem 0;
+  transition: font-size 0.25s ease;
+}
+
+.speakers-list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding-left: .2rem;
+  padding-right: .3rem;
+  padding-top: .5rem;
+}
+
+.speakers-list .mic {
+  color: $accent-color-1;
+  margin-right: 0.4rem;
+  flex-shrink: 0;
+  transition: font-size 0.25s ease;
+}
+
+.avatar-scroll {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  transition: all 0.25s ease;
+}
+
+.avatars-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.speaker-avatar {
+  background: none;
+  border: none;
+  margin-right: 0.4rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, margin 0.25s ease;
+}
+
+.speaker-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: width 0.25s ease, height 0.25s ease;
+}

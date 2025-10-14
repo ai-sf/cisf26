@@ -1,0 +1,79 @@
+.structures-layout {
+  display: flex;
+  gap: 1rem;
+}
+
+.structures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.location-card-fab-info-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background: $light-grey;
+  color: $accent-color-1;
+  user-select: none;
+  transition: font-size 0.25s ease, padding 0.25s ease;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+}
+
+// Contenitore per il pulsante di navigazione
+.card-nav-container {
+  margin-top: 0.5rem;
+}
+
+#map {
+  flex: 1;
+  min-height: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.map-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+
+  h3 {
+    margin: .2rem;
+  }
+
+  span {
+    margin-bottom: .5rem;
+  }
+
+  .popup-navigate-btn {
+    background: $daje-roma-daje;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .structures-layout {
+    flex-direction: column;
+  }
+  #map {
+    min-height: 300px;
+  }
+}

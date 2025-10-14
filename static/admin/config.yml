@@ -1,0 +1,192 @@
+backend:
+  name: git-gateway
+  branch: main
+publish_mode: editorial_workflow
+media_folder: "static/images/uploads"
+public_folder: "/itcorner/images/uploads"
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Picture"
+        name: "image"
+        widget: "image"
+  - name: "organizer"
+    label: "Organizers"
+    folder: "content/organizer"
+    create: true
+    slug: "{{slug}}"
+    fields:
+        - { label: "Name", name: "name", widget: "string" }
+        - { label: "Role", name: "role", widget: "string" }
+        - { label: "Description", name: "description", widget: "string" }
+        - label: "Picture"
+          name: "image"
+          widget: "image"
+          choose_url: false
+          media_library:
+            config:
+              multiple: false
+  - name: "event"
+    label: "Events"
+    folder: "content/scheduled-event"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Event Name", name: "name", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Address"
+        name: "address"
+        widget: "object"
+        fields:
+          - { label: "Display Name", name: "display_name", widget: "string", required: false }
+          - { label: "Location URL", name: "location_url", widget: "string", required: false, hint: "https://maps.app.goo.gl/TWg5j1DyAdd5CvCH6" }
+      - label: "Day"
+        name: "day"
+        widget: "select"
+        options:
+          - { label: "Monday", value: "monday" }
+          - { label: "Tuesday", value: "tuesday" }
+          - { label: "Wednesday", value: "wednesday" }
+          - { label: "Thursday", value: "thursday" }
+          - { label: "Friday", value: "friday" }
+          - { label: "Saturday", value: "saturday" }
+          - { label: "Sunday", value: "sunday" }
+      - { label: "Weight", name: "weight", widget: "number", default: 10, value_type: "int" }
+      - label: "Picture"
+        name: "coverImage"
+        widget: "image"
+        choose_url: false
+        media_library:
+          config:
+            multiple: false
+        required: false
+      - { label: "Start Time", name: "start_time", widget: "datetime", format: "HH:mm", time_format: "HH:mm", date_format: false }
+      - { label: "End Time", name: "end_time", widget: "datetime", format: "HH:mm", time_format: "HH:mm", date_format: false }
+      - { label: "Description", name: "description", widget: "markdown", required: false }
+      # - { label: "Speaker", name: "speaker", widget: "string", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - label: "Speakers"
+        name: "speakers"
+        widget: "relation"
+        collection: "guests"
+        search_fields: [ "title" ]
+        value_field: "{{slug}}"
+        display_fields: [ "title" ]
+        multiple: true
+        required: false
+      - label: "Event Context"
+        name: "context"
+        widget: "relation"
+        collection: "event_contexts"
+        search_fields: [ "label" ]
+        value_field: "name"
+        display_fields: [ "label" ]
+        required: false
+        default: "all"
+  - name: "guests"
+    label: "Guests"
+    folder: "content/guests"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Full Name", name: "title", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Biography", name: "bio", widget: "text" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - label: "Picture"
+        name: "image"
+        widget: "image"
+        choose_url: false
+        media_library:
+          config:
+            multiple: false
+  - name: "event_contexts"
+    label: "Event Contexts"
+    folder: "content/contexts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Context Name", name: "label", widget: "string", hint: "Un nome riconoscibile per te -- verrá mostrato sul sito" }
+      - { label: "Variable Name", name: "name", widget: "string", hint: "Il nome della variabile, prediligerei roba lowercase e con i trattini e ti prego in inglese :)" }
+  - name: "partner-category"
+    label: "Partner Categories"
+    folder: "content/partner-categories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Category Name", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+  - name: "partner"
+    label: "Partners & Sponsors"
+    folder: "content/partners"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Website", name: "website", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Logo"
+        name: "logo"
+        widget: "image"
+        choose_url: false
+        media_library:
+          config:
+            multiple: false
+      - label: "Category"
+        name: "category"
+        widget: "relation"
+        collection: "partner-category"
+        search_fields: [ "title" ]
+        value_field: "title"
+        display_fields: [ "title" ]
+  - name: "location-types"
+    label: "Types of Structure"
+    folder: "content/location-types"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "color", label: "Color", widget: "color" }
+
+  - name: "locations"
+    label: "Structures"
+    folder: "content/locations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Nome", widget: "string" }
+      - { name: "address", label: "Address", widget: "string" }
+      - { name: "lat", label: "Latitude", widget: "number" }
+      - { name: "lng", label: "Longitude", widget: "number" }
+      - { name: "type", label: "Type", widget: "relation", collection: "location-types", searchFields: ["title"], valueField: "title" }
+      - { name: "image", label: "Image", widget: "image" }
+      - { name: "website", label: "Website", widget: "string", required: false }
+  - name: "pages"
+    label: "Pagine"
+    files:
+      - file: "content/subscriptions.md"
+        label: "Iscrizioni"
+        name: "iscrizioni"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subscriptions Opening Date", name: "start_date", widget: "datetime" }
+          - { label: "Subscriptions Closure Date", name: "end_date", widget: "datetime" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - file: "content/support-us.md"
+        label: "Sostienici"
+        name: "sostienici"
+        fields:
+        - { label: "Title", name: "title", widget: "string" }
+        - { label: "Description", name: "description", widget: "text" }
+        - { label: "Introductive Text", name: "intro", widget: "markdown" }
+        - { label: "Info Sponsor", name: "sponsor_info", widget: "markdown" }
+        - { label: "Btn Etiquette", name: "button_label", widget: "string", hint: "L'etichetta del tasto che rimanda a gofundme" }
+        - { label: "Link GoFundMe", name: "gofundme_url", widget: "string" }

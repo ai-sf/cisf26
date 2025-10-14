@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+<section class="page-content">
+    <div class="organizers-grid-container">
+        <div style="text-align: center">
+            <h2>CISF26 è organizzata da</h2>
+            {{ range .Params.organizers }}
+            <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="organizer-logo">
+                <img src="{{ .logo | relURL }}" alt="Logo {{ .name }}">
+            </a>
+            {{ end }}
+        </div>
+
+        <div style="text-align: center">
+            <h3>In collaborazione con</h3>
+            {{ range .Params.collaborators }}
+            <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="organizer-logo">
+                <img src="{{ .logo | relURL }}" alt="Logo {{ .name }}">
+            </a>
+            {{ end }}
+        </div>
+    </div>
+
+    <section>
+        {{ $categories := where .Site.RegularPages "Section" "partner-categories" }}
+            {{ range sort $categories "Params.order" }}
+                {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
+                {{ if gt (len $catPartners) 0 }}
+                    <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
+                        <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+                    </div>
+                    {{ $sortedPartners := sort $catPartners "Params.order" }}
+
+                    {{ if eq .Params.layout "grid" }}
+                        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}
+                    {{ else if eq .Params.layout "slider" }}
+                        {{ partial "partners-slider.html" (dict "partners" $sortedPartners "category" .) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </section>
+</section>
+
+{{ end }}
