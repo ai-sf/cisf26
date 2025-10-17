@@ -6,7 +6,7 @@ address:
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 day: monday
 weight: 4
-coverImage: /itcorner/images/uploads/rettorato_5-2048x1152-1.webp
+coverImage: images/uploads/rettorato_5-2048x1152-1.webp
 start_time: 16:30
 end_time: 18:30
 description: Professioniste e professionisti della divulgazione scientifica in

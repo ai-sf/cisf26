@@ -7,6 +7,6 @@ role: Segretaria CISF26 & Co-IT manager
 description: "Laureata magistrale in Fisica, curriculum Terrestre e
   dell'ambiente, Università degli Studi di Roma Tre. Attualmente è dottoranda
   presso FBK e l'università di Trento. "
-image: /itcorner/images/uploads/cristina_originale_compressed.webp
+image: images/uploads/cristina_originale_compressed.webp
 weight: 30
 ---

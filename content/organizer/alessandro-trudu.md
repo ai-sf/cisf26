@@ -6,6 +6,6 @@ draft: false
 role: Tesoriere e referente sponsor
 description: "Laureato magistrale in Fisica, curriculum nucleare, Università
   degli Studi di Roma tre. E' l'attuale presidente del Comitato Locale. "
-image: /itcorner/images/uploads/alessandro_trudu.webp
+image: images/uploads/alessandro_trudu.webp
 weight: 10
 ---

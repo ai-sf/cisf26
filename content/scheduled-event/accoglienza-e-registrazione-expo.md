@@ -6,7 +6,7 @@ address:
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 day: monday
 weight: 1
-coverImage: /itcorner/images/uploads/rettorato_5-2048x1152-1.webp
+coverImage: images/uploads/rettorato_5-2048x1152-1.webp
 start_time: 09:00
 end_time: 15:00
 description: "**Accoglienza** e **registrazione** dei partecipanti, 9:00 -
