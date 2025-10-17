@@ -15,5 +15,5 @@ header_images:
     alt: "Studenti universitari in aula"
 ---
 
-Nata nel 2014, oggi conta oltre 1400 membri e 17 Comitati Locali.
+Nata nel 2014, oggi conta oltre 1400 membri e 19 Comitati Locali.
 Collettivo studentesco di tutta Italia, organizza eventi per promuovere la divulgazione scientifica e rappresentare l'Italia nell'International Association of Physics Students (IAPS). Ogni anno organizza la Conferenza Italiana Studenti di Fisica che quest'anno si terrà a Roma.
