@@ -1,6 +1,6 @@
 ---
-name: Visite ai laboratori di Frascati e della regione
-title: Visite ai laboratori di Frascati e della regione
+name: Visite ai laboratori
+title: Visite ai laboratori
 day: tuesday
 weight: 1
 start_time: 09:00

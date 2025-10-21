@@ -1,6 +1,6 @@
 ---
-name: Visite ai laboratori universitari
-title: Visite ai laboratori universitari
+name: Visite ai laboratori
+title: Visite ai laboratori
 day: thursday
 weight: 1
 start_time: 09:00
