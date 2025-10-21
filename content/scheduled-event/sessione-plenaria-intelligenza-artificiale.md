@@ -1,12 +1,12 @@
 ---
-name: "Sessione Plenaria: Intelligenza Artificiale"
-title: "Sessione Plenaria: Intelligenza Artificiale"
+name: "Evento serale"
+title: "Evento serale"
 day: tuesday
 weight: 6
-coverImage: images/uploads/pexels-googledeepmind-18069695_11zon.webp
+coverImage: 
 start_time: 21:00
 end_time: 22:30
-description: Sessione plenaria incentrata sull'AI.
+description: 
 draft: false
-context: plenary-sessions
+context: 
 ---
