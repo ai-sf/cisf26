@@ -1,113 +1,58 @@
 export function initGuestScroller() {
-    const container = document.querySelector('.guest-showcase-container');
-    if (!container) return;
+    const searchBar = document.querySelector('#guest-searchbar');
+    const noResultsPane = document.querySelector('#no-res-pane');
+    noResultsPane.style.display = 'none';
+    console.log('searchbar', searchBar);
 
-    const featuredGuest = container.querySelector('.featured-guest');
-    const featuredBio = featuredGuest.querySelector('.featured-guest-bio');
-    const featuredImage = featuredGuest.querySelector('.featured-guest-image');
-    const scroller = container.querySelector('.guest-list-scroller');
-    const navPrev = container.querySelector('.arrow-prev');
-    const navNext = container.querySelector('.arrow-next');
+    document.addEventListener('click', (ev) => {
+        const trigger = ev.target.closest('[data-modal-target]');
+        if (trigger) {
+            ev.preventDefault();
+            const modalId = trigger.dataset.modalTarget || '';
+            const selector = modalId.startsWith('#') ? modalId : `#${modalId}`;
+            const modal = document.querySelector(selector);
+            openModal(modal, trigger);
+            return;
+        }
+    });
 
-    console.log('scroller', scroller);
+    const openModal = (modal, trigger) => {
+        if(!modal) return;
+        if(modal && trigger) {
+            const guestData = trigger.dataset;
+            console.log('guestData', guestData);
+            modal.querySelector('.modal-speaker.image').src = guestData.modalGuestImage || '';
+            modal.querySelector('.modal-speaker.name').textContent = guestData.modalGuestName || '--';
+            modal.querySelector('.modal-speaker.role').textContent = guestData.modalGuestRole || '';
+            modal.querySelector('.modal-speaker.bio').innerHTML = guestData.guestBio || '--';
 
-    const isMobile = () => window.innerWidth <= 768;
-
-    function createScrollerItem(data) {
-        const item = document.createElement('div');
-        item.className = 'guest-list-item';
-        item.dataset.name = data.name;
-        item.dataset.role = data.role;
-        item.dataset.image = data.image;
-        item.dataset.bio = data.bio;
-
-        item.innerHTML = `
-            <img src="${data.image}" alt="${data.name}">
-            <div class="guest-item-overlay">
-                <h3>${data.name}</h3>
-                <p>${data.role}</p>
-            </div>
-        `;
-        return item;
-    }
-
-    function updateFeaturedGuest(itemToFeature) {
-        if (isMobile()) return;
-
-        const currentFeaturedData = {
-            name: featuredBio.querySelector('.featured-guest-name').textContent,
-            role: featuredBio.querySelector('.featured-guest-role').textContent,
-            image: featuredImage.src,
-            bio: featuredBio.querySelector('.featured-guest-content').innerHTML,
-        };
-
-        const newFeaturedData = itemToFeature.dataset;
-
-        featuredBio.classList.add('changing');
-        featuredImage.classList.add('changing');
-
-        setTimeout(() => {
-            featuredImage.src = newFeaturedData.image;
-            featuredImage.alt = newFeaturedData.name;
-            featuredBio.querySelector('.featured-guest-name').textContent = newFeaturedData.name;
-            featuredBio.querySelector('.featured-guest-role').textContent = newFeaturedData.role;
-            featuredBio.querySelector('.featured-guest-content').innerHTML = newFeaturedData.bio;
-
-            scroller.removeChild(itemToFeature);
-
-
-
-            const newItem = createScrollerItem(currentFeaturedData);
-            scroller.appendChild(newItem);
-
-            setTimeout(() => {
-                // Fai scrollare il carosello per mostrare il nuovo elemento
-                newItem.scrollIntoView({
-                    behavior: 'smooth',
-                    inline: 'nearest'
-                });
-            }, 50); // Piccolo ritardo (50ms) per garantire lo scorrimento
-
-            // Re-inizializza gli event listener
-            addEventListenersToItems();
-
-            featuredBio.classList.remove('changing');
-            featuredImage.classList.remove('changing');
-        }, 200);
-    }
-
-    function addEventListenersToItems() {
-        const scrollerItems = container.querySelectorAll('.guest-list-item');
-        scrollerItems.forEach(item => {
-            item.removeEventListener('click', handleItemClick);
-            item.addEventListener('click', handleItemClick);
-        });
-    }
-
-    function handleItemClick(event) {
-        const item = event.currentTarget;
-        if (isMobile()) {
-
-            const isActive = item.classList.contains('overlay-active');
-            container.querySelectorAll('.guest-list-item').forEach(i => i.classList.remove('overlay-active'));
-            if (!isActive) {
-                item.classList.add('overlay-active');
-            }
-        } else {
-
-            updateFeaturedGuest(item);
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
         }
     }
 
+    const findGuests = (searchString) => {
+        let cards = document.getElementsByClassName('guest-card');
+        let searchHits = 0;
 
-    addEventListenersToItems();
+        for (let i = 0; i < cards.length; i++) {
+            if((cards[i].getAttribute('data-modal-guest-name')).toLowerCase().includes(searchString.toLowerCase())) {
+                cards[i].style.display = '';
+                searchHits++;
+            }
+            else {
+                cards[i].style.display = 'none';
+                searchHits--;
+            }
+        }
 
+        if(searchHits < 1) {
+            document.getElementById('no-res-pane').style.display = 'block';
+        }
+        else if (searchString === '')
+            document.getElementById('no-res-pane').style.display = 'none';
 
-    navPrev.addEventListener('click', () => {
-        scroller.scrollBy({ left: -200, behavior: 'smooth' });
-    });
+    }
 
-    navNext.addEventListener('click', () => {
-        scroller.scrollBy({ left: 200, behavior: 'smooth' });
-    });
+    searchBar.addEventListener('keyup', e => findGuests(e.target.value));
 }

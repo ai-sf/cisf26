@@ -1,8 +1,61 @@
 {{ define "main" }}
 <div class="page-content">
-    <div class="guests-section">
-        <h2 class="section-title">I Nostri Ospiti</h2>
-        {{ partial "guest-scroller.html" . }}
+    <!-- Modal -->
+    <div id="guest-modal" class="base-modal">
+        <div class="base-modal-content">
+            <img class="modal-speaker image" src="" alt="">
+            <h3 class="modal-speaker name"></h3>
+            <p class="modal-speaker role"></p>
+            <div class="modal-speaker bio"></div>
+
+            <button class="close-modal">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
     </div>
+
+    <section style="padding: 2rem 1rem 3rem; text-align: center;">
+        <h2 class="section-title">Gli ospiti di CISF26</h2>
+        <label class="base-field">
+            <input
+                type="text"
+                id="guest-searchbar"
+                placeholder="&nbsp;"
+            />
+            <span class="placeholder">Cerca ospite</span>
+            <span class="border"></span>
+        </label>
+    </section>
+    <!--
+        TODO:
+            padding: 2rem 1rem 3rem;
+          max-width: 1100px;
+          margin: 0 auto;
+    -->
+    <section style="padding: 2rem 1rem 3rem;
+          max-width: 1100px;
+          margin: 0 auto; text-align: center;" class="guests-wrapper">
+        {{ $guests := (where site.RegularPages "Section" "guests").ByTitle }}
+        {{ range $guests }}
+            <div class="guest-card"
+                 data-modal-target="#guest-modal"
+                 data-modal-guest-name="{{ .Title }}"
+                 data-modal-guest-role="{{ .Params.role }}"
+                 data-modal-guest-image="{{ .Params.image | relURL }}"
+                 data-guest-bio="{{ .Params.bio | safeHTML }}"
+            >
+                <div class="guest-card__img-mask">
+                    <img src="{{ .Params.image | relURL}}" alt="{{ .Title }}">
+                </div>
+                <div class="guest-card-content">
+                    <h3 class="guest-name">{{ .Title }}</h3>
+                    <p class="guest-role">{{ .Params.role }}</p>
+                </div>
+            </div>
+        {{ end }}
+        <div id='no-res-pane' class="no-results-pane">
+            Nessun risultato
+        </div>
+    </section>
 </div>
 {{ end }}
