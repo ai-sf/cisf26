@@ -167,6 +167,24 @@
         {{ end }}
         {{ end }}
     </section>
+
+    <section class="sponsors-section" data-animate>
+        <!-- Sponsors -->
+        {{ $targetCategoryName := $home.Params.category_two }}
+        {{ if $targetCategoryName }}
+        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}
+        {{ range $categoryPages }}
+        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
+        {{ if gt (len $catPartners) 0 }}
+        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
+            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+        </div>
+        {{ $sortedPartners := sort $catPartners "Params.order" }}
+        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </section>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

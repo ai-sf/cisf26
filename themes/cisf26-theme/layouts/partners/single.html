@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <section>
+    <section style="padding: 2rem 1rem 3rem; max-width: 1100px; margin: 0 auto;">
         {{ $categories := where .Site.RegularPages "Section" "partner-categories" }}
             {{ range sort $categories "Params.order" }}
                 {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
