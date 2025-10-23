@@ -6,4 +6,5 @@ lat: "41.85674020629887"
 lng: "12.467169916246624"
 image: "images/locations/dip_astrogarden2.webp"
 website: "https://matematicafisica.uniroma3.it/"
+draft: true
 ---
