@@ -1,6 +1,6 @@
 {{ define "main" }}
-<div class="page-content">
-    <div class="about-us-header">
+<section class="page-content">
+    <div class="about-us-header" style="padding: 2rem 1rem 3rem; max-width: 1100px; margin: 0 auto;">
         <div class="about-us-text">
             <h1 class="about-us-title">Ciao, siamo il comitato locale <span>{{ .Params.title_highlight }}</span></h1>
             <h2 class="about-us-subtitle">{{ .Params.subtitle }}</h2>
@@ -14,19 +14,20 @@
             {{ end }}
         </div>
     </div>
-</div>
-
-<section class="organizers-section">
-    <h2>Organizzatori</h2>
-    <div class="organizers-grid">
-        {{ range sort (.Site.GetPage "section" "organizer").RegularPages "Params.weight" }}
-        <div class="organizer-card">
-            <img src="{{ .Params.image | relURL }}" alt="{{ .Params.name }}" class="organizer-photo">
-            <h3 class="organizer-name">{{ .Params.name }}</h3>
-            <p class="organizer-role">{{ .Params.role }}</p>
-            <p class="organizer-description">{{ .Params.description }}</p>
+    <section class="organizers-section">
+        <h2>Organizzatori</h2>
+        <div class="organizers-grid">
+            {{ range sort (.Site.GetPage "section" "organizer").RegularPages "Params.weight" }}
+            <div class="organizer-card">
+                <img src="{{ .Params.image | relURL }}" alt="{{ .Params.name }}" class="organizer-photo">
+                <h3 class="organizer-name">{{ .Params.name }}</h3>
+                <p class="organizer-role">{{ .Params.role }}</p>
+                <p class="organizer-description">{{ .Params.description }}</p>
+            </div>
+            {{ end }}
         </div>
-        {{ end }}
-    </div>
+    </section>
 </section>
+
+
 {{ end }}
