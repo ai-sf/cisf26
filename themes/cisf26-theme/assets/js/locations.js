@@ -124,8 +124,8 @@ export function initLocationsPage() {
 
     infoButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // evita che il click sulla card venga triggerato
-            const card = btn.closest('.base-card');
+            e.stopPropagation();
+            const card = btn.closest('.location-card');
             if (!card || !locationModal) return;
 
             // Data reading
