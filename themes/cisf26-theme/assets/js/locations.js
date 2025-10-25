@@ -15,9 +15,7 @@ export function initLocationsPage() {
         cards.forEach(card => {
             const locationType = card.dataset.type;
             const shouldShow = activeFilter ===  "all" || locationType === activeFilter;
-            console.log("Card:", card.dataset.title,
-                "| type:", `"${locationType}"`,
-                "| shouldShow:", shouldShow);
+            
             card.style.display = shouldShow ? "block" : "none";
         });
 
@@ -160,11 +158,10 @@ export function initLocationsPage() {
 
     filterButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // reset attivi
-            // filterButtons.forEach(b => b.classList.remove("active"));
-            // btn.classList.add("active");
+            filterButtons.forEach(b => b.classList.remove("active"));
 
             const filter = btn.dataset.filter;
+            btn.classList.add("active");
             applyLocationFilter(filter);
         });
     });
