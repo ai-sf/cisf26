@@ -26,29 +26,32 @@
         {{ end }}
     </div>
 
-    {{ $events := (where (site.GetPage "section" "scheduled-event").RegularPages "Draft" false) }}
-    {{ $byDay := dict }}
-    {{ range $events }}
-    {{ $day := .Params.day | default "ALTRO" }}
-    {{ $list := (index $byDay $day | default (slice)) | append . }}
-    {{ $byDay = merge $byDay (dict $day $list) }}
-    {{ end }}
+    <section style="padding: 2rem 1rem 3rem; max-width: 1100px; margin: 0 auto;">
+        {{ $events := (where (site.GetPage "section" "scheduled-event").RegularPages "Draft" false) }}
+        {{ $byDay := dict }}
+        {{ range $events }}
+        {{ $day := .Params.day | default "ALTRO" }}
+        {{ $list := (index $byDay $day | default (slice)) | append . }}
+        {{ $byDay = merge $byDay (dict $day $list) }}
+        {{ end }}
 
-    <div class="days-scroll">
-        {{ range $day := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
-        {{ with index $byDay $day }}
-        <div class="day-column">
-            <div class="day-title-container">
-                <h2 class="day-title">{{ i18n (printf "days.%s" (lower $day)) }}</h2>
+        <div class="days-scroll">
+            {{ range $day := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
+            {{ with index $byDay $day }}
+            <div class="day-column">
+                <div class="day-title-container">
+                    <h2 class="day-title">{{ i18n (printf "days.%s" (lower $day)) }}</h2>
+                </div>
+
+                {{ range sort . "Params.weight" }}
+                {{ partial "event-card.html" . }}
+                {{ end }}
             </div>
-
-            {{ range sort . "Params.weight" }}
-            {{ partial "event-card.html" . }}
+            {{ end }}
             {{ end }}
         </div>
-        {{ end }}
-        {{ end }}
-    </div>
+    </section>
+
 
 </div>
 {{ end }}

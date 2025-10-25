@@ -1,5 +1,5 @@
 ---
-title: "Laboratori di Fisica - Università degli Studi di Roma Tre"
+title: "Laboratori di Fisica - Roma Tre"
 address: "Via della Vasca Navale, 84, Roma"
 type: "Laboratori" 
 lat: "41.85674020629887"

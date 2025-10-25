@@ -15,9 +15,7 @@ export function initLocationsPage() {
         cards.forEach(card => {
             const locationType = card.dataset.type;
             const shouldShow = activeFilter ===  "all" || locationType === activeFilter;
-            console.log("Card:", card.dataset.title,
-                "| type:", `"${locationType}"`,
-                "| shouldShow:", shouldShow);
+            
             card.style.display = shouldShow ? "block" : "none";
         });
 
@@ -72,7 +70,8 @@ export function initLocationsPage() {
                     <h3><strong>${title || ''}</strong></h3>
                     <div class="map-popup-address">${address || ''}</div>
                     <button class="popup-navigate-btn" data-lat="${lat}" data-lng="${lng}">
-                        <i class="fa-solid fa-location-arrow"></i>
+                        <i class="fa-solid fa-route"></i>
+                        <span>Indicazioni</span>
                     </button>
                 </div>
             `);
@@ -124,8 +123,8 @@ export function initLocationsPage() {
 
     infoButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // evita che il click sulla card venga triggerato
-            const card = btn.closest('.base-card');
+            e.stopPropagation();
+            const card = btn.closest('.location-card');
             if (!card || !locationModal) return;
 
             // Data reading
@@ -160,11 +159,10 @@ export function initLocationsPage() {
 
     filterButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // reset attivi
-            // filterButtons.forEach(b => b.classList.remove("active"));
-            // btn.classList.add("active");
+            filterButtons.forEach(b => b.classList.remove("active"));
 
             const filter = btn.dataset.filter;
+            btn.classList.add("active");
             applyLocationFilter(filter);
         });
     });
