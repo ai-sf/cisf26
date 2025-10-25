@@ -70,7 +70,8 @@ export function initLocationsPage() {
                     <h3><strong>${title || ''}</strong></h3>
                     <div class="map-popup-address">${address || ''}</div>
                     <button class="popup-navigate-btn" data-lat="${lat}" data-lng="${lng}">
-                        <i class="fa-solid fa-location-arrow"></i>
+                        <i class="fa-solid fa-route"></i>
+                        <span>Indicazioni</span>
                     </button>
                 </div>
             `);
