@@ -105,14 +105,16 @@ export function initLocationsPage() {
 
     // Directins btn within card
     cards.forEach(card => {
-        const navBtn = card.querySelector(".navigate-btn");
-        if (navBtn) {
-            navBtn.addEventListener("click", (e) => {
+        const directionsLink = card.querySelector(".location-card-directions-button");
+        if (directionsLink) {
+            directionsLink.addEventListener("click", (e) => {
                 e.stopPropagation();
                 const { lat, lng } = card.dataset;
                 if (lat && lng) {
                     const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
                     window.open(url, "_blank");
+                } else {
+                    console.error("Missing latitude or longitude data for this card.");
                 }
             });
         }
