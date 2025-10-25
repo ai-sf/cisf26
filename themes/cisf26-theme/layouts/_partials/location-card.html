@@ -1,7 +1,7 @@
 {{ $type := .Params.type }}
 {{ $typePage := index (where (where .Site.RegularPages "Section" "location-types") "Title" $type) 0 }}
 
-<div class="base-card"
+<div class="location-card"
      id="location-card"
 
      data-type="{{ .Params.type }}"
@@ -13,30 +13,29 @@
      data-lng="{{ .Params.lng }}"
      data-color="{{ $typePage.Params.color }}"
 
-     style="cursor: pointer;"
+    
 >
-    <div class="base-card-content">
-        <button class="location-card-fab-info-btn">
-            <i class="fa-solid fa-info"></i>
-        </button>
-        {{ with .Params.image }}
-            <img class="base-card-image-container" src="{{ . | relURL }}" alt="Img {{ $.Title }}">
-        {{ end }}
-    </div>
+    {{ with .Params.image }}
+        <div 
+            class="location-card-content" 
+            style="background-image: url('{{ . | relURL }}');"
+        >
+            <div class="location-card--body">
+                <h3>{{ $.Title }}</h3>
+                <div class="location-card--controls">
+                    <button class="location-card-fab-info-btn">
+                        <i class="fa-solid fa-info"></i>
+                    </button>
+                    
 
-
-    <div class="scheduled-event-card-body">
-        <h3>{{ .Title }}</h3>
-
-        <div class="base-card-address-container">
-            <a class="card-location"
-               href="{{ .Params.location_url }}"
-               target="_blank"
-               rel="noopener noreferrer"
-            >
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Naviga</span>
-            </a>
+                    <button class="location-card-directions-button">
+                        <a href="{{ $.Params.location_url }}" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-route"></i>
+                            <span>Indicazioni</span>
+                        </a>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+    {{ end }}
 </div>
