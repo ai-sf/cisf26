@@ -1,14 +1,14 @@
 // about-us specific styles
 .about-us-text {
-  flex: 2; // Takes more space
-  min-width: 300px; // Minimum width before wrapping
+  flex: 2;
+  min-width: 300px;
 }
 
 .about-us-header {
   display: flex;
-  flex-direction: row; // O in colonna su schermi piccoli
-  align-items: flex-start; // Allinea l'inizio degli elementi flex
-  gap: 20px; // Spazio tra testo e immagini
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -17,10 +17,10 @@
 }
 
 .about-us-text {
-  flex: 1; // Prende lo spazio disponibile
-  max-width: 60%; // Limita la larghezza del testo, puoi aggiustare
-  padding-right: 20px; // Spazio a destra del testo
-  z-index: 2; // Assicura che il testo sia sopra le immagini se si sovrappongono troppo
+  flex: 1;
+  max-width: 60%;
+  padding-right: 20px;
+  z-index: 2;
   @media (max-width: 768px) {
     max-width: 100%;
     padding-right: 0;
@@ -28,34 +28,34 @@
 }
 
 .about-us-images {
-  position: relative; // Permette il posizionamento assoluto delle immagini interne
-  width: 500px; // Larghezza fissa per il contenitore delle immagini
-  height: 500px; // Altezza fissa per il contenitore
-  flex-shrink: 0; // Impedisce che si rimpicciolisca
-  margin-right: -100px; // Fa sporgere il contenitore a destra
-  z-index: 1; // Le immagini saranno dietro al testo se si sovrappongono
-  //overflow: hidden; // Potrebbe essere necessario se le immagini escono troppo
+  position: relative;
+  width: 500px;
+  height: 500px;
+  flex-shrink: 0;
+  margin-right: -100px;
+  z-index: 1;
+  
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 400px; // Regola altezza per mobile
-    margin-right: 0; // Nessun margine negativo su mobile
+    height: 400px;
+    margin-right: 0;
   }
 
   img {
-    position: absolute; // Permette il posizionamento libero
-    border-radius: 12px; // Angoli più arrotondati
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); // Ombra più marcata
+    position: absolute;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     object-fit: cover;
-    max-width: none; // Permette all'immagine di uscire dal contenitore se necessario
-    transition: transform 0.3s ease; // Animazione per hover
+    max-width: none;
+    transition: transform 0.3s ease;
 
     &:hover {
-      transform: scale(1.03); // Zoom leggero all'hover
-      z-index: 10; // Porta l'immagine in primo piano all'hover
+      transform: scale(1.03);
+      z-index: 10;
     }
 
-    &:nth-child(1) { // Immagine del globo
+    &:nth-child(1) {
       width: 280px;
       height: 280px;
       top: 0px;
@@ -63,26 +63,26 @@
       z-index: 3;
     }
 
-    &:nth-child(2) { // Immagine dell'edificio (quella che sporge)
-      width: 450px; // Larghezza maggiore per sporgere
+    &:nth-child(2) {
+      width: 450px;
       height: 250px;
       top: 80px; // Spostata un po' più in basso
-      right: -150px; // Sporge molto a destra del contenitore about-us-images
-      z-index: 2; // Dietro al globo
+      right: -150px;
+      z-index: 2;
       @media (max-width: 768px) {
-        width: 100%; // Adatta su mobile
+        width: 100%;
         right: 0;
         top: 0;
         height: 200px;
       }
     }
 
-    &:nth-child(3) { // Immagine degli studenti
+    &:nth-child(3) {
       width: 380px;
       height: 260px;
       bottom: 0px;
-      left: 50px; // Spostata un po' a destra
-      z-index: 4; // Sopra le altre due
+      left: 50px;
+      z-index: 4;
       @media (max-width: 768px) {
         width: 80%;
         left: 10%;
@@ -94,14 +94,14 @@
 }
 
 .about-us-title {
-  font-size: 3.5rem; // Large title
+  font-size: 3.5rem;
   font-weight: 600;
   line-height: 1.1;
   color: $secondary-color;
   margin-bottom: 1rem;
 
   span {
-    color: $accent-color-1; // Highlight part of the title
+    color: $accent-color-1;
   }
 }
 
