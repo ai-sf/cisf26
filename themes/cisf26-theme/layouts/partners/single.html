@@ -26,9 +26,12 @@
             {{ range sort $categories "Params.order" }}
                 {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
                 {{ if gt (len $catPartners) 0 }}
-                    <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
-                        <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+                    <div style="display: flex;justify-content: center;margin-top: 1rem;margin-bottom: .5rem;">
+                        <div class="partner-container-header" {{ if .Params.border }} style="border: 2px solid {{ .Params.color }};" {{ end }}>
+                            <h2 style='color: {{ .Params.color }}'>{{ .Title }}</h2>
+                        </div>
                     </div>
+                    
                     {{ $sortedPartners := sort $catPartners "Params.order" }}
 
                     {{ if eq .Params.layout "grid" }}

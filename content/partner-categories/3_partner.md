@@ -1,9 +1,8 @@
 ---
 title: "Sostenitori"
 order: 3
-bgColor: "#993701"
-color: "#fff"
-layout: "grid"
+border: true
+color: "#993701"
+layout: "slider"
 css: "partner"
-#id: "sponsors"
 ---
