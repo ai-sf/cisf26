@@ -3,6 +3,7 @@ title: "Chi Siamo"
 date: 2023-10-27T10:00:00+02:00
 draft: false
 layout: "/about-us/single"
+pageScript: "about-us.js"
 
 title_highlight: "AISF Roma Tre"
 subtitle: "AISF - Associazione Italiana Studenti di Fisica"

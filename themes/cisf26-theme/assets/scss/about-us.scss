@@ -1,4 +1,3 @@
-// about-us specific styles
 .about-us-text {
   flex: 2;
   min-width: 300px;
@@ -17,13 +16,35 @@
 }
 
 .about-us-text {
-  flex: 1;
-  max-width: 60%;
-  padding-right: 20px;
-  z-index: 2;
-  @media (max-width: 768px) {
-    max-width: 100%;
-    padding-right: 0;
+  // old
+  //flex: 1;
+  //max-width: 60%;
+  //padding-right: 20px;
+  //z-index: 2;
+  //@media (max-width: 768px) {
+  //  max-width: 100%;
+  //  padding-right: 0;
+  //}
+
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .about-us-text,
+  .about-us-subtitle,
+  .about-us-description {
+    width: 70%;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+
+    span {
+      position: absolute;
+      font-size: 3rem;
+      line-height: 4.2rem;
+    }
   }
 }
 
@@ -34,7 +55,7 @@
   flex-shrink: 0;
   margin-right: -100px;
   z-index: 1;
-  
+  //overflow: hidden;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -66,7 +87,7 @@
     &:nth-child(2) {
       width: 450px;
       height: 250px;
-      top: 80px; // Spostata un po' più in basso
+      top: 80px;
       right: -150px;
       z-index: 2;
       @media (max-width: 768px) {
@@ -117,71 +138,125 @@
   color: $dark-grey;
 }
 
-//Organizers Section
 .organizers-section {
   background-color: $organizers-bg-color;
-  padding: 60px 0;
+  padding: 30px 0;
   text-align: center;
+
+  h2 {
+    color: $light-grey;
+    font-size: 2.5rem;
+    margin: 0;
+  }
 }
 
-.organizers-section h2 {
-  color: $light-grey;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+.organizers-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow: hidden;
 }
 
 .organizers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
+  justify-content: center;
+  align-items: stretch;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding-bottom: 10px;
+  }
 }
 
 .organizer-card {
-  user-select: none;
   background-color: $light-grey;
   border-radius: 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-  width: 300px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   text-align: left;
   padding: 20px;
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  max-width: 300px; // ✅ card di dimensione coerente su desktop
+
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 75%; // ✅ ogni card occupa il 75% della viewport
+    scroll-snap-align: center;
+    max-width: none; // rimuove la limitazione fissa
   }
 }
 
-.organizer-photo {
+.organizer-image-wrapper {
   width: 100%;
-  height: auto;
-  border-radius: 20px;
+  height: 220px; // altezza uniforme per tutte le immagini
+  overflow: hidden;
+  border-radius: 15px;
   margin-bottom: 20px;
-  object-fit: cover;
-  max-height: 400px;
+
+  .organizer-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
 .organizer-name {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: $secondary-color;
-  margin-top: -10px;
   margin-bottom: 5px;
 }
 
 .organizer-role {
   font-size: 1rem;
   color: $accent-color-1;
-  margin: 0;
   font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .organizer-description {
   font-size: 0.9rem;
   color: $dark-grey;
-  line-height: 1.4;
-  margin-top: 15px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* Mobile resizing */
+@media (max-width: 768px) {
+  .organizers-section {
+    padding: 40px 0;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+  }
+
+  .organizer-image-wrapper {
+    height: 180px;
+  }
+
+  .organizer-name {
+    font-size: 1.2rem;
+  }
+
+  .organizer-description {
+    font-size: 0.85rem;
+  }
 }
