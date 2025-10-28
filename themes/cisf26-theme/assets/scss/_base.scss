@@ -27,6 +27,11 @@ body.modal-open {
   height: 100%;
 }
 
+.page-content-modal-open {
+  overflow: hidden;
+  height: 100%;
+}
+
 body.popup-open {
   overflow: hidden;
   .mobile-popup-overlay {
