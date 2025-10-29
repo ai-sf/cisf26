@@ -87,8 +87,9 @@
 
 .modal-speaker {
   text-align: center;
+
   &.image {
-    max-width: 120px;
+    width: 120px;
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
@@ -104,16 +105,21 @@
     display: block;
     margin-bottom: 0.5rem;
     font-size: 1rem;
-    color: #555;
+    color: $accent-color-1;
     font-weight: bold;
+    user-select: none;
   }
 
   &.bio {
+    user-select: none;
+    ‑webkit‑user‑select: none;
     margin-top: 1rem;
     font-size: 0.95rem;
     line-height: 1.5;
     color: #333;
     text-align: left;
+    max-height: 280px;
+    overflow-y: auto;
   }
 }
 

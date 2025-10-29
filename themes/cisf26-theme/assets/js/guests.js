@@ -2,7 +2,6 @@ export function initGuestScroller() {
     const searchBar = document.querySelector('#guest-searchbar');
     const noResultsPane = document.querySelector('#no-res-pane');
     noResultsPane.style.display = 'none';
-    console.log('searchbar', searchBar);
 
     document.addEventListener('click', (ev) => {
         const trigger = ev.target.closest('[data-modal-target]');
@@ -20,7 +19,6 @@ export function initGuestScroller() {
         if(!modal) return;
         if(modal && trigger) {
             const guestData = trigger.dataset;
-            console.log('guestData', guestData);
             modal.querySelector('.modal-speaker.image').src = guestData.modalGuestImage || '';
             modal.querySelector('.modal-speaker.name').textContent = guestData.modalGuestName || '--';
             modal.querySelector('.modal-speaker.role').textContent = guestData.modalGuestRole || '';
@@ -28,6 +26,9 @@ export function initGuestScroller() {
 
             modal.classList.add('open');
             document.body.classList.add('modal-open');
+
+            const pageContent = document.querySelector('.page-content');
+            pageContent.classList.add('page-content-modal-open');
         }
     }
 

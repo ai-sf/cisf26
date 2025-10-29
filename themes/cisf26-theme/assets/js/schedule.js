@@ -43,7 +43,6 @@ export function initSchedulePage() {
     // TODO: Improve this and prevent from triggering every time something happens on document
     document.addEventListener('click', (event) => {
         const openTrigger = event.target.closest('[data-modal-target]');
-        console.log('open trigger', openTrigger);
         if (openTrigger) {
             event.preventDefault();
             const modalId = openTrigger.dataset.modalTarget || '';
@@ -58,7 +57,6 @@ export function initSchedulePage() {
         if(!modal) return;
         if(modal && trigger) {
             const speakerData = trigger.dataset;
-            console.log('speaker data', speakerData);
             modal.querySelector('.modal-speaker.image').src = speakerData.speakerImage || '';
             modal.querySelector('.modal-speaker.name').textContent = speakerData.speakerName || '--';
             modal.querySelector('.modal-speaker.role').textContent = speakerData.speakerRole || '';
