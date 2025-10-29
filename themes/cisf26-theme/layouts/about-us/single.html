@@ -1,5 +1,5 @@
 {{ define "main" }}
-    <div class="page-content" style="padding: 0 !important;">
+    <!-- <div class="page-content" style="padding: 0 !important;">
         <div class="about-us-header" style="padding: 2rem 1rem 3rem;max-width: 1100px; margin: 0 auto;">
             <div class="about-us-text">
                 <div class="about-us-title">
@@ -13,12 +13,36 @@
                     </span>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+        <!-- <section class="organizers-section"> -->
+            <!-- <h2>Organizzatori</h2> -->
+            <div class="gallery">
+                <ul class="cards">  
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-01.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-02.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-03.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-04.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-05.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-06.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-07.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-01.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-02.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-03.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-07.png)"></li>		
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-04.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-05.png)"></li>
+                    <li style="background-image: url(https://assets.codepen.io/16327/portrait-number-06.png)"></li>
+                </ul>
+            <div class="actions">
+                    <button class="prev">Prev</button>
+                    <button class="next">Next</button>
+                </div>
+            </div>
+        <!-- </section> -->
+    <!-- </div> -->
 
-    <section class="organizers-section">
-        <h2>Organizzatori</h2>
-        <div class="organizers-container">
+    
+        <!-- <div class="organizers-container">
             <div class="organizers-grid">
                 {{ range sort (.Site.GetPage "section" "organizer").RegularPages "Params.weight" }}
                 <div class="organizer-card">
@@ -31,6 +55,6 @@
                 </div>
                 {{ end }}
             </div>
-        </div>
-    </section>
+        </div> -->
+    
 {{ end }}
