@@ -1,15 +1,16 @@
-let snapTime;
-let animateFunc;
-let seamlessLoop;
-let playhead;
-let wrapTime;
-let scrub;
-let trigger;
-let progressToScroll;
-let rawSequence;
-let cycleDuration;
-let dur;
-let cards;
+var snapTime;
+var animateFunc;
+var seamlessLoop;
+var playhead;
+var wrapTime;
+var scrub;
+var trigger;
+var progressToScroll;
+var rawSequence;
+var cycleDuration;
+var dur;
+var cards;
+let iteration = 0;
 
 function buildSeamlessLoop(items, spacing, animateFunc) {
 	rawSequence = gsap.timeline({paused: true}), // this is where all the "real" animations live
@@ -56,12 +57,10 @@ function scrollToOffset(offset) { // moves the scroll playhead to the place that
 	trigger.scroll(scroll);
 }
 
-export function initAboutUs() {
-
+export function initAboutUsPage() {
+    console.log('about us js');
     gsap.registerPlugin(ScrollTrigger);
 
-    console.log('about us js');
-    let iteration = 0;
     const tl = gsap.timeline();
 
     gsap.set('.cards li', { xPercent: 400, opacity: 0, scale: 0});
