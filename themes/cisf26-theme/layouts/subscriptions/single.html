@@ -9,18 +9,174 @@
           action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse"
           method="POST"
           target="hidden_iframe"
-          onsubmit="formSubmitted()">
+          onsubmit="formSubmitted()"
+    >
 
-        <label>
-            Nome:
-            <input type="text" id="nome" name="entry.2109614896" required>
+        <fieldset>
+            <legend>Genere o pronomi:</legend>
+
+            <div>
+                <input type="radio" id="female" name="drone" value="female" checked />
+                <label for="female">Donna</label>
+            </div>
+
+            <div>
+                <input type="radio" id="man" name="drone" value="man" />
+                <label for="man">Uomo</label>
+            </div>
+
+            <div>
+                <input type="radio" id="neutral" name="drone" value="neutral" />
+                <label for="neutral">Preferisco il pronome neutro</label>
+            </div>
+        </fieldset>
+
+        <label class="base-field">
+            <input type="text" id="name" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Nome*</span>
+            <span class="border"></span>
         </label>
 
-        <!-- Email -->
-        <label>
-            Email:
-            <input type="email" id="email" name="entry.648108435" required>
+        <label class="base-field">
+            <input type="text" id="surname" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Cognome*</span>
+            <span class="border"></span>
         </label>
+
+        <span>Data di nascita*</span>
+        <input type="date" name="date"/>
+
+        <label class="base-field">
+            <input type="email" id="email" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Email*</span>
+            <span class="border"></span>
+        </label>
+
+        <label class="base-field">
+            <input type="tel" id="phone" name="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="&nbsp;" required />
+            <span class="placeholder">Telefono*</span>
+            <span class="border"></span>
+        </label>
+
+
+        <label class="base-field">
+            <input type="email" id="education" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Ateneo di provenienza*</span>
+            <span class="border"></span>
+        </label>
+
+        <fieldset>
+            <legend>Corso di Laurea:</legend>
+
+            <div>
+                <input type="radio" id="bachelor" name="drone" value="bachelor" checked />
+                <label for="bachelor">Laurea Triennale</label>
+            </div>
+
+            <div>
+                <input type="radio" id="masterdegree" name="drone" value="masterdegree" />
+                <label for="masterdegree">Laurea Magistrale</label>
+            </div>
+
+            <div>
+                <input type="radio" id="wholemasterdegree" name="drone" value="wholemasterdegree" />
+                <label for="wholemasterdegree">Laurea a Ciclo Unico</label>
+            </div>
+
+            <div>
+                <input type="radio" id="doc" name="drone" value="doc" />
+                <label for="doc">Dottorato</label>
+            </div>
+
+            <div>
+                <input type="radio" id="edu_other" name="drone" value="edu_other" />
+                <label for="edu_other">Altro</label>
+            </div>
+        </fieldset>
+        <!-- TODO: Should appear as the user selects "Altro" in education radios -->
+        <label class="base-field">
+            <input type="email" id="edu_other_description" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Dicci di più*</span>
+            <span class="border"></span>
+        </label>
+
+
+        <fieldset>
+            <legend>Vuoi segnalarci disabilità?</legend>
+
+            <div>
+                <input type="radio" id="no" name="drone" value="no" />
+                <label for="no">No</label>
+            </div>
+            <div>
+                <input type="radio" id="yes" name="drone" value="yes" checked />
+                <label for="yes">Si</label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Vuoi segnalarci qualcosa a livello psicologico?</legend>
+
+            <div>
+                <input type="radio" id="psico_triggers" name="drone" value="psico_triggers" />
+                <label for="psico_triggers">Trigger particolari</label>
+            </div>
+            <div>
+                <input type="radio" id="psico_needs" name="drone" value="psico_needs" checked />
+                <label for="psico_needs">Esigenze</label>
+            </div>
+            <div>
+                <input type="radio" id="psico_no" name="drone" value="psico_no" checked />
+                <label for="psico_no">No</label>
+            </div>
+            <div>
+                <input type="radio" id="psico_other" name="drone" value="psico_other" />
+                <label for="psico_other">Altro</label>
+            </div>
+        </fieldset>
+        <!-- TODO: Should appear as the user selects "Altro" in psico radios -->
+        <label class="base-field">
+            <input type="email" id="psico_other_description" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Dicci di più*</span>
+            <span class="border"></span>
+        </label>
+        <!-- TODO: Should appear as the user selects "Trigger" in psico radios -->
+        <label class="base-field">
+            <input type="email" id="psico_triggers_description" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Dicci di più - Triggers*</span>
+            <span class="border"></span>
+        </label>
+        <!-- TODO: Should appear as the user selects "Esigenze" in psico radios -->
+        <label class="base-field">
+            <input type="email" id="psico_needs_description" placeholder="&nbsp;" name="" />
+            <span class="placeholder">Dicci di più Esigenze*</span>
+            <span class="border"></span>
+        </label>
+
+
+        <fieldset>
+            <legend>Sei già iscritt ad AISF?</legend>
+
+            <div>
+                <input type="radio" id="aisf_yes" name="drone" value="aisf_yes" />
+                <label for="aisf_yes">Si</label>
+            </div>
+            <div>
+                <input type="radio" id="aisf_no" name="drone" value="aisf_no" checked />
+                <label for="aisf_no">No</label>
+            </div>
+        </fieldset>
+
+<!--        <label>-->
+<!--            Nome:-->
+<!--            <input type="text" id="nome" name="entry.2109614896" required>-->
+<!--        </label>-->
+
+<!--        &lt;!&ndash; Email &ndash;&gt;-->
+<!--        <label>-->
+<!--            Email:-->
+<!--            <input type="email" id="email" name="entry.648108435" required>-->
+<!--        </label>-->
 
         <!-- Submit -->
         <button type="submit">Invia iscrizione</button>
