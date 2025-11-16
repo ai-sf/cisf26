@@ -5,220 +5,104 @@
     {{ $end := time .Params.end_date }}
 
     {{ if and (ge $now $start) (le $now $end) }}
-    <form id="custom-google-form"
-          action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse"
-          method="POST"
-          target="hidden_iframe"
-          onsubmit="formSubmitted()"
-    >
 
-        <fieldset>
-            <legend>Genere o pronomi:</legend>
 
-            <div>
-                <input type="radio" id="female" name="drone" value="female" checked />
-                <label for="female">Donna</label>
+    <div class="container">
+        <div class="form-card">
+            <div class="decorative-element"></div>
+            <div class="form-content">
+                <div class="form-header">
+                    <h1 class="form-title">Cominciamo</h1>
+                    <p class="form-subtitle">Aiutaci a conoscerti e comprendere i tuoi bisogni in pochi step</p>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <span class="progress-step active" data-step="1" data-number="1">Su di te</span>
+                        <span class="progress-step" data-step="2" data-number="2">Dettagli aggiuntivi</span>
+                        <span class="progress-step" data-step="3" data-number="3">Università</span>
+                        <span class="progress-step" data-step="4" data-number="4">AISF</span>
+                        <span class="progress-step" data-step="5" data-number="5">Perchè CISF26?</span>
+                    </div>
+                </div>
+
+                <div class="error-message" id="errorMessage"></div>
+
+                <form
+                    id="multiStepForm"
+                    action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse"
+                    method="POST"
+                    target="hidden_iframe"
+                    onsubmit="formSubmitted()"
+                >
+                    <!-- Step 1 -->
+                    {{ partial "subscription-form/first-step.html" . }}
+                    <!-- Step 2 -->
+                    {{ partial "subscription-form/second-step.html" . }}
+                    <!-- Step 3 -->
+                    {{ partial "subscription-form/third-step.html" . }}
+                    <!-- Step 4 -->
+                    {{ partial "subscription-form/fourth-step.html" . }}
+                    <!-- Step 5 -->
+                    {{ partial "subscription-form/fifth-step.html" . }}
+
+
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Indietro</button>
+                        <button type="button" class="btn-primary" id="nextBtn">Continua</button>
+                    </div>
+                    <!-- <button type="submit">Invia iscrizione</button>-->
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon"></div>
+                    <h3>Thank You!</h3>
+                    <p>We've received your information and will be in touch shortly. Check your email for confirmation.</p>
+                </div>
             </div>
-
-            <div>
-                <input type="radio" id="man" name="drone" value="man" />
-                <label for="man">Uomo</label>
-            </div>
-
-            <div>
-                <input type="radio" id="neutral" name="drone" value="neutral" />
-                <label for="neutral">Preferisco il pronome neutro</label>
-            </div>
-        </fieldset>
-
-        <label class="base-field">
-            <input type="text" id="name" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Nome*</span>
-            <span class="border"></span>
-        </label>
-
-        <label class="base-field">
-            <input type="text" id="surname" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Cognome*</span>
-            <span class="border"></span>
-        </label>
-
-        <span>Data di nascita*</span>
-        <input type="date" name="date"/>
-
-        <label class="base-field">
-            <input type="email" id="email" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Email*</span>
-            <span class="border"></span>
-        </label>
-
-        <label class="base-field">
-            <input type="tel" id="phone" name="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="&nbsp;" required />
-            <span class="placeholder">Telefono*</span>
-            <span class="border"></span>
-        </label>
-
-
-        <label class="base-field">
-            <input type="email" id="education" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Ateneo di provenienza*</span>
-            <span class="border"></span>
-        </label>
-
-        <fieldset>
-            <legend>Corso di Laurea:</legend>
-
-            <div>
-                <input type="radio" id="bachelor" name="drone" value="bachelor" checked />
-                <label for="bachelor">Laurea Triennale</label>
-            </div>
-
-            <div>
-                <input type="radio" id="masterdegree" name="drone" value="masterdegree" />
-                <label for="masterdegree">Laurea Magistrale</label>
-            </div>
-
-            <div>
-                <input type="radio" id="wholemasterdegree" name="drone" value="wholemasterdegree" />
-                <label for="wholemasterdegree">Laurea a Ciclo Unico</label>
-            </div>
-
-            <div>
-                <input type="radio" id="doc" name="drone" value="doc" />
-                <label for="doc">Dottorato</label>
-            </div>
-
-            <div>
-                <input type="radio" id="edu_other" name="drone" value="edu_other" />
-                <label for="edu_other">Altro</label>
-            </div>
-        </fieldset>
-        <!-- TODO: Should appear as the user selects "Altro" in education radios -->
-        <label class="base-field">
-            <input type="email" id="edu_other_description" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Dicci di più*</span>
-            <span class="border"></span>
-        </label>
-
-
-        <fieldset>
-            <legend>Vuoi segnalarci disabilità?</legend>
-
-            <div>
-                <input type="radio" id="no" name="drone" value="no" />
-                <label for="no">No</label>
-            </div>
-            <div>
-                <input type="radio" id="yes" name="drone" value="yes" checked />
-                <label for="yes">Si</label>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Vuoi segnalarci qualcosa a livello psicologico?</legend>
-
-            <div>
-                <input type="radio" id="psico_triggers" name="drone" value="psico_triggers" />
-                <label for="psico_triggers">Trigger particolari</label>
-            </div>
-            <div>
-                <input type="radio" id="psico_needs" name="drone" value="psico_needs" checked />
-                <label for="psico_needs">Esigenze</label>
-            </div>
-            <div>
-                <input type="radio" id="psico_no" name="drone" value="psico_no" checked />
-                <label for="psico_no">No</label>
-            </div>
-            <div>
-                <input type="radio" id="psico_other" name="drone" value="psico_other" />
-                <label for="psico_other">Altro</label>
-            </div>
-        </fieldset>
-        <!-- TODO: Should appear as the user selects "Altro" in psico radios -->
-        <label class="base-field">
-            <input type="email" id="psico_other_description" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Dicci di più*</span>
-            <span class="border"></span>
-        </label>
-        <!-- TODO: Should appear as the user selects "Trigger" in psico radios -->
-        <label class="base-field">
-            <input type="email" id="psico_triggers_description" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Dicci di più - Triggers*</span>
-            <span class="border"></span>
-        </label>
-        <!-- TODO: Should appear as the user selects "Esigenze" in psico radios -->
-        <label class="base-field">
-            <input type="email" id="psico_needs_description" placeholder="&nbsp;" name="" />
-            <span class="placeholder">Dicci di più Esigenze*</span>
-            <span class="border"></span>
-        </label>
-
-
-        <fieldset>
-            <legend>Sei già iscritt ad AISF?</legend>
-
-            <div>
-                <input type="radio" id="aisf_yes" name="drone" value="aisf_yes" />
-                <label for="aisf_yes">Si</label>
-            </div>
-            <div>
-                <input type="radio" id="aisf_no" name="drone" value="aisf_no" checked />
-                <label for="aisf_no">No</label>
-            </div>
-        </fieldset>
-
-<!--        <label>-->
-<!--            Nome:-->
-<!--            <input type="text" id="nome" name="entry.2109614896" required>-->
-<!--        </label>-->
-
-<!--        &lt;!&ndash; Email &ndash;&gt;-->
-<!--        <label>-->
-<!--            Email:-->
-<!--            <input type="email" id="email" name="entry.648108435" required>-->
-<!--        </label>-->
-
-        <!-- Submit -->
-        <button type="submit">Invia iscrizione</button>
-    </form>
-
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <p id="form-success" style="display:none; color:green;">✅ Iscrizione inviata con successo!</p>
-
-    {{ else if lt $now $start }}
-        <div class="box">
-            <i class="fa-solid fa-triangle-exclamation exclamation"></i>
-            <p>
-                Le iscrizioni all'evento non sono ancora aperte.
-            </p>
         </div>
-    {{ else }}
-        <div class="">
-            ❌ Le iscrizioni si sono chiuse il {{ $end.Format "02/01/2006" }}.
-        </div>
-    {{ end }}
+    </div>
+
+<!--    <iframe name="hidden_iframe" style="display:none;"></iframe>-->
+<!--    <p id="form-success" style="display:none; color:green;">✅ Iscrizione inviata con successo!</p>-->
+
+<!--    {{ else if lt $now $start }}-->
+<!--        <div class="box">-->
+<!--            <i class="fa-solid fa-triangle-exclamation exclamation"></i>-->
+<!--            <p>-->
+<!--                Le iscrizioni all'evento non sono ancora aperte.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--    {{ else }}-->
+<!--        <div class="">-->
+<!--            ❌ Le iscrizioni si sono chiuse il {{ $end.Format "02/01/2006" }}.-->
+<!--        </div>-->
+<!--    {{ end }}-->
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById('gform');
-        const successMessage = document.getElementById('gform-success');
-        const iframe = document.querySelector('iframe[name="hidden_iframe"]');
-        let formSubmitted = false;
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        const form = document.getElementById('gform');-->
+<!--        const successMessage = document.getElementById('gform-success');-->
+<!--        const iframe = document.querySelector('iframe[name="hidden_iframe"]');-->
+<!--        let formSubmitted = false;-->
 
-        form.addEventListener('submit', function() {
-            formSubmitted = true;
-        });
+<!--        form.addEventListener('submit', function() {-->
+<!--            formSubmitted = true;-->
+<!--        });-->
 
-        iframe.addEventListener('load', function() {
-            if (formSubmitted) {
-                successMessage.style.display = 'block';
-                form.reset();
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
-                formSubmitted = false;
-            }
-        });
-    });
-</script>
+<!--        iframe.addEventListener('load', function() {-->
+<!--            if (formSubmitted) {-->
+<!--                successMessage.style.display = 'block';-->
+<!--                form.reset();-->
+<!--                setTimeout(() => {-->
+<!--                    successMessage.style.display = 'none';-->
+<!--                }, 5000);-->
+<!--                formSubmitted = false;-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 {{ end }}
