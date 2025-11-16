@@ -1,0 +1,100 @@
+<div class="form-step" data-step="5">
+    <div class="form-group">
+        <label>Quale tematica della fisica ti interessa di più? Ordina la lista in base ai tuoi interessi<span class="required">*</span></label>
+        <ul id="subjects-list" class="sortable-list"></ul>
+    </div>
+
+
+    <div class="form-group">
+        <label>Vuoi presentare un tuo lavoro alla Parallel Session? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-yes" name="parallel_session" value="parallel_session_yes" required>
+                <label for="parallel-session-yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-no" name="parallel_session" value="parallel_session_no" required>
+                <label for="parallel-session-no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="message">Scrivi qui la tua lettera (max 1800 caratteri)</label>
+        <textarea id="message" name="message" maxlength="1800" placeholder="Voglio partecipare a CISF26 perchè..."></textarea>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const subjects = [
+            {
+                title: "Didattica della Fisica"
+            },
+            {
+                title: "Outreach"
+            },
+            {
+                title: "Astrofisica"
+            },
+            {
+                title: "Fisica della Terra e dell'Ambiente"
+            },
+            {
+                title: "Fisica delle particelle"
+            },
+            {
+                title: "Fisica Teorica"
+            },
+            {
+                title: "Fisica della Materia"
+            }
+        ];
+
+        const list = document.getElementById("subjects-list");
+
+        subjects.forEach(sub => {
+            const li = document.createElement("li");
+            li.textContent = sub.title;
+            li.classList.add("sortable-item");
+            li.setAttribute("draggable", "true");
+            list.appendChild(li);
+        });
+
+        let dragging = null;
+
+        list.addEventListener("dragstart", function (e) {
+            dragging = e.target;
+            e.target.classList.add("dragging");
+        });
+
+        list.addEventListener("dragend", function (e) {
+            e.target.classList.remove("dragging");
+            dragging = null;
+        });
+
+        list.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(list, e.clientY);
+            if (afterElement == null) {
+                list.appendChild(dragging);
+            } else {
+                list.insertBefore(dragging, afterElement);
+            }
+        });
+
+        function getDragAfterElement(container, y) {
+            const items = [...container.querySelectorAll(".sortable-item:not(.dragging)")];
+            return items.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+    });
+</script>

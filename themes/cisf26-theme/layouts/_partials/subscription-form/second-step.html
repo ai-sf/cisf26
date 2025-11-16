@@ -1,0 +1,197 @@
+<!-- Step 2 -->
+<div class="form-step" data-step="2">
+
+    Proveremo a venire incontro ai vostri bisogni, al meglio delle nostre possibilità e compatibilmente con cause di forza maggiore.
+
+
+    <div class="form-group">
+        <label>Vuoi segnalarci qualche disabilità? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="disability_yes" name="entry.1631187488" value="disability_yes" required>
+                <label for="disability_yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="disability_no" name="entry.1631187488" value="disability_no">
+                <label for="disability_no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Se vuoi, puoi comunicarci eventuali disagi psicologici, trigger, neurodivergenze etc, e se c’è qualcosa su cui
+        possiamo aiutarti (sempre al meglio delle nostre possibilità)
+    </p>
+    <div class="form-group">
+        <label>Vuoi segnalarci qualcosa a livello psicologico? <span class="required">*</span></label>
+        <div class="radio-group">
+            <!-- Triggers -->
+            <div class="radio-option">
+                <input type="radio" id="psyco_trigger" name="psyco" value="psyco_trigger">
+                <label for="psyco_trigger" class="radio-label">Trigger particolari</label>
+            </div>
+            <div class="form-group" style="display: none;" id="psyco-trigger-text-field">
+                <label for="text-trigger">Quali trigger?<span class="required">*</span></label>
+                <input type="text" id="text-trigger" name="text-trigger" placeholder="Trigger">
+            </div>
+
+            <!-- Needs -->
+            <div class="radio-option">
+                <input type="radio" id="psyco_need" name="psyco" value="psyco_need">
+                <label for="psyco_need" class="radio-label">Esigenze</label>
+            </div>
+            <div class="form-group" style="display: none;" id="psyco-need-text-field">
+                <label for="university">Parlaci delle tue esigenze<span class="required">*</span></label>
+                <input type="text" id="university" name="entry.202655460" placeholder="Esigenze">
+            </div>
+
+            <!-- Other -->
+            <div class="radio-option">
+                <input type="radio" id="psyco_other" name="psyco" value="no">
+                <label for="psyco_other" class="radio-label">Altro</label>
+            </div>
+            <div class="form-group" style="display: none;" id="psyco-other-text-field">
+                <label for="university">Dicci qualcosa in più<span class="required">*</span></label>
+                <input type="text" id="university" name="university" placeholder="Altro">
+            </div>
+
+
+            <div class="radio-option">
+                <input type="radio" id="psyco_no" name="psyco" value="psyco_no">
+                <label for="psyco_no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const aisfCommittees = [
+            {
+                title: "Comitato Locale di Bari",
+                formValue: "cl-bari"
+            },
+            {
+                title: "Comitato Locale di Bologna",
+                formValue: "cl-bologna"
+            },
+            {
+                title: "Comitato Locale di Calabria",
+                formValue: "cl-calabria"
+            },
+            {
+                title: "Comitato Locale di Ferrara",
+                formValue: "cl-ferrara"
+            },
+            {
+                title: "Comitato Locale di Firenze",
+                formValue: "cl-firenze"
+            },
+            {
+                title: "Comitato Locale di Milano",
+                formValue: "cl-milano"
+            },
+            {
+                title: "Comitato Locale di Milano-Bicocca",
+                formValue: "cl-mibicocca"
+            },
+            {
+                title: "Comitato Locale di Napoli e Caserta",
+                formValue: "cl-napolicaserta"
+            },
+            {
+                title: "Comitato Locale di Padova",
+                formValue: "cl-padova"
+            },
+            {
+                title: "Comitato Locale di Palermo",
+                formValue: "cl-palermo"
+            },
+            {
+                title: "Comitato Locale di Pavia",
+                formValue: "cl-pavia"
+            },
+            {
+                title: "Comitato Locale di Perugia",
+                formValue: "cl-perugia"
+            },
+            {
+                title: "Comitato Locale di Pisa",
+                formValue: "cl-pisa"
+            },
+            {
+                title: "Comitato Locale di Roma Sapienza",
+                formValue: "cl-rmsapienza"
+            },
+            {
+                title: "Comitato Locale di Roma Tre",
+                formValue: "cl-rmtre"
+            },
+            {
+                title: "Comitato Locale di Salerno",
+                formValue: "cl-salerno"
+            },
+            {
+                title: "Comitato Locale di Torino",
+                formValue: "cl-torino"
+            },
+            {
+                title: "Comitato Locale di Trento",
+                formValue: "cl-trento"
+            },
+            {
+                title: "Comitato Locale di Trieste",
+                formValue: "cl-trieste"
+            },
+        ];
+
+        const radios = document.querySelectorAll('input[name="cisf"]');
+        const committeeGroup = document.getElementById("committee-group");
+        const committeeSelect = document.getElementById("aisf-committee"); // dropdown itself;
+
+        const aisfRolesGroup = document.getElementById("aisf-roles-group");
+        const aisfRadioGroup = document.getElementById("aisf-radio-group");
+
+        const cisfVolunteerGroup = document.getElementById("cisf-volunteer-group");
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", function () {
+                if (this.value === "yes") {
+                    committeeGroup.style.display = "block";
+
+                    // Default option
+                    const defaultOption = document.createElement("option");
+                    defaultOption.text = "Indica il comitato";
+
+                    // Appending it to select
+                    committeeSelect.add(defaultOption);
+                    committeeSelect.selectedIndex = 0;
+
+                    committeeSelect.setAttribute("required", "true");
+
+                    // Filling the select field
+                    aisfCommittees.forEach(committee => {
+                        let option = document.createElement("option");
+                        option.text = committee.title;
+                        option.value = committee.formValue;
+                        committeeSelect.add(option);
+                    })
+
+                    aisfRolesGroup.style.display = "block";
+                    // aisfRolesGroup.setAttribute("required", "true");
+
+                    cisfVolunteerGroup.style.display = "block";
+                } else {
+                    committeeGroup.style.display = "none";
+                    committeeSelect.removeAttribute("required");
+                    committeeSelect.value = ""; // reset
+
+                    aisfRolesGroup.style.display = "none";
+                    // aisfRolesGroup.removeAttribute("required");
+
+                    cisfVolunteerGroup.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
