@@ -5,6 +5,6 @@ website: "https://aisam.eu/"
 logo: "images/partners/logo_AISAM.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 5
+order: 6
 #id: "partners"
 ---
