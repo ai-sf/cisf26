@@ -1,13 +1,13 @@
 <!-- Step 1 -->
 <div class="form-step active" data-step="1">
-    <div class="form-group">
-        <label for="name">Nome<span class="required">*</span></label>
-        <input type="text" id="name" name="entry.720304467" placeholder="Fabiola" required>
-    </div>
-    <div class="form-group">
-        <label for="surname">Cognome<span class="required">*</span></label>
-        <input type="text" id="surname" name="entry.1761187174" placeholder="Gianotti" required>
-    </div>
+
+    <p>
+        In questa sezione del modulo ti chiediamo di inserire alcuni dati personali. Per ragioni amministrative e di
+        registrazione ufficiale, è necessario indicare Nome e Cognome così come riportati sulla tua carta d’identità.
+        Qualora tu lo desideri, è disponibile un campo dedicato al nome alias, che verrà utilizzato per tutti i materiali
+        della conferenza, inclusi badge e comunicazioni ufficiali.
+    </p>
+
     <div class="form-group">
         <label>Genere o Pronomi<span class="required">*</span></label>
         <div class="radio-group">
@@ -22,27 +22,36 @@
             </div>
 
             <div class="radio-option">
-                <input type="radio" id="pronoun" name="entry.1314486349" value="pronoun">
+                <input type="radio" id="pronoun" name="entry.1314486349" value="neutral">
                 <label for="pronoun" class="radio-label">Preferisco il pronome neutro</label>
             </div>
         </div>
     </div>
+
     <div class="form-group">
-        <label for="email">Indirizzo Email<span class="required">*</span></label>
-        <input type="email" id="email" name="email" placeholder="johndoe@mail.com" required>
+        <label for="name">Nome<span class="required">*</span></label>
+        <input type="text" id="name" name="entry.720304467" placeholder="Fabiola" required>
     </div>
+    <div class="form-group">
+        <label for="surname">Cognome<span class="required">*</span></label>
+        <input type="text" id="surname" name="entry.1761187174" placeholder="Gianotti" required>
+    </div>
+
     <div class="form-group">
         <label for="alias">Nome di elezione (Alias)</label>
         <input type="text" id="alias" name="entry.660092797" placeholder="John Doe">
     </div>
-    <div class="form-group">
-        <label for="phone">Cellulare<span class="required">*</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="+39 123456789" required>
-    </div>
+
     <div class="form-group">
         <label for="birthdate">Data di nascita<span class="required">*</span></label>
         <input type="date" id="birthdate" name="entry.309525043">
     </div>
+
+    <div class="form-group">
+        <label for="phone">Cellulare<span class="required">*</span></label>
+        <input type="tel" id="phone" name="entry.2085700336" placeholder="+39 123456789" required>
+    </div>
+
     <div class="form-group">
         <label>L'italiano è la tua lingua madre o lo parli fluentemente<span class="required">*</span></label>
         <div class="radio-group">
@@ -57,4 +66,8 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="email">Indirizzo Email<span class="required">*</span></label>
+        <input type="email" id="email" name="entry.131685819" placeholder="johndoe@mail.com" required>
+    </div>
 </div>
