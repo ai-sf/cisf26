@@ -1,3 +1,19 @@
+.cisf-info-fab-button {
+  height: 50px;
+  width: 50px;
+  background-color: $secondary-color;
+  border-radius: 50%;
+  display: block;
+  color: #fff;
+  text-align: center;
+  align-content: center;
+  position: relative;
+  z-index: 1;
+}
+.cisf-info-fab-button i {
+  font-size: 22px;
+}
+
 .sortable-list {
   list-style: none;
   padding: 0;

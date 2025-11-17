@@ -1,5 +1,19 @@
 {{ define "main" }}
     <div class="page-content" id="subscriptions-page">
+        <!-- Modal -->
+        <div id="form-info-modal" class="base-modal">
+            <div class="base-modal-content" style="max-height: 500px !important;">
+                <div class="modal-info body" style="text-align: left;user-select: none;‑webkit‑user‑select: none;margin-top: 1rem;font-size: .95rem; line-height: 1.5;
+    color: #333;
+    text-align: left;
+    max-height: 280px;
+    overflow-y: auto;"></div>
+
+                <button class="close-modal">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+        </div>
         <div class="container">
 
             <div id="warningContainer">
@@ -18,6 +32,10 @@
 
             <div id="formContainer" style="display: none;">
                 <div class="form-card">
+                    <a class="cisf-info-fab-button" href="#!"
+                    data-modal-target="#form-info-modal">
+                        <i class="fa-solid fa-question"></i>
+                    </a>
                     <div class="decorative-element"></div>
                     <div class="form-content">
                         <div class="form-header">
