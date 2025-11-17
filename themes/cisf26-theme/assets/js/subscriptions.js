@@ -10,7 +10,7 @@ export function initSubscriptionsPage() {
     const form = document.getElementById('multiStepForm');
     const successMessage = document.getElementById('successMessage');
 
-    const openingTimestamp = new Date('2025-11-17T13:00:00+01:00');
+    const openingTimestamp = new Date('2025-11-17T11:00:00+01:00');
     const closingTimestamp = new Date('2025-12-18T23:59:00+01:00');
 
     const currentTime = new Date();
@@ -33,12 +33,50 @@ export function initSubscriptionsPage() {
         1: {
             title: "Cominciamo",
             subtitle: `
-            Per motivi amministrativi, Nome e Cognome devono essere quelli presenti sulla carta d’identità.
+            Benvenut nel modulo di registrazione alla X Conferenza Italiana Studenti di Fisica, che si terrà dal <strong>13 al 17 Aprile 2026</strong> a <strong>Roma</strong>.<br><br>
+
+            Tutte le informazioni sull'evento sono disponibili sul sito di CISF26. Per contattare il Comitato Organizzatore puoi scrivere a cisf26@ai-sf.it o utilizzare il modulo presente in home page.<br><br>
+
+            Puoi modificare le tue risposte dopo aver inviato il form, se strettamente necessario.<br><br>
+
+            <strong>1. Informazioni Generali:</strong><br>
+            Le iscrizioni chiuderanno il <strong>18 Dicembre 2025</strong> alle 23.59.<br><br>
+
+            La selezione dei/delle partecipanti sarà effettuata dal Comitato Organizzatore della CISF26 in collaborazione con il Comitato Esecutivo di AISF. La lettera di motivazione, da compilare nel presente modulo di registrazione, sarà presa in considerazione come importante elemento di valutazione.<br><br>
+
+            Entro il <strong>10 Gennaio 2026</strong> i/le partecipanti selezionati/e saranno avvisati/e tramite l'indirizzo email indicato in fase di registrazione. Si prega a tal proposito di controllare quotidianamente la casella di posta.<br><br>
+
+            Sarà quindi richiesto il pagamento della quota di iscrizione entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59, pena l’esclusione della partecipazione all’evento.<br><br>
+
+            Ti informiamo che la quota di partecipazione non è in nessun caso rimborsabile.<br><br>
+
+            Una volta definiti i/le partecipanti/e all'evento verrà pianificato il calendario delle Parallel Sessions. Non è garantito che tutti i contributi scientifici potranno essere accettati.<br><br>
+
+            <strong>2. Quota di Partecipazione</strong><br>
+
+            Sono disponibili in totale 150 posti. Le quote di partecipazione per l'evento sono:<br>
+            - 120 euro (con alloggio);<br>
+            - 70 euro (senza alloggio).<br><br>
+
+            Entrambe le quote di partecipazione comprendono:<br>
+            - Una colazione, un pranzo, il pranzo sociale, la serata finale e i coffee break;<br>
+            - Welcome kit;<br>
+            - Soggiorno presso la casa per ferie Seraphicum per le 4 notti dell'evento (solo quota con alloggio).<br><br>
+
+            Entrambe le quote di partecipazione non comprendono:<br>
+            - Spese di viaggio per raggiungere la conferenza;<br>
+            - Assicurazione.<br><br>
+
+            Per chi non è ancora membro AISF alla quota di registrazione all'evento andrà aggiunta, al costo di 5 euro (10 euro per gli studenti di dottorato, 20 per gli esterni), la quota di iscrizione all'Associazione per l'anno 2025/2026. <br>
+            Per informazioni consultare https://ai-sf.it/iscrizione/. <br>
+            La quota di iscrizione all'AISF include la membership IAPS (International Association of Physics Students) di cui AISF è National Committee per l'italia.<br><br>
+
+            Per motivi amministrativi, ti chiediamo Nome e Cognome che devono essere quelli presenti sulla carta d’identità.
             Se vuoi, puoi indicare anche un nome alias, che useremo su badge e comunicazioni ufficiali.
         `
         },
         2: {
-            title: "Disabilità e inclusione",
+            title: "Informazioni aggiuntive",
             subtitle: `
             Come Comitato Organizzatore di CISF26 ci impegniamo, al meglio delle nostre possibilità, a garantire una conferenza inclusiva. 
             In questa sezione puoi indicarci eventuali bisogni specifici legati a disabilità fisiche, condizioni psicologiche o altre situazioni 
@@ -48,20 +86,25 @@ export function initSubscriptionsPage() {
         3: {
             title: "Condizione accademica",
             subtitle: `
-            In questa sezione ti chiederemo informazioni riguardanti la tua attuale condizione accademica. Se non sei al momento 
-            iscritt presso alcun corso di laurea, specifica "esterno"/"non applicabile" 
+            In questa sezione ti chiederemo informazioni riguardanti la tua attuale condizione accademica. Se non sei al momento iscritt presso alcun corso di laurea, specifica e/o inserisci "non applicabile" nei seguenti campi." 
             `
         },
         4: {
-            title: "AISF",
+            title: "Iscrizione ad AISF",
             subtitle: `
             L'iscrizione ad AISF è necessaria per poter partecipare a CISF26. Se dovessi essere selezionat per partecipare 
-            all'evento dovrai provvedere ad iscriverti entro qualche giorno.
+            all'evento dovrai provvedere ad iscriverti entro il <strong>15 Gennaio 2026</strong>. <br><br>
+
+            Per informazioni sulle quote d'iscrizione ad AISF è possibile consultare il sito ufficiale: http://ai-sf.it/iscrizione/ .
         `
         },
         5: {
             title: "CISF26",
-            subtitle: `Informazioni pertinenti ai contenuti della conferenza`
+            subtitle: `È possibile partecipare a CISF26 in due modalità: <strong>con alloggio</strong> o <strong>senza alloggio</strong>. Ti chiediamo di indicare la tua preferenza. Ti chiediamo inoltre di specificare il tipo di stanza desiderato e, se già noti, i nomi degli eventuali compagni di stanza.<br><br>
+
+            Faremo tutto il possibile per soddisfare le preferenze indicate, ma non possiamo garantirne l’assegnazione.<br><br>
+
+            Ti chiediamo inoltre di specificare alcune informazioni utili all'organizzazione della conferenza.`
         }
     };
 
