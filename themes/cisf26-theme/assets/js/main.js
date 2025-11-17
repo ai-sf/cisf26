@@ -62,7 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initLocationsPage();
     }
 
-    initSubscriptionsPage();
+    if (document.querySelector('#subscriptions-page')) {
+        initSubscriptionsPage();
+    }
+
 
 
     // const touchHandler = (ev) => {
