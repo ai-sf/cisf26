@@ -205,7 +205,7 @@ export function initSubscriptionsPage() {
             successMessage.classList.add('active');
 
             // 🔥 Save cookie to prevent resubmission
-            setCookie("cisf26_submitted", "true");
+            setCookie("cisf_submitted", "true");
 
             return;
         }
