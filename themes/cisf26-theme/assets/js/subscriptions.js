@@ -41,10 +41,7 @@ export function initSubscriptionsPage() {
         const currentStepElement = document.querySelector(`.form-step[data-step="${currentStep}"]`);
         const requiredInputs = currentStepElement.querySelectorAll('[required]');
 
-        console.log('required inputs', requiredInputs);
-
         for (let input of requiredInputs) {
-            console.log('input ->', input);
             if (!input.value.trim()) {
                 errorMessage.textContent = 'Per favore, compila tutti i campi obbligatori';
                 errorMessage.classList.add('active');
@@ -63,15 +60,10 @@ export function initSubscriptionsPage() {
                 const radioGroup = currentStepElement.querySelectorAll(`[name="${input.name}"]`);
                 const isChecked = Array.from(radioGroup).some(radio => radio.checked);
                 if (!isChecked) {
-                    console.log(`Exception raised ${isChecked}`);
                     errorMessage.textContent = 'Per favore, seleziona un\'opzione';
                     errorMessage.classList.add('active');
                     return false;
                 }
-            }
-
-            if (input.type === 'select') {
-                console.log('checkbox');
             }
         }
 
@@ -91,19 +83,100 @@ export function initSubscriptionsPage() {
         return data;
     }
 
-    nextBtn.addEventListener('click', () => {
+    // old
+    // nextBtn.addEventListener('click', async () => {
+    //     if (!validateStep()) {
+    //         return;
+    //     }
+    //
+    //     if (currentStep === totalSteps) {
+    //         const formDataObj = collectFormData();
+    //         console.log('Form submitted:', formDataObj);
+    //
+    //         // === POST TO GOOGLE FORMS ===
+    //         try {
+    //             const formData = new FormData();
+    //
+    //             // convert from object → FormData
+    //             for (const key in formDataObj) {
+    //                 formData.append(key, formDataObj[key]);
+    //             }
+    //
+    //             const response = await fetch(
+    //                 "https://docs.google.com/forms/d/e/1FAIpQLSetIKV5U_BNi9mqvsSRv5V_f4RYn3TsYMpvz8Kwm6VsfZy-Rg/formResponse",
+    //                 {
+    //                     method: "POST",
+    //                     mode: "no-cors", // IMPORTANT: Google Forms requires no-cors
+    //                     body: formData
+    //                 }
+    //             );
+    //
+    //             // NOTE: in mode:no-cors non puoi verificare response.status
+    //             console.log("Form inviato correttamente a Google Forms");
+    //
+    //         } catch (error) {
+    //             console.error("Errore nell'invio del form:", error);
+    //
+    //             // opzionale: mostra un messaggio di errore all'utente
+    //             alert("Si è verificato un errore durante l'invio del form. Riprova.");
+    //         }
+    //
+    //         // === UI after successful submission ===
+    //         form.style.display = 'none';
+    //         document.querySelector('.progress-container').style.display = 'none';
+    //         document.querySelector('.button-group').style.display = 'none';
+    //         successMessage.classList.add('active');
+    //
+    //     } else {
+    //         currentStep++;
+    //         updateProgress();
+    //     }
+    // });
+
+    // experimental
+    nextBtn.addEventListener('click', function() {
         if (!validateStep()) {
             return;
         }
 
         if (currentStep === totalSteps) {
-            const formData = collectFormData();
-            console.log('Form submitted:', formData);
+            const formDataObj = collectFormData();
 
+            // Costruzione querystring
+            var params = [];
+            for (var key in formDataObj) {
+                if (formDataObj.hasOwnProperty(key)) {
+                    params.push(encodeURIComponent(key) + '=' + encodeURIComponent(formDataObj[key]));
+                }
+            }
+            var queryString = params.join('&');
+
+            // URL finale
+            var submitUrl =
+                "https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse?"
+                + queryString;
+
+            console.log("Submitting to Google Forms:", submitUrl);
+
+            // Invio GET con fetch no-cors
+            try {
+                fetch(submitUrl, {
+                    method: "GET",
+                    mode: "no-cors"
+                })
+                    .catch(function(err) {
+                        console.error("Errore nel submit:", err);
+                    });
+            } catch (error) {
+                console.error("Errore generale nel try/catch:", error);
+            }
+
+            // UI: mostra messaggio di successo
             form.style.display = 'none';
             document.querySelector('.progress-container').style.display = 'none';
             document.querySelector('.button-group').style.display = 'none';
             successMessage.classList.add('active');
+
         } else {
             currentStep++;
             updateProgress();
