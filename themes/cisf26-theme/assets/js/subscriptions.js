@@ -10,7 +10,7 @@ export function initSubscriptionsPage() {
     const form = document.getElementById('multiStepForm');
     const successMessage = document.getElementById('successMessage');
 
-    const openingTimestamp = new Date('2025-11-17T13:00:00+01:00');
+    const openingTimestamp = new Date('2025-11-17T19:00:00+01:00');
     const closingTimestamp = new Date('2025-12-18T23:59:00+01:00');
 
     const currentTime = new Date();
