@@ -10,7 +10,7 @@ Le iscrizioni chiuderanno il <strong>18 Dicembre 2025</strong> alle 23.59.<br>
 La selezione dei/delle partecipanti sarà effettuata dal Comitato Organizzatore della CISF26 in collaborazione con il Comitato Esecutivo di AISF. La lettera di motivazione, da compilare nel presente modulo di registrazione, sarà presa in considerazione come importante elemento di valutazione.<br>
 
 Entro il <strong>10 Gennaio 2026</strong> i/le partecipanti selezionati/e saranno avvisati/e tramite l'indirizzo email indicato in fase di registrazione. Si prega a tal proposito di controllare quotidianamente la casella di posta.<br><br>
-Sarà quindi richiesto il pagamento della quota di iscrizione entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59, pena l’esclusione della partecipazione all’evento.<br>
+Sarà quindi richiesto il pagamento della quota di iscrizione entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59, pena l’esclusione della partecipazione all’evento. Per motivi amministrativi, eventuali ripescaggi verranno effettuati tra le persone che risulteranno <strong>iscritte</strong>  ad AISF alla data del <strong>15 Gennaio 2026</strong>.<br>
 
 Ti informiamo che la quota di partecipazione non è in nessun caso rimborsabile.<br>
 
