@@ -1,6 +1,6 @@
 export function initSubscriptionsPage() {
     let currentStep = 1;
-    const totalSteps = 5;
+    const totalSteps = 6;
     const formSteps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
     const progressFill = document.getElementById('progressFill');
@@ -10,7 +10,7 @@ export function initSubscriptionsPage() {
     const form = document.getElementById('multiStepForm');
     const successMessage = document.getElementById('successMessage');
 
-    const openingTimestamp = new Date('2025-11-17T19:00:00+01:00');
+    const openingTimestamp = new Date('2025-11-17T15:00:00+01:00');
     const closingTimestamp = new Date('2025-12-18T23:59:00+01:00');
 
     const currentTime = new Date();
@@ -105,6 +105,10 @@ export function initSubscriptionsPage() {
             Faremo tutto il possibile per soddisfare le preferenze indicate, ma non possiamo garantirne l’assegnazione.<br><br>
 
             Ti chiediamo inoltre di specificare alcune informazioni utili all'organizzazione della conferenza.`
+        },
+        6: {
+            title: "Per concludere",
+            subtitle: `CISF è il più importante evento di AISF, e i posti disponibili sono limitati per ragioni organizzative. Ti chiediamo di scrivere una piccola lettera motivazionale per aiutarci nella selezione. Inoltre ti chiediamo di accettare i Termini e Condizioni  dell'iscrizione all'evento e l'informativa sulla privacy.`
         }
     };
 
