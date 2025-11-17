@@ -159,7 +159,7 @@ export function initSubscriptionsPage() {
         const { title, subtitle } = stepTexts[step];
 
         titleEl.textContent = title;
-        subtitleEl.innerHTML = subtitle; // ⭐ Permette HTML nei sottotitoli
+        subtitleEl.innerHTML = subtitle;
     }
 
     nextBtn.addEventListener('click', function() {
@@ -176,8 +176,6 @@ export function initSubscriptionsPage() {
                 body: JSON.stringify(collectFormData())
             })
                 .then(data=>{
-                    console.log(data);
-                    alert("Form Submitted");
                 })
                 .catch(err=>console.error(err));
 
