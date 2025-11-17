@@ -152,23 +152,24 @@
                 if (this.value === "aisf_sub_yes") {
                     committeeGroup.style.display = "block";
 
-                    // Default option
+                    committeeSelect.innerHTML = "";
+
                     const defaultOption = document.createElement("option");
                     defaultOption.text = "Indica il comitato";
+                    defaultOption.value = "";
+                    defaultOption.disabled = true;
+                    defaultOption.selected = true;
 
-                    // Appending it to select
                     committeeSelect.add(defaultOption);
-                    committeeSelect.selectedIndex = 0;
 
-                    committeeSelect.setAttribute("required", "true");
+                    committeeSelect.required = true;
 
-                    // Filling the select field
                     aisfCommittees.forEach(committee => {
-                        let option = document.createElement("option");
+                        const option = document.createElement("option");
                         option.text = committee.title;
                         option.value = committee.formValue;
                         committeeSelect.add(option);
-                    })
+                    });
 
                     aisfRolesGroup.style.display = "block";
 
