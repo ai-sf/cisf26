@@ -46,7 +46,7 @@ export function initSubscriptionsPage() {
         document.querySelector('.progress-container')?.style.setProperty("display", "none");
         document.querySelector('.button-group')?.style.setProperty("display", "none");
         document.querySelector('.form-header')?.style.setProperty("display", "none");
-        document.querySelector('.cisf-info-fab-button')?.style.setProperty("display", "none");
+        document.querySelector('.cisf-info-anchor-button')?.style.setProperty("display", "none");
 
         successMessage.classList.add('active');
         successContainer.style.display = "block";
@@ -200,7 +200,7 @@ export function initSubscriptionsPage() {
             document.querySelector('.progress-container').style.display = 'none';
             document.querySelector('.button-group').style.display = 'none';
             document.querySelector('.form-header').style.display = 'none';
-            document.querySelector('.cisf-info-fab-button').style.display = 'none';
+            document.querySelector('.cisf-info-anchor-button').style.display = 'none';
 
             successMessage.classList.add('active');
 
