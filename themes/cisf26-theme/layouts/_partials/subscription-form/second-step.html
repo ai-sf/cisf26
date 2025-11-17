@@ -27,7 +27,7 @@
         <div class="radio-group">
             <!-- Triggers -->
             <div class="radio-option">
-                <input type="radio" id="psyco_trigger" name="entry.665339377" value="psyco_yes">
+                <input type="radio" id="psyco_trigger" name="entry.665339377" value="psyco_yes" required>
                 <label for="psyco_trigger" class="radio-label">Si</label>
             </div>
             <div class="form-group" style="display: none;" id="psyco-yes-text-field">
@@ -45,43 +45,42 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // DISABILITY
         const disabilityRadios = document.querySelectorAll('input[name="entry.1631187488"]');
         const disabilityTextFieldContainer = document.getElementById("disability-yes-text-field");
         const disabilityTextField = document.getElementById("disability-text-yes");
 
-
+        // PSYCO
         const psycoRadios = document.querySelectorAll('input[name="entry.665339377"]');
         const psycoTextFieldContainer = document.getElementById("psyco-yes-text-field");
-        const psycoTextField = document.getElementById("psyco-text-yes"); // text field
+        const psycoTextField = document.getElementById("psyco-text-yes");
 
-        const cisfVolunteerGroup = document.getElementById("cisf-volunteer-group");
-
+        // --- PSYCO LOGIC ---
         psycoRadios.forEach(radio => {
             radio.addEventListener("change", function () {
                 if (this.value === "psyco_yes") {
                     psycoTextFieldContainer.style.display = "block";
-
-                    psycoTextField.setAttribute("required", "true");
+                    psycoTextField.required = true;
                 } else {
                     psycoTextFieldContainer.style.display = "none";
-                    psycoTextField.removeAttribute("required");
-                    psycoTextField.value = ""; // reset
+                    psycoTextField.required = false;
+                    psycoTextField.value = "";
                 }
             });
         });
 
+        // --- DISABILITY LOGIC ---
         disabilityRadios.forEach(radio => {
             radio.addEventListener("change", function () {
                 if (this.value === "disability_yes") {
                     disabilityTextFieldContainer.style.display = "block";
-                    disabilityTextField.setAttribute("required", "true");
-                }
-                else {
+                    disabilityTextField.required = true;
+                } else {
                     disabilityTextFieldContainer.style.display = "none";
-                    disabilityTextField.removeAttribute("required");
-                    disabilityTextField.value = ""; // reset
+                    disabilityTextField.required = false;
+                    disabilityTextField.value = "";
                 }
-            })
-        })
+            });
+        });
     });
 </script>
