@@ -83,23 +83,33 @@ export function initSubscriptionsPage() {
         },
         2: {
             title: "Informazioni aggiuntive",
-            subtitle: `Come Comitato Organizzatore di CISF26 ci impegniamo a garantire una conferenza inclusiva...`
+            subtitle: `Come Comitato Organizzatore di CISF26 ci impegniamo, al meglio delle nostre possibilità, a garantire una conferenza inclusiva. 
+            In questa sezione puoi indicarci eventuali bisogni specifici legati a disabilità fisiche, condizioni psicologiche o altre situazioni 
+            per le quali potremmo offrirti supporto.`
         },
         3: {
             title: "Condizione accademica",
-            subtitle: `In questa sezione ti chiederemo informazioni riguardanti la tua attuale condizione accademica...`
+            subtitle: `In questa sezione ti chiederemo informazioni riguardanti la tua attuale condizione accademica. 
+            Se non sei al momento iscritt presso alcun corso di laurea, specifica e/o inserisci "non applicabile" nei seguenti campi.`
         },
         4: {
             title: "Iscrizione ad AISF",
-            subtitle: `L'iscrizione ad AISF è necessaria per poter partecipare a CISF26...`
+            subtitle: `
+            L'iscrizione ad AISF è necessaria per poter partecipare a CISF26. Se dovessi essere selezionat per partecipare 
+            all'evento dovrai provvedere a iscriverti entro il <strong>15 Gennaio 2026</strong>. <br>
+            Per informazioni sulle quote d'iscrizione ad AISF è possibile consultare il sito ufficiale: http://ai-sf.it/iscrizione/ .`
         },
         5: {
             title: "CISF26",
-            subtitle: `È possibile partecipare a CISF26 in due modalità: con alloggio o senza alloggio...`
+            subtitle: `È possibile partecipare a CISF26 in due modalità: <strong>con alloggio</strong> o <strong>senza alloggio</strong>. 
+            Ti chiediamo di indicare la tua preferenza. Ti chiediamo inoltre di specificare il tipo di stanza desiderato e, se già noti, i nomi degli eventuali compagni di stanza.<br>
+            Faremo tutto il possibile per soddisfare le preferenze indicate, ma non possiamo garantirne l’assegnazione.<br>
+            Ti chiediamo inoltre di specificare alcune informazioni utili all'organizzazione della conferenza.`
         },
         6: {
             title: "Per concludere",
-            subtitle: `CISF è il più importante evento di AISF...`
+            subtitle: `CISF è il più importante evento di AISF, e i posti disponibili sono limitati per ragioni organizzative. Ti chiediamo di scrivere una piccola lettera motivazionale per aiutarci nella selezione. 
+            Inoltre ti chiediamo di accettare i Termini e Condizioni  dell'iscrizione all'evento e l'informativa sulla privacy.`
         }
     };
 
