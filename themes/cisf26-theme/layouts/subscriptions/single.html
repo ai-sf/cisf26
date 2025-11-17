@@ -1,46 +1,11 @@
 {{ define "main" }}
 <div class="page-content">
-    {{ $now := now }}
-    {{ $start := time .Params.start_date }}
-    {{ $end := time .Params.end_date }}
-
-    {{ if and (ge $now $start) (le $now $end) }}
-    <form id="custom-google-form"
-          action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse"
-          method="POST"
-          target="hidden_iframe"
-          onsubmit="formSubmitted()">
-
-        <label>
-            Nome:
-            <input type="text" id="nome" name="entry.2109614896" required>
-        </label>
-
-        <!-- Email -->
-        <label>
-            Email:
-            <input type="email" id="email" name="entry.648108435" required>
-        </label>
-
-        <!-- Submit -->
-        <button type="submit">Invia iscrizione</button>
-    </form>
-
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <p id="form-success" style="display:none; color:green;">✅ Iscrizione inviata con successo!</p>
-
-    {{ else if lt $now $start }}
-        <div class="box">
-            <i class="fa-solid fa-triangle-exclamation exclamation"></i>
-            <p>
-                Le iscrizioni all'evento non sono ancora aperte.
-            </p>
-        </div>
-    {{ else }}
-        <div class="">
-            ❌ Le iscrizioni si sono chiuse il {{ $end.Format "02/01/2006" }}.
-        </div>
-    {{ end }}
+    <div class="box">
+        <i class="fa-solid fa-triangle-exclamation exclamation"></i>
+        <p>
+            Le iscrizioni all'evento non sono ancora aperte.
+        </p>
+    </div>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
