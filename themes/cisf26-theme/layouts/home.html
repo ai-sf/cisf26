@@ -39,7 +39,7 @@
                 </p>
 
                 <p>
-                    Nel 2026 giunge alla sua X edizione e si terrà nella splendida cornice di <strong>Roma</strong>, ospitato dal comitato locale <strong>AISF Roma Tre</strong>. 
+                    Nel 2026 giunge alla sua X edizione e si terrà nella splendida cornice di <strong>Roma</strong>, ospitato dal comitato locale <strong>AISF Roma Tre</strong> e in collaborazione con il dipartimento di Matematica e Fisica di <strong>Roma Tre</strong>. 
                     Ma CISF non è solo scienza: è anche cultura, scoperta e comunità. I partecipanti potranno esplorare la città eterna, tra passeggiate, eventi sociali e serate memorabili, in puro stile AISF.
                 </p>
 
@@ -171,6 +171,24 @@
     <section class="sponsors-section" data-animate>
         <!-- Sponsors -->
         {{ $targetCategoryName := $home.Params.category_two }}
+        {{ if $targetCategoryName }}
+        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}
+        {{ range $categoryPages }}
+        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
+        {{ if gt (len $catPartners) 0 }}
+        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
+            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+        </div>
+        {{ $sortedPartners := sort $catPartners "Params.order" }}
+        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </section>
+
+    <section class="sponsors-section" data-animate>
+        <!-- Sponsors -->
+        {{ $targetCategoryName := $home.Params.category_three }}
         {{ if $targetCategoryName }}
         {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}
         {{ range $categoryPages }}

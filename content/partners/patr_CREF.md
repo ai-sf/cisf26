@@ -5,6 +5,6 @@ website: "https://www.cref.it/"
 logo: "images/partners/logo_CREF.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 6
+order: 7
 #id: "partners"
 ---
