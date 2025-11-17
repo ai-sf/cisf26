@@ -139,13 +139,10 @@ export function initSubscriptionsPage() {
 
     function collectFormData() {
         const formData = new FormData(form);
-        console.log('form', form);
-        console.log(formData);
         const data = {};
         formData.forEach((value, key) => {
             data[key] = value;
         });
-        console.log('data', data);
         return data;
     }
 
