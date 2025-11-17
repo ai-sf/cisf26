@@ -403,6 +403,13 @@ button {
   padding: 20px 0;
 }
 
+.cookie-success {
+  display: block;
+  text-align: center;
+  animation: fadeSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px 0;
+}
+
 .success-message.active {
   display: block;
 }
