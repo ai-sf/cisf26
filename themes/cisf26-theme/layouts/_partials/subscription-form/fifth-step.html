@@ -109,15 +109,42 @@
 
 <script>
     const subjects = [
-        { title: "Didattica della Fisica" },
-        { title: "Outreach e divulgazione" },
-        { title: "Astrofisica" },
-        { title: "Fisica Terrestre" },
-        { title: "Fisica dell'Atmosfera e del Clima" },
-        { title: "Fisica delle Particelle" },
-        { title: "Fisica Teorica" },
-        { title: "Fisica della Materia" },
-        { title: "Fisica Nucleare e Subnucleare" }
+        {
+            title: "Didattica della Fisica",
+            value: "didattica_della_fisica"
+        },
+        {
+            title: "Outreach e divulgazione",
+            value: "outreach_e_divulgazione"
+        },
+        {
+            title: "Astrofisica",
+            value: "astrofisica"
+        },
+        {
+            title: "Fisica Terrestre",
+            value: "fisica_terrestre"
+        },
+        {
+            title: "Fisica dell'Atmosfera e del Clima",
+            value: "fisica_atmosfera_e_clima"
+        },
+        {
+            title: "Fisica delle Particelle",
+            value: "fisica_particelle"
+        },
+        {
+            title: "Fisica Teorica",
+            value: "fisica_teorica"
+        },
+        {
+            title: "Fisica della Materia",
+            value: "fisica_materia"
+        },
+        {
+            title: "Fisica Nucleare e Subnucleare",
+            value: "fisica_nucleare_subnucleare"
+        }
     ];
 
     const subjectFieldNames = [
@@ -198,6 +225,7 @@
         li.textContent = sub.title;
         li.classList.add("sortable-item");
         li.setAttribute("draggable", "true");
+        li.dataset.value = sub.value;
         list.appendChild(li);
     });
 
@@ -323,7 +351,7 @@
             const input = document.createElement("input");
             input.type = "hidden";
             input.name = subjectFieldNames[index];
-            input.value = item.textContent.trim();
+            input.value = item.dataset.value;
             hiddenContainer.appendChild(input);
         });
     }

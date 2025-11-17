@@ -59,7 +59,7 @@
 
                         <div class="error-message" id="errorMessage"></div>
 
-                        <form id="multiStepForm" action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse" target="hidden_iframe">
+                        <form id="multiStepForm" target="hidden_iframe">
                             <!-- Step 1 -->
                             {{ partial "subscription-form/first-step.html" . }}
                             <!-- Step 2 -->
@@ -78,13 +78,16 @@
                                 <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Indietro</button>
                                 <button type="button" class="btn-primary" id="nextBtn">Continua</button>
                             </div>
-                            <!-- <button type="submit">Invia iscrizione</button>-->
                         </form>
 
                         <div class="success-message" id="successMessage">
                             <div class="success-icon"></div>
-                            <h3>Thank You!</h3>
-                            <p>We've received your information and will be in touch shortly. Check your email for confirmation.</p>
+                            <h3>Grazie!</h3>
+                            <p>Abbiamo ricevuto le tue informazioni.
+                                I risultati verranno condivisi a partire dal 10 Gennaio 2026 all'indirizzo email specificato durante la registrazione.<br />
+                                Qualora dovessi essere selezionat, il pagamento della quota di iscrizione dovrà essere effettuato entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59,
+                                pena l’esclusione dall’evento.
+                            </p>
                         </div>
                     </div>
                 </div>
