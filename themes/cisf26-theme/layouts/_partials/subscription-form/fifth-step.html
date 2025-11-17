@@ -1,0 +1,240 @@
+<div class="form-step" data-step="5">
+    <div class="form-group">
+        <label>Quale tematica della fisica ti interessa di più? Ordina la lista in base ai tuoi interessi<span class="required">*</span></label>
+        <ul id="subjects-list" class="sortable-list"></ul>
+    </div>
+
+    <div id="hidden-subjects"></div>
+
+
+    <!--
+    XS, S, M, L, XL, XXL
+    -->
+
+    <div class="form-group">
+        <label for="cisf-shirt">Taglia della maglia<span class="required">*</span></label>
+        <select id="cisf-shirt" name="entry.1538025516">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="cisf-food">Hai allergie o intolleranze alimentari?</label>
+        <input type="text" id="cisf-food" name="entry.405331457" placeholder="Intolleranza al lattosio">
+    </div>
+
+    <div class="form-group">
+        <label>Tipologia camera <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-boys" name="entry.1900013430" value="cisf_room_boys_only" required>
+                <label for="cisf-room-boys" class="radio-label">Solo ragazzi</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-girls" name="entry.1900013430" value="cisf_room_girls_only" required>
+                <label for="cisf-room-girls" class="radio-label">Solo ragazze</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-mixed" name="entry.1900013430" value="cisf_room_mixed" required>
+                <label for="cisf-room-mixed" class="radio-label">Mista</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cisf-room-preferences">Indica le tue preferenze per la condivisione della stanza, selezionando un massimo di tre persone?</label>
+        <input type="text" id="cisf-room-preferences" name="entry.1236401782" placeholder="Mario Rossi, Giuseppe Verdi" required>
+    </div>
+
+
+    <div class="form-group">
+        <label>Vuoi presentare un tuo lavoro alla Parallel Session? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-yes" name="entry.1956920736" value="parallel_session_yes" required>
+                <label for="parallel-session-yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-no" name="entry.1956920736" value="parallel_session_no">
+                <label for="parallel-session-no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="message">Scrivi qui la tua lettera (max 1800 caratteri)</label>
+        <textarea id="message" name="entry.102884040" maxlength="1800" placeholder="Voglio partecipare a CISF26 perchè..."></textarea>
+    </div>
+</div>
+
+<script>
+    const subjects = [
+        { title: "Didattica della Fisica" },
+        { title: "Outreach e divulgazione" },
+        { title: "Astrofisica" },
+        { title: "Fisica Terrestre" },
+        { title: "Fisica dell'Atmosfera e del Clima" },
+        { title: "Fisica delle Particelle" },
+        { title: "Fisica Teorica" },
+        { title: "Fisica della Materia" },
+        { title: "Fisica Nucleare e Subnucleare" }
+    ];
+
+    const subjectFieldNames = [
+        "entry.1062006308",
+        "entry.1118044858",
+        "entry.1741954400",
+        "entry.907451803",
+        "entry.1364572595",
+        "entry.300460686",
+        "entry.715091551",
+        "entry.1897383588",
+        "entry.1046714189"
+    ];
+
+    const list = document.getElementById("subjects-list");
+
+
+    /* ================== BUILD LIST ================== */
+
+    subjects.forEach(sub => {
+        const li = document.createElement("li");
+        li.textContent = sub.title;
+        li.classList.add("sortable-item");
+        li.setAttribute("draggable", "true");
+        list.appendChild(li);
+    });
+
+
+    /* =============================================================
+       DESKTOP DRAG & DROP
+    ============================================================= */
+
+    let draggingDesktop = null;
+
+    list.addEventListener("dragstart", (e) => {
+        if (!e.target.classList.contains("sortable-item")) return;
+        draggingDesktop = e.target;
+        e.target.classList.add("dragging");
+    });
+
+    list.addEventListener("dragend", (e) => {
+        e.target.classList.remove("dragging");
+        draggingDesktop = null;
+        updateHiddenFields();
+    });
+
+    list.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(list, e.clientY);
+        if (afterElement == null) {
+            list.appendChild(draggingDesktop);
+        } else {
+            list.insertBefore(draggingDesktop, afterElement);
+        }
+    });
+
+    function getDragAfterElement(container, y) {
+        const items = [...container.querySelectorAll(".sortable-item:not(.dragging)")];
+
+        return items.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - (box.top + box.height / 2);
+            if (offset < 0 && offset > closest.offset) {
+                return { offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+
+
+    /* =============================================================
+       MOBILE TOUCH DRAG
+    ============================================================= */
+
+    let draggingMobile = null;
+    let placeholder = null;
+
+    list.addEventListener("touchstart", function (e) {
+        const target = e.target.closest(".sortable-item");
+        if (!target) return;
+
+        draggingMobile = target;
+        draggingMobile.classList.add("dragging");
+
+        // Create placeholder
+        placeholder = document.createElement("li");
+        placeholder.className = "placeholder";
+        list.insertBefore(placeholder, draggingMobile.nextSibling);
+
+        e.preventDefault();
+    }, { passive: false });
+
+
+    list.addEventListener("touchmove", function (e) {
+        if (!draggingMobile) return;
+
+        const touch = e.touches[0];
+        const y = touch.clientY;
+
+        const items = [...list.querySelectorAll(".sortable-item:not(.dragging)")];
+
+        let afterElement = null;
+        for (let item of items) {
+            const box = item.getBoundingClientRect();
+            if (y < box.top + box.height / 2) {
+                afterElement = item;
+                break;
+            }
+        }
+
+        if (afterElement) {
+            list.insertBefore(placeholder, afterElement);
+        } else {
+            list.appendChild(placeholder);
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
+
+    list.addEventListener("touchend", function () {
+        if (!draggingMobile || !placeholder) return;
+
+        list.insertBefore(draggingMobile, placeholder);
+        draggingMobile.classList.remove("dragging");
+
+        placeholder.remove();
+        placeholder = null;
+        draggingMobile = null;
+
+        updateHiddenFields();
+    });
+
+
+
+    /* ================== HIDDEN FIELDS ================== */
+
+    function updateHiddenFields() {
+        const hiddenContainer = document.getElementById("hidden-subjects");
+        hiddenContainer.innerHTML = "";
+
+        const items = list.querySelectorAll(".sortable-item");
+
+        items.forEach((item, index) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = subjectFieldNames[index];
+            input.value = item.textContent.trim();
+            hiddenContainer.appendChild(input);
+        });
+    }
+</script>

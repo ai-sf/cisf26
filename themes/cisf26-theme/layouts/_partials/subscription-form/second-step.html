@@ -1,0 +1,83 @@
+<!-- Step 2 -->
+<div class="form-step" data-step="2">
+    <div class="form-group">
+        <label>Vuoi segnalarci qualche disabilità? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="disability_yes" name="entry.1631187488" value="disability_yes" required>
+                <label for="disability_yes" class="radio-label">Si</label>
+            </div>
+            <div class="form-group" style="display: none;" id="disability-yes-text-field">
+                <label for="disability-text-yes">Di che tipo? Come possiamo aiutarti? (Max 1000 caratteri)<span class="required">*</span></label>
+                <textarea id="disability-text-yes" name="entry.578279560" maxlength="1000" placeholder="Disabilità motoria, ipovedente..."></textarea>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="disability_no" name="entry.1631187488" value="disability_no">
+                <label for="disability_no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Vuoi segnalarci qualcosa a livello psicologico? <span class="required">*</span></label>
+        <div class="radio-group">
+            <!-- Triggers -->
+            <div class="radio-option">
+                <input type="radio" id="psyco_trigger" name="entry.665339377" value="psyco_yes">
+                <label for="psyco_trigger" class="radio-label">Si</label>
+            </div>
+            <div class="form-group" style="display: none;" id="psyco-yes-text-field">
+                <label for="psyco-text-yes">Vuoi dirci qualcosa in più e come possiamo accomodarti? (Max 1000 caratteri)<span class="required">*</span></label>
+                <textarea id="psyco-text-yes" name="entry.1509832404" maxlength="1000" placeholder="Trigger sonori, disabilità psichiche, neurodivergenze..."></textarea>
+            </div>
+
+            <div class="radio-option">
+                <input type="radio" id="psyco_no" name="entry.665339377" value="psyco_no">
+                <label for="psyco_no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const disabilityRadios = document.querySelectorAll('input[name="entry.1631187488"]');
+        const disabilityTextFieldContainer = document.getElementById("disability-yes-text-field");
+        const disabilityTextField = document.getElementById("disability-text-yes");
+
+
+        const psycoRadios = document.querySelectorAll('input[name="entry.665339377"]');
+        const psycoTextFieldContainer = document.getElementById("psyco-yes-text-field");
+        const psycoTextField = document.getElementById("psyco-text-yes"); // text field
+
+        const cisfVolunteerGroup = document.getElementById("cisf-volunteer-group");
+
+        psycoRadios.forEach(radio => {
+            radio.addEventListener("change", function () {
+                if (this.value === "psyco_yes") {
+                    psycoTextFieldContainer.style.display = "block";
+
+                    psycoTextField.setAttribute("required", "true");
+                } else {
+                    psycoTextFieldContainer.style.display = "none";
+                    psycoTextField.removeAttribute("required");
+                    psycoTextField.value = ""; // reset
+                }
+            });
+        });
+
+        disabilityRadios.forEach(radio => {
+            radio.addEventListener("change", function () {
+                if (this.value === "disability_yes") {
+                    disabilityTextFieldContainer.style.display = "block";
+                    disabilityTextField.setAttribute("required", "true");
+                }
+                else {
+                    disabilityTextFieldContainer.style.display = "none";
+                    disabilityTextField.removeAttribute("required");
+                    disabilityTextField.value = ""; // reset
+                }
+            })
+        })
+    });
+</script>

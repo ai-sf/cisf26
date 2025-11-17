@@ -3,6 +3,7 @@ import { initLocationsPage } from "./locations.js";
 import { initButterflyBar} from "./butterfly-bar.js";
 import { initGuestScroller } from "./guests";
 import { initHomePage } from "./home";
+import { initSubscriptionsPage } from "./subscriptions";
 
 /**
  * Logics & Styling to close the Modal
@@ -60,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('#map')) {
         initLocationsPage();
     }
+
+    initSubscriptionsPage();
 
 
     // const touchHandler = (ev) => {
