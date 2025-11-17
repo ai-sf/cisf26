@@ -1,53 +1,70 @@
 {{ define "main" }}
     <div class="page-content">
         <div class="container">
-            <div class="form-card">
-                <div class="decorative-element"></div>
-                <div class="form-content">
-                    <div class="form-header">
-                        <h1 class="form-title">Cominciamo</h1>
-                        <p class="form-subtitle">Aiutaci a conoscerti e comprendere i tuoi bisogni in pochi step</p>
-                    </div>
 
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
+            <div id="warningContainer">
+                <div class="box">
+                    <i class="fa-solid fa-triangle-exclamation exclamation"></i>
+                    <p>Le iscrizioni all'evento non sono ancora aperte.</p>
+                </div>
+            </div>
+
+            <div id="closedContainer" style="display: none;">
+                <div class="box">
+                    <i class="fa-solid fa-triangle-exclamation exclamation"></i>
+                    <p>Le iscrizioni si sono chiuse. Attendi l'esito.</p>
+                </div>
+            </div>
+
+            <div id="formContainer" style="display: none;">
+                <div class="form-card">
+                    <div class="decorative-element"></div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h1 class="form-title">Cominciamo</h1>
+                            <p class="form-subtitle">Aiutaci a conoscerti e comprendere i tuoi bisogni in pochi step</p>
                         </div>
-                        <div class="progress-steps">
-                            <span class="progress-step active" data-step="1" data-number="1">Su di te</span>
-                            <span class="progress-step" data-step="2" data-number="2">Dettagli aggiuntivi</span>
-                            <span class="progress-step" data-step="3" data-number="3">Università</span>
-                            <span class="progress-step" data-step="4" data-number="4">AISF</span>
-                            <span class="progress-step" data-step="5" data-number="5">CISF26</span>
+
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-steps">
+                                <span class="progress-step active" data-step="1" data-number="1">Su di te</span>
+                                <span class="progress-step" data-step="2" data-number="2">Dettagli aggiuntivi</span>
+                                <span class="progress-step" data-step="3" data-number="3">Università</span>
+                                <span class="progress-step" data-step="4" data-number="4">AISF</span>
+                                <span class="progress-step" data-step="5" data-number="5">CISF26</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="error-message" id="errorMessage"></div>
+                        <div class="error-message" id="errorMessage"></div>
 
-                    <form id="multiStepForm" action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse" target="hidden_iframe">
-                        <!-- Step 1 -->
-                        {{ partial "subscription-form/first-step.html" . }}
-                        <!-- Step 2 -->
-                        {{ partial "subscription-form/second-step.html" . }}
-                        <!-- Step 3 -->
-                        {{ partial "subscription-form/third-step.html" . }}
-                        <!-- Step 4 -->
-                        {{ partial "subscription-form/fourth-step.html" . }}
-                        <!-- Step 5 -->
-                        {{ partial "subscription-form/fifth-step.html" . }}
+                        <form id="multiStepForm" action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse" target="hidden_iframe">
+                            <!-- Step 1 -->
+                            {{ partial "subscription-form/first-step.html" . }}
+                            <!-- Step 2 -->
+                            {{ partial "subscription-form/second-step.html" . }}
+                            <!-- Step 3 -->
+                            {{ partial "subscription-form/third-step.html" . }}
+                            <!-- Step 4 -->
+                            {{ partial "subscription-form/fourth-step.html" . }}
+                            <!-- Step 5 -->
+                            {{ partial "subscription-form/fifth-step.html" . }}
 
 
-                        <div class="button-group">
-                            <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Indietro</button>
-                            <button type="button" class="btn-primary" id="nextBtn">Continua</button>
+                            <div class="button-group">
+                                <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Indietro</button>
+                                <button type="button" class="btn-primary" id="nextBtn">Continua</button>
+                            </div>
+                            <!-- <button type="submit">Invia iscrizione</button>-->
+                        </form>
+
+                        <div class="success-message" id="successMessage">
+                            <div class="success-icon"></div>
+                            <h3>Thank You!</h3>
+                            <p>We've received your information and will be in touch shortly. Check your email for confirmation.</p>
                         </div>
-                        <!-- <button type="submit">Invia iscrizione</button>-->
-                    </form>
-
-                    <div class="success-message" id="successMessage">
-                        <div class="success-icon"></div>
-                        <h3>Thank You!</h3>
-                        <p>We've received your information and will be in touch shortly. Check your email for confirmation.</p>
                     </div>
                 </div>
             </div>

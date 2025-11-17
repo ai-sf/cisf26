@@ -2,6 +2,10 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: transform 0.15s ease;
 }
 
 .sortable-item {
@@ -12,6 +16,7 @@
   cursor: grab;
   border: 1px solid #ddd;
   transition: background 0.2s;
+  touch-action: none;
 }
 
 .sortable-item.dragging {

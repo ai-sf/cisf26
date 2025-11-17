@@ -74,111 +74,167 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const subjects = [
-            {
-                title: "Didattica della Fisica"
-            },
-            {
-                title: "Outreach e divulgazione"
-            },
-            {
-                title: "Astrofisica"
-            },
-            {
-                title: "Fisica Terrestre"
-            },
-            {
-                title: "Fisica dell'Atmosfera e del Clima"
-            },
-            {
-                title: "Fisica delle Particelle"
-            },
-            {
-                title: "Fisica Teorica"
-            },
-            {
-                title: "Fisica della Materia"
-            },
-            {
-                title: "Fisica Nucleare e Subnucleare"
-            }
-        ];
+    const subjects = [
+        { title: "Didattica della Fisica" },
+        { title: "Outreach e divulgazione" },
+        { title: "Astrofisica" },
+        { title: "Fisica Terrestre" },
+        { title: "Fisica dell'Atmosfera e del Clima" },
+        { title: "Fisica delle Particelle" },
+        { title: "Fisica Teorica" },
+        { title: "Fisica della Materia" },
+        { title: "Fisica Nucleare e Subnucleare" }
+    ];
 
-        const subjectFieldNames = [
-            "entry.1062006308",
-            "entry.1118044858",
-            "entry.1741954400",
-            "entry.907451803",
-            "entry.1364572595",
-            "entry.300460686",
-            "entry.715091551",
-            "entry.1897383588",
-            "entry.1046714189"
-        ];
+    const subjectFieldNames = [
+        "entry.1062006308",
+        "entry.1118044858",
+        "entry.1741954400",
+        "entry.907451803",
+        "entry.1364572595",
+        "entry.300460686",
+        "entry.715091551",
+        "entry.1897383588",
+        "entry.1046714189"
+    ];
 
-        const list = document.getElementById("subjects-list");
+    const list = document.getElementById("subjects-list");
 
-        subjects.forEach(sub => {
-            const li = document.createElement("li");
-            li.textContent = sub.title;
-            li.classList.add("sortable-item");
-            li.setAttribute("draggable", "true");
-            list.appendChild(li);
-        });
 
-        let dragging = null;
+    /* ================== BUILD LIST ================== */
 
-        list.addEventListener("dragstart", function (e) {
-            dragging = e.target;
-            e.target.classList.add("dragging");
-        });
+    subjects.forEach(sub => {
+        const li = document.createElement("li");
+        li.textContent = sub.title;
+        li.classList.add("sortable-item");
+        li.setAttribute("draggable", "true");
+        list.appendChild(li);
+    });
 
-        list.addEventListener("dragend", function (e) {
-            e.target.classList.remove("dragging");
-            dragging = null;
-            updateHiddenFields();
-        });
 
-        list.addEventListener("dragover", function (e) {
-            e.preventDefault();
-            const afterElement = getDragAfterElement(list, e.clientY);
-            if (afterElement == null) {
-                list.appendChild(dragging);
-            } else {
-                list.insertBefore(dragging, afterElement);
-            }
-        });
+    /* =============================================================
+       DESKTOP DRAG & DROP
+    ============================================================= */
 
-        function getDragAfterElement(container, y) {
-            const items = [...container.querySelectorAll(".sortable-item:not(.dragging)")];
-            return items.reduce((closest, child) => {
-                const box = child.getBoundingClientRect();
-                const offset = y - box.top - box.height / 2;
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset, element: child };
-                } else {
-                    return closest;
-                }
-            }, { offset: Number.NEGATIVE_INFINITY }).element;
-        }
+    let draggingDesktop = null;
 
-        function updateHiddenFields() {
-            const hiddenContainer = document.getElementById("hidden-subjects");
-            hiddenContainer.innerHTML = ""; // reset
+    list.addEventListener("dragstart", (e) => {
+        if (!e.target.classList.contains("sortable-item")) return;
+        draggingDesktop = e.target;
+        e.target.classList.add("dragging");
+    });
 
-            const items = document.querySelectorAll("#subjects-list .sortable-item");
+    list.addEventListener("dragend", (e) => {
+        e.target.classList.remove("dragging");
+        draggingDesktop = null;
+        updateHiddenFields();
+    });
 
-            console.log('items', items);
-
-            items.forEach((item, index) => {
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = subjectFieldNames[index];  // entry.xxx
-                input.value = item.textContent.trim(); // title
-
-                hiddenContainer.appendChild(input);
-            });
+    list.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(list, e.clientY);
+        if (afterElement == null) {
+            list.appendChild(draggingDesktop);
+        } else {
+            list.insertBefore(draggingDesktop, afterElement);
         }
     });
+
+    function getDragAfterElement(container, y) {
+        const items = [...container.querySelectorAll(".sortable-item:not(.dragging)")];
+
+        return items.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - (box.top + box.height / 2);
+            if (offset < 0 && offset > closest.offset) {
+                return { offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+
+
+    /* =============================================================
+       MOBILE TOUCH DRAG
+    ============================================================= */
+
+    let draggingMobile = null;
+    let placeholder = null;
+
+    list.addEventListener("touchstart", function (e) {
+        const target = e.target.closest(".sortable-item");
+        if (!target) return;
+
+        draggingMobile = target;
+        draggingMobile.classList.add("dragging");
+
+        // Create placeholder
+        placeholder = document.createElement("li");
+        placeholder.className = "placeholder";
+        list.insertBefore(placeholder, draggingMobile.nextSibling);
+
+        e.preventDefault();
+    }, { passive: false });
+
+
+    list.addEventListener("touchmove", function (e) {
+        if (!draggingMobile) return;
+
+        const touch = e.touches[0];
+        const y = touch.clientY;
+
+        const items = [...list.querySelectorAll(".sortable-item:not(.dragging)")];
+
+        let afterElement = null;
+        for (let item of items) {
+            const box = item.getBoundingClientRect();
+            if (y < box.top + box.height / 2) {
+                afterElement = item;
+                break;
+            }
+        }
+
+        if (afterElement) {
+            list.insertBefore(placeholder, afterElement);
+        } else {
+            list.appendChild(placeholder);
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
+
+    list.addEventListener("touchend", function () {
+        if (!draggingMobile || !placeholder) return;
+
+        list.insertBefore(draggingMobile, placeholder);
+        draggingMobile.classList.remove("dragging");
+
+        placeholder.remove();
+        placeholder = null;
+        draggingMobile = null;
+
+        updateHiddenFields();
+    });
+
+
+
+    /* ================== HIDDEN FIELDS ================== */
+
+    function updateHiddenFields() {
+        const hiddenContainer = document.getElementById("hidden-subjects");
+        hiddenContainer.innerHTML = "";
+
+        const items = list.querySelectorAll(".sortable-item");
+
+        items.forEach((item, index) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = subjectFieldNames[index];
+            input.value = item.textContent.trim();
+            hiddenContainer.appendChild(input);
+        });
+    }
 </script>

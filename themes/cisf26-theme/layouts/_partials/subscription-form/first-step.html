@@ -1,13 +1,6 @@
 <!-- Step 1 -->
 <div class="form-step active" data-step="1">
 
-    <p>
-        In questa sezione del modulo ti chiediamo di inserire alcuni dati personali. Per ragioni amministrative e di
-        registrazione ufficiale, è necessario indicare Nome e Cognome così come riportati sulla tua carta d’identità.
-        Qualora tu lo desideri, è disponibile un campo dedicato al nome alias, che verrà utilizzato per tutti i materiali
-        della conferenza, inclusi badge e comunicazioni ufficiali.
-    </p>
-
     <div class="form-group">
         <label>Genere o Pronomi<span class="required">*</span></label>
         <div class="radio-group">
@@ -49,7 +42,7 @@
 
     <div class="form-group">
         <label for="phone">Cellulare<span class="required">*</span></label>
-        <input type="tel" id="phone" name="entry.2085700336" placeholder="+39 123456789" required>
+        <input type="text" id="phone" name="entry.2085700336" placeholder="123456789" required>
     </div>
 
     <div class="form-group">
@@ -60,7 +53,7 @@
                 <label for="italian_yes" class="radio-label">Si</label>
             </div>
             <div class="radio-option">
-                <input type="radio" id="italian_no" name="entry.122368367" value="no" required>
+                <input type="radio" id="italian_no" name="entry.122368367" value="no">
                 <label for="italian_no" class="radio-label">No</label>
             </div>
         </div>
@@ -68,6 +61,10 @@
 
     <div class="form-group">
         <label for="email">Indirizzo Email<span class="required">*</span></label>
+        <span>
+            Se sei già iscritt ad AISF, inserisci l’indirizzo email con cui risulti registrat per accedere.
+            Se invece non sei ancora iscritt, utilizza l'email con cui desideri effettuare la registrazione.
+        </span>
         <input type="email" id="email" name="entry.131685819" placeholder="johndoe@mail.com" required>
     </div>
 </div>
