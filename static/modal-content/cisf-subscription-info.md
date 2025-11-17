@@ -33,3 +33,12 @@ Entrambe le quote di partecipazione non comprendono:<br>
 Per chi non è ancora membro AISF alla quota di registrazione all'evento andrà aggiunta, al costo di 5 euro (10 euro per gli studenti di dottorato, 20 per gli esterni), la quota di iscrizione all'Associazione per l'anno 2025/2026. <br>
 Per informazioni consultare https://ai-sf.it/iscrizione/. <br>
 La quota di iscrizione all'AISF include la membership IAPS (International Association of Physics Students) di cui AISF è National Committee per l'italia.<br>
+
+<div style="text-align: center">
+    <a href="https://drive.google.com/file/d/1oeOozoiPFRpZ3NsnE4diGJ63UCA_6kT5/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <button>
+            <span>Criteri di Selezione</span>
+            <i class="fa-solid fa-up-right-from-square"></i>
+        </button>
+    </a>
+</div>

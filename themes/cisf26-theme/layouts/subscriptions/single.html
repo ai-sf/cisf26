@@ -42,17 +42,27 @@
                                 Qualora dovessi essere selezionat, il pagamento della quota di iscrizione dovrà essere effettuato entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59,
                                 pena l’esclusione dall’evento.
                             </p>
+
+                            <div>
+                                {{ partial "subscription-form/selection-criteria-button.html" . }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="formContainer" style="display: none;">
+            <div id="formContainer" style="display: none; text-align: end;">
                 <div class="form-card">
-                    <a class="cisf-info-fab-button" href="#!"
-                    data-modal-target="#form-info-modal">
-                        <i class="fa-solid fa-question"></i>
-                    </a>
+                    <div>
+                        <a data-modal-target="#form-info-modal" style="cursor: pointer; font-weight: 600">
+                            Info e Criteri di Selezione
+                        </a>
+                    </div>
+
+<!--                    <a class="cisf-info-fab-button" href="#!"-->
+<!--                    data-modal-target="#form-info-modal">-->
+<!--                        <i class="fa-solid fa-question"></i>-->
+<!--                    </a>-->
                     <div class="decorative-element"></div>
                     <div class="form-content">
                         <div class="form-header">
