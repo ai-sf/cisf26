@@ -132,7 +132,7 @@ export function initSubscriptionsPage() {
         });
 
         prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
-        nextBtn.textContent = currentStep === totalSteps ? 'Submit' : 'Continue';
+        nextBtn.textContent = currentStep === totalSteps ? 'Submit' : 'Continua';
 
         errorMessage.classList.remove('active');
     }
