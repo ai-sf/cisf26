@@ -251,6 +251,25 @@ export function initSubscriptionsPage() {
         document.querySelector('.page-content').classList.add('page-content-modal-open');
     });
 
+    document.addEventListener('click', async ev => {
+        const trigger = ev.target.closest('[data-modal-target]');
+        if (!trigger) return;
+
+        ev.preventDefault();
+        const modal = document.querySelector(trigger.dataset.modalTarget);
+        if (!modal) return;
+
+        const response = await fetch(`/cisf26/modal-content/field-${trigger.dataset.modalFieldName}-info.md`);
+        console.log(response);
+        const markdown = await response.text();
+
+        modal.querySelector('.modal-form-field-info.body').innerHTML = marked.parse(markdown);
+
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        document.querySelector('.page-content').classList.add('page-content-modal-open');
+    })
+
     // -------------------------------
     // Init UI
     // -------------------------------
