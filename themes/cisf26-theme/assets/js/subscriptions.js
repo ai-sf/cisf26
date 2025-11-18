@@ -38,7 +38,7 @@ export function initSubscriptionsPage() {
     const alreadySubmitted = getCookie("cisf_submitted");
     console.log('already submitted', alreadySubmitted);
 
-    if (alreadySubmitted === "true") {
+    if (alreadySubmitted !== undefined && alreadySubmitted === "true") {
         if (warningContainer) warningContainer.style.display = "none";
         if (closedContainer) closedContainer.style.display = "none";
         if (formContainer) formContainer.style.display = "none";
