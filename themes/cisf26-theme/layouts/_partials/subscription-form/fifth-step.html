@@ -5,21 +5,21 @@
         <div class="radio-group">
             <div class="radio-option">
                 <input type="radio" id="cisf-room-yes" name="entry.1050135865" value="cisf_room_yes" required>
-                <label for="cisf-room-yes" class="radio-label">Si (quota comprensiva di soggiorno per quattro notti, dal 13 al 17 di Aprile - 120€) </label>
+                <label for="cisf-room-yes" class="radio-label">Si (quota comprensiva di soggiorno per quattro notti, dal 13 al 17 di Aprile - 120€)</label>
             </div>
             <div class="radio-option">
                 <input type="radio" id="cisf-room-no" name="entry.1050135865" value="cisf_room_no">
-                <label for="cisf-room-no" class="radio-label">No (quota non comprensiva di soggiorno - 70€) </label>
+                <label for="cisf-room-no" class="radio-label">No (quota non comprensiva di soggiorno - 70€)</label>
             </div>
         </div>
     </div>
 
-
-    <div class="form-group">
+    <!-- ROOM - Conditional Field -->
+    <div class="form-group" style="display: none" id="room-kind-group">
         <label>Tipologia camera <span class="required">*</span></label>
         <div class="radio-group">
             <div class="radio-option">
-                <input type="radio" id="cisf-room-boys" name="entry.1900013430" value="cisf_room_boys_only" required>
+                <input type="radio" id="cisf-room-boys" name="entry.1900013430" value="cisf_room_boys_only">
                 <label for="cisf-room-boys" class="radio-label">Solo ragazzi</label>
             </div>
             <div class="radio-option">
@@ -37,7 +37,8 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <!-- ROOM - Conditional Field -->
+    <div class="form-group" style="display: none" id="room-general-preference-container">
         <label for="cisf-room-preferences">Indica le tue preferenze per la condivisione della stanza, selezionando un massimo di tre persone?</label>
         <input type="text" id="cisf-room-preferences" name="entry.1236401782" placeholder="Mario Rossi, Giuseppe Verdi">
     </div>
@@ -198,6 +199,40 @@
 
     const list = document.getElementById("subjects-list");
 
+    /* === ROOM === */
+    const roomRadios = document.querySelectorAll('input[name="entry.1050135865"]');
+    // Room kind (e.g. cisf_room_boys_only, cisf_room_girls_only...)
+    const roomKindGroup = document.getElementById("room-kind-group");
+    const roomKindRadios = document.querySelectorAll('input[name="entry.1900013430"]');
+    // Room general pref (e.g. Mario Rossi, Paolo Verdi...)
+    const roomGeneralPreferenceTextFieldContainer = document.getElementById("room-general-preference-container");
+    const roomGeneralPreferenceTextField = document.getElementById("cisf-room-preferences");
+
+    roomRadios.forEach(roomRadio => {
+        roomRadio.addEventListener("change", function () {
+            if (this.value === "cisf_room_yes") {
+                // Show radio field
+                roomKindGroup.style.display = "block";
+                roomKindRadios.forEach(roomKindRadio => {
+                    roomKindRadio.setAttribute("required", "true");
+                });
+
+                // Show text field
+                roomGeneralPreferenceTextFieldContainer.style.display = "block";
+            }
+            else {
+                roomKindGroup.style.display = "none";
+                roomKindRadios.forEach(roomKindRadio => {
+                    roomKindRadio.removeAttribute("required");
+                });
+
+
+                roomGeneralPreferenceTextFieldContainer.style.display = "none";
+                roomGeneralPreferenceTextField.value = "";
+            }
+        })
+    })
+
     /* === PARALLEL SESSION === */
     const parallelSessionRadios = document.querySelectorAll('input[name="entry.1956920736"]');
 
@@ -209,8 +244,6 @@
 
     const parallelSessionContactContainer = document.getElementById("parallel-session-contact-container");
         const parallelSessionContactRadio = document.querySelectorAll('input[name="entry.482524505"]');
-
-
 
     parallelSessionRadios.forEach(radio => {
         radio.addEventListener("change", function (){
@@ -248,11 +281,6 @@
             }
         })
     })
-
-
-    /* */
-
-
 
     /* ================== BUILD LIST ================== */
 
