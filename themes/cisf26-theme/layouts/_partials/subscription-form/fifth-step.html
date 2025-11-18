@@ -60,10 +60,18 @@
     <!-- Physics theme  -->
 
     <div class="form-group">
-        <label>Quale tematica della fisica ti interessa di più? Ordina la lista in base ai tuoi interessi<span class="required">*</span></label>
-        <span>
-            Ti chiediamo di ordinarla con attenzione: utilizzeremo queste informazioni per assegnare le persone partecipanti all'evento ai diversi laboratori selezionati e alle sessioni tematiche, durante le quali verranno approfonditi le varie tematiche e linee di ricerca attive in fisica. 
-        </span>
+        <div class="input-header">
+            <label>
+                Quale tematica della fisica ti interessa di più? Ordina la lista in base ai tuoi interessi<span class="required">*</span>
+            </label>
+            <button
+                    class="cisf-info-anchor-button field-info-modal-button"
+                    data-modal-target="#form-field-info-modal"
+                    data-modal-field-name="subjects"
+            >
+                ?
+            </button>
+        </div>
         <ul id="subjects-list" class="sortable-list"></ul>
     </div>
 
@@ -87,10 +95,16 @@
 
     <!-- Parallel Session -->
     <div class="form-group">
-        <label>Vuoi presentare un tuo lavoro alla Parallel Session? <span class="required">*</span></label>
-        <span>
-            Durante la conferenza ci saranno dei momenti, chiamate <italic>Parallel Session</italic> o Sessioni Parallele, in cui sarà possibile esporre il proprio lavoro di ricerca o di tesi in piccoli talks di 15 minuti. Indica se hai intenzione di partecipare e presentare il tuo elaborato durante le <italic>Parallel Session</italic>.
-        </span>
+        <div class="input-header">
+            <label>Vuoi presentare un tuo lavoro alla Parallel Session? <span class="required">*</span></label>
+            <button
+                class="cisf-info-anchor-button field-info-modal-button"
+                data-modal-target="#form-field-info-modal"
+                data-modal-field-name="parallel-session"
+            >
+                ?
+            </button>
+        </div>
         <div class="radio-group">
             <div class="radio-option">
                 <input type="radio" id="parallel-session-yes" name="entry.1956920736" value="parallel_session_yes" required>

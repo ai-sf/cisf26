@@ -31,12 +31,20 @@
     </div>
 
     <div class="form-group">
-        <label for="alias">Nome di elezione (Alias)</label>
-        <span>
-            L'identità alias permette a persone transgender, non binarie o in transizione di utilizzare un nome diverso
-            da quello anagrafico. Utilizza questo campo esclusivamente se ricadi in una di queste categorie. Non utilizzare questo campo per soprannomi o nickname.
-        </span>
-        <input type="text" id="alias" name="entry.660092797" placeholder="John Doe">
+        <div class="input-header">
+            <label for="alias" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                <img src="{{ .Params.pride_icon | relURL }}" alt="alias-text-field" style="width: 20px; height: 20px; margin-right: 5px;">
+                Nome di elezione (Alias)
+            </label>
+            <button
+                    class="cisf-info-anchor-button field-info-modal-button"
+                    data-modal-target="#form-field-info-modal"
+                    data-modal-field-name="alias"
+            >
+                ?
+            </button>
+        </div>
+        <input type="text" id="alias" name="entry.660092797" placeholder="Elliot Page">
     </div>
 
     <div class="form-group">
@@ -64,12 +72,18 @@
     </div>
 
     <div class="form-group">
-        <label for="email">Indirizzo Email<span class="required">*</span></label>
-        <span>
-            Se sei già iscritt ad AISF, inserisci l’indirizzo email con cui risulti registrat per accedere.
-            Se invece non sei ancora iscritt, utilizza l'email con cui desideri effettuare la registrazione.
-        </span>
-        <input type="email" id="email" name="entry.131685819" placeholder="johndoe@mail.com" required>
+        <div class="input-header">
+            <label for="email">Indirizzo Email<span class="required">*</span></label>
+            <button
+                class="cisf-info-anchor-button field-info-modal-button"
+                data-modal-target="#form-field-info-modal"
+                data-modal-field-name="email"
+            >
+                ?
+            </button>
+        </div>
+
+        <input type="email" id="email" autocomplete="on" name="entry.131685819" placeholder="johndoe@mail.com" required>
     </div>
 </div>
 <script>
