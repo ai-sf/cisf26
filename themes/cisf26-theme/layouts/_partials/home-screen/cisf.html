@@ -6,8 +6,22 @@
         align-items: center;
     }
 
+    .section-header {
+        font-size: 50px;
+        line-height: 3.3rem;
+        margin-bottom: 7.5rem;
+        text-align: left;
+        margin-top: 0;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
     /* MOBILE */
     @media (max-width: 768px) {
+        .section-header {
+            margin-bottom: 1.2rem;
+        }
+
         .layout {
             flex-direction: column;
             text-align: center;
@@ -43,12 +57,11 @@
     }
 </script>
 
-<section style="padding: 2rem 1rem 1.5rem; max-width: 1100px; margin: 0 auto;">
+<section style="padding: 2rem 1rem 1.5rem; max-width: 1100px; margin: 4rem auto 0;">
     <div class="layout">
-
         <!-- Text -->
         <div style="flex: 1;">
-            <h1 style="font-size: 50px; line-height: 3.3rem; margin-bottom: 1.2rem; text-align: left;">
+            <h1 class="section-header">
                 Conferenza Italiana Studenti di Fisica 2026
             </h1>
 
@@ -75,6 +88,18 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".section-header", {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".section-header",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        });
 
         gsap.utils.toArray(".image-container").forEach(function(container) {
             let image = container.querySelector("img");
