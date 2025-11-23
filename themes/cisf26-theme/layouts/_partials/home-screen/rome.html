@@ -1,0 +1,136 @@
+<style>
+    .rome-section-header {
+        font-size: 50px;
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: .8rem;
+    }
+
+    .section-paragraph {
+        font-size: 25px;
+        text-align: center;
+        padding: .5rem;
+        margin-top: 0.2rem;
+    }
+
+    .hero {
+        position: relative;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .hero__image {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+    }
+
+    .hero__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .hero__text {
+        position: absolute;
+        font-size: 5.5rem;
+        font-weight: 700;
+        color: white;
+        opacity: 0;
+        pointer-events: none;
+        white-space: nowrap;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .hero__text--left {
+        top: 0%;
+        left: 2rem;
+        transform: translateX(-100%);
+    }
+
+    .hero__text--right {
+        bottom: 0%;
+        right: 2rem;
+        transform: translateX(100%);
+    }
+
+    @media (max-width: 768px) {
+        .rome-section-header {
+            font-size: 45px;
+            line-height: 2.5rem;
+        }
+
+        .section-paragraph {
+            font-size: 30px;
+            line-height: 2rem;
+            margin-bottom: 1.8rem;
+        }
+        .hero__text {
+            font-size: 2rem;
+            margin-top: 1.2rem;
+            margin-bottom: 1.2rem;
+            white-space: normal;
+            max-width: 90%;
+            line-height: 1.1;
+        }
+
+        /*.hero__text--left,*/
+        /*.hero__text--right {*/
+        /*    left: 1rem;*/
+        /*    right: 1rem;*/
+        /*    transform: translateX(0);*/
+        /*}*/
+    }
+</style>
+
+<section style="padding: 2rem 1rem 1.5rem; max-width: 1100px; margin: 0 auto;">
+    <h1 class="rome-section-header">Nel 2026 giunge alla X Edizione</h1>
+
+    <div class="hero">
+        <div class="hero__image">
+            <img src="images/home/rome.webp" alt="Roma">
+
+            <h2 class="hero__text hero__text--left">Nella splendida cornice</h2>
+            <h2 class="hero__text hero__text--right">di Roma.</h2>
+        </div>
+    </div>
+
+    <p class="section-paragraph">
+        I partecipanti potranno esplorare la città eterna, tra passeggiate, eventi sociali e serate memorabili, in puro stile AISF.
+    </p>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Left -> Right
+        gsap.to(".hero__text--left", {
+            x: 0,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top 70%",
+                end: "top 30%",
+                scrub: true
+            }
+        });
+
+        // Right -> Left
+        gsap.to(".hero__text--right", {
+            x: 0,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top 80%",
+                end: "top 30%",
+                scrub: true
+            }
+        });
+    });
+</script>
