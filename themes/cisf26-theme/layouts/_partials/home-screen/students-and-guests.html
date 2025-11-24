@@ -31,6 +31,38 @@
         text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.21);
     }
 
+    .speakers-hero {
+        position: relative;
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .speakers-hero__image {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+    }
+    .speakers-hero__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+    .speakers-hero__text {
+        position: absolute;
+        font-size: 4.5rem;
+        font-weight: 700;
+        color: #295763;
+        opacity: 1;
+        pointer-events: none;
+        white-space: nowrap;
+        margin-top: 0;
+        margin-bottom: 0;
+        top: 5%;
+        left: 3.2rem;
+        /*text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.21);*/
+    }
+
     @media (max-width: 768px) {
         .students-hero__text {
             font-size: 2rem;
@@ -42,11 +74,20 @@
     }
 </style>
 
+{{ $guests := where .Site.RegularPages "Section" "guests" }}
+{{ $numGuests := len $guests }}
 <section style="padding: 2rem 1rem 1.5rem; max-width: 1100px; margin: 4rem auto 0;">
     <div class="students-hero">
         <div class="students-hero-image">
             <img src="images/home/cisf-2023.webp" alt="CISF 2023 - Palermo">
             <h2 class="students-hero__text">150 Student* da tutta Italia</h2>
+        </div>
+    </div>
+
+    <div class="speakers-hero">
+        <div class="speakers-hero__image">
+            <img src="images/home/speakers-exp.png" alt="">
+            <h2 class="speakers-hero__text">{{ $numGuests }} Ospiti</h2>
         </div>
     </div>
 </section>
