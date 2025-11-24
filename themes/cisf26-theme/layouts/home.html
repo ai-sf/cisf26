@@ -1,24 +1,82 @@
 {{ define "main" }}
 {{ $home := .Site.GetPage "page" "home" }}
 <style>
-    .hero {
+    .homepage-hero {
         position: relative;
         width: 100%;
-        height: 60vh;
+        height: 100vh;
+    }
+
+    .hero-video-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
-    }</style>
+    }
+
+    .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .hero-video.loaded {
+        opacity: 1;
+    }
+
+    .hero-video-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('images/rome-poster.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .hero-video-container.video-loaded::before {
+        opacity: 0;
+    }
+
+    .hero-overlay,
+    .hero-event-dates-overlay {
+        position: absolute;
+        z-index: 2;
+    }
+
+    /*.hero-overlay {*/
+    /*    top: 50%;*/
+    /*    left: 50%;*/
+    /*    transform: translate(-50%, -50%);*/
+    /*}*/
+
+    .hero-event-dates-overlay {
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+
 <div class="page-content" style="padding: 0 !important;">
     <!-- HERO SECTION -->
     <section class="homepage-hero">
         <div class="hero-video-container">
             <video
-                    playsinline
-                    autoplay
-                    muted
-                    loop
-                    preload="metadata"
-                    poster="images/rome-poster.jpg"
-                    class="hero-video"
+                playsinline
+                autoplay
+                muted
+                loop
+                preload="auto"
+                poster="images/rome-poster.jpg"
+                class="hero-video"
             >
                 <source src="images/rome-clip.webm" type="video/webm">
                 Il tuo browser non supporta il video.
@@ -33,52 +91,11 @@
         </div>
     </section>
 
-    <!-- ABOUT / DESCRIPTION -->
-<!--    {{ $guests := where .Site.RegularPages "Section" "guests" }}-->
-<!--    {{ $numGuests := len $guests }}-->
-<!--    <section class="about-section" data-animate>-->
-<!--        <div class="about-card">-->
-<!--            <div class="about-card-text">-->
-<!--                <h2 class="about-title">CISF</h2>-->
-<!--                <p>-->
-<!--                    La <strong>Conferenza Italiana Studenti di Fisica (CISF)</strong>, è l'appuntamento annuale organizzato dall' <strong> Associazione Italiana Studenti di Fisica (AISF)</strong>, che coinvolge ogni anno centinaia di student* di fisica da tutta Italia. L'evento offre un'opportunità unica di confronto e crescita personale e professionale, attraverso una serie di attività che spaziano da <strong>seminari scientifici</strong> a <strong>visite ai laboratori e a centri di ricerca</strong>, <strong>sessioni parallele</strong>, e momenti di <strong>socializzazione</strong>.-->
-
-<!--                </p>-->
-
-<!--                <p>-->
-<!--                    Nel 2026 giunge alla sua X edizione e si terrà nella splendida cornice di <strong>Roma</strong>, ospitato dal comitato locale <strong>AISF Roma Tre</strong> e in collaborazione con il dipartimento di Matematica e Fisica di <strong>Roma Tre</strong>. -->
-<!--                    Ma CISF non è solo scienza: è anche cultura, scoperta e comunità. I partecipanti potranno esplorare la città eterna, tra passeggiate, eventi sociali e serate memorabili, in puro stile AISF.-->
-<!--                </p>-->
-
-<!--                <p>-->
-<!--                    Inoltre, come da tradizione, una giornata sarà dedicata all’<strong>AGA (Assemblea Generale Annuale)</strong>, il momento in cui tutta AISF si riunisce per pianificare il futuro dell’associazione.-->
-<!--                </p>-->
-<!--            </div>-->
-<!--            <div class="about-card-image">-->
-<!--                <img src="images/locations/dip_fisica1_compr.webp" alt="Partecipanti CISF" />-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="about-stats">-->
-<!--            <div class="stat-item">-->
-<!--                <i class="fa-solid fa-users" style="color: #993701"></i>-->
-<!--                <div>-->
-<!--                    <span class="stat-value">{{ $home.Params.attendees }}</span>-->
-<!--                    <span class="stat-label">Student* da tutta Italia</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="stat-item">-->
-<!--                <i class="fa-solid fa-microphone" style="color: #993701"></i>-->
-<!--                <div>-->
-<!--                    <span class="stat-value" id="guests-counter">{{ $numGuests }}</span>-->
-<!--                    <span class="stat-label">Speaker</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-
     <!-- CISF Section -->
     {{ partial "home-screen/cisf.html" . }}
+
+    <!-- Students & Guests Section -->
+    {{ partial "home-screen/students-and-guests.html" . }}
 
     <!-- Rome Section -->
     {{ partial "home-screen/rome.html" . }}
@@ -115,66 +132,81 @@
 <!--        </div>-->
 <!--    </section>-->
 
+    <section class="sponsors-section" data-animate>
+        <!-- Sponsors -->
+        {{ $targetCategoryName := $home.Params.category }}
+        {{ if $targetCategoryName }}
+        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}
+        {{ range $categoryPages }}
+        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
+        {{ if gt (len $catPartners) 0 }}
+        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
+            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+        </div>
+        {{ $sortedPartners := sort $catPartners "Params.order" }}
+        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </section>
+
+    <section class="sponsors-section" data-animate>
+        <!-- Sponsors -->
+        {{ $targetCategoryName := $home.Params.category_two }}
+        {{ if $targetCategoryName }}
+        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}
+        {{ range $categoryPages }}
+        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
+        {{ if gt (len $catPartners) 0 }}
+        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
+            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+        </div>
+        {{ $sortedPartners := sort $catPartners "Params.order" }}
+        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </section>
+
+    <section class="sponsors-section" data-animate>
+        <!-- Sponsors -->
+        {{ $targetCategoryName := $home.Params.category_three }}
+        {{ if $targetCategoryName }}
+        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}
+        {{ range $categoryPages }}
+        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}
+        {{ if gt (len $catPartners) 0 }}
+        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>
+            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>
+        </div>
+        {{ $sortedPartners := sort $catPartners "Params.order" }}
+        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </section>
+
     <!-- CONTACT -->
     {{ partial "home-screen/contact-form.html" . }}
 
-<!--    <section class="sponsors-section" data-animate>-->
-<!--        &lt;!&ndash; Sponsors &ndash;&gt;-->
-<!--        {{ $targetCategoryName := $home.Params.category }}-->
-<!--        {{ if $targetCategoryName }}-->
-<!--        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}-->
-<!--        {{ range $categoryPages }}-->
-<!--        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}-->
-<!--        {{ if gt (len $catPartners) 0 }}-->
-<!--        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>-->
-<!--            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>-->
-<!--        </div>-->
-<!--        {{ $sortedPartners := sort $catPartners "Params.order" }}-->
-<!--        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}-->
-<!--        {{ end }}-->
-<!--        {{ end }}-->
-<!--        {{ end }}-->
-<!--    </section>-->
 
-<!--    <section class="sponsors-section" data-animate>-->
-<!--        &lt;!&ndash; Sponsors &ndash;&gt;-->
-<!--        {{ $targetCategoryName := $home.Params.category_two }}-->
-<!--        {{ if $targetCategoryName }}-->
-<!--        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}-->
-<!--        {{ range $categoryPages }}-->
-<!--        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}-->
-<!--        {{ if gt (len $catPartners) 0 }}-->
-<!--        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>-->
-<!--            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>-->
-<!--        </div>-->
-<!--        {{ $sortedPartners := sort $catPartners "Params.order" }}-->
-<!--        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}-->
-<!--        {{ end }}-->
-<!--        {{ end }}-->
-<!--        {{ end }}-->
-<!--    </section>-->
-
-<!--    <section class="sponsors-section" data-animate>-->
-<!--        &lt;!&ndash; Sponsors &ndash;&gt;-->
-<!--        {{ $targetCategoryName := $home.Params.category_three }}-->
-<!--        {{ if $targetCategoryName }}-->
-<!--        {{ $categoryPages := first 1 (where (where .Site.RegularPages "Section" "partner-categories") ".Title" "eq" $targetCategoryName) }}-->
-<!--        {{ range $categoryPages }}-->
-<!--        {{ $catPartners := where (where $.Site.RegularPages "Section" "partners") "Params.category" .Title }}-->
-<!--        {{ if gt (len $catPartners) 0 }}-->
-<!--        <div class="partner-container-header" style='background-color: {{ .Params.bgColor }}'>-->
-<!--            <h2 style='color: {{ .Params.Color }}'>{{ .Title }}</h2>-->
-<!--        </div>-->
-<!--        {{ $sortedPartners := sort $catPartners "Params.order" }}-->
-<!--        {{ partial "partners-grid.html" (dict "partners" $sortedPartners "category" .) }}-->
-<!--        {{ end }}-->
-<!--        {{ end }}-->
-<!--        {{ end }}-->
-<!--    </section>-->
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // gform address: https://docs.google.com/forms/d/e/1FAIpQLSe8Co5vGaMPMXmznotaoL_hSGPWP-VZf0Nv_n__yfp6QZZEyA/formResponse
-    })
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.querySelector('.hero-video');
+        const container = document.querySelector('.hero-video-container');
+        //
+        // if (!video || !container) return;
+        //
+        // Wait for video to be sufficiently loaded
+        video.addEventListener('canplaythrough', () => {
+            video.play().then(() => {
+                video.classList.add('loaded');
+                container.classList.add('video-loaded');
+            }).catch(err => {
+                console.log('Autoplay failed:', err);
+            });
+        });
+    });
 </script>
 {{ end }}
