@@ -52,10 +52,10 @@
 .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
   border: none;
   background-clip: padding-box;
-  
+
 }
 
-.leaflet-touch .leaflet-bar a:first-child, 
+.leaflet-touch .leaflet-bar a:first-child,
 .leaflet-touch .leaflet-bar a:last-child {
   border: 1px solid #FBFBFB !important;
   border-radius: 50%;
@@ -85,43 +85,33 @@
   justify-content: flex-start;
   gap: 1rem;
 
-  padding: 1rem 0; 
+  padding: 1rem 0;
 }
 
 .location-card {
   display: flex;
   border-radius: 20px;
-  border: 1px solid #f1f1f1;
   flex-shrink: 0;
   cursor: pointer;
+  box-shadow: 0 0 15px 0 rgba(43, 63, 154, 0.35);
 
-  // &:hover {
-  //     border: 2px solid red;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
 
-  //   .guest-card__img-mask img {
-  //     transform: scale(1.05);
-  //   }
-  // }
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px 0 rgba(43, 63, 154, 0.25);
+  }
 }
 
 .location-card-content {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
-  // min-height: 215px;
-  // min-width: 210px;
-
 
   height: 215px;
   width: 210px;
 
-  background-color: #f0f0f0;
   border-radius: inherit;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
 
   position: relative;
   overflow: hidden;
@@ -135,31 +125,8 @@
   right: 0;
   height: 60%;
   background: linear-gradient(0deg, rgba(39, 39, 39, 0.55) 45%, rgba(251, 251, 251, 0) 100%);
-  
+
   z-index: 0;
-}
-
-.location-card--body {
-  padding: 1rem;
-  box-sizing: border-box; 
-  position: relative;
-  z-index: 1;
-
-  h3 {
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
-  }
-}
-
-.location-card--controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .location-card-fab-info-btn {
@@ -169,63 +136,79 @@
   background-color: #fff;
   border: none;
   border-radius: 50%;
-  width: 37px;
-  height: 37px;
-  font-size: 1.1rem;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
   color: #295763;
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   i {
     color: #295763;
-    font-size: .9rem;
+    font-size: .85rem;
   }
 }
 
 .location-card-directions-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // flex-grow: 1;
-  
-  background-color: #fff;
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
   border: none;
-  border-radius: 20px;
-  padding: 0.6rem 0.7rem;
-  
-  text-decoration: none;
-  color: #222;
-  gap: 0.5rem;
-  
+  border-radius: 14px;
+  cursor: pointer;
+  letter-spacing: -0.01em;
   text-align: center;
-  // padding: .5rem;
-  width: fit-content;
-  font-weight: 500;
+
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  flex-direction: row;
+  gap: 0.5rem;
+
+  background-color: #fff;
+  //border: none;
+  //border-radius: 16px;
+  //padding: 0.5rem 0.9rem;
+
+  text-decoration: none;
+  color: #295763;
+
+  //font-weight: 500;
+  //font-size: .9rem;
+  line-height: 1;
+
+  //cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 
   i {
     color: #295763;
-    font-size: .9rem;
+    font-size: .85rem;
   }
 
   span {
     color: #295763;
-    font-size: .9rem;
+    //font-size: .9rem;
     line-height: 1;
   }
 }
 
-.location-card--controls {
-  display: flex;
-  flex-direction: row;
-}
-
-.location-card--body {
-  position: absolute;
-
-  h3 {
-    color: #fff;
-  }
+.location-name {
+  margin-bottom: 5px;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 
 @media (max-width: 767px) {
@@ -233,17 +216,33 @@
     padding-bottom: 0;
   }
 
+  .locations-list {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .location-name {
+    font-size: 1.2rem;
+  }
+
   .location-card-content {
     height: 190px;
     width: 185px;
   }
 
-  .location-card--body h3 {
-    font-size: 0.95rem;
+  .location-card-fab-info-btn {
+    width: 28px;
+    height: 28px;
+
+    i {
+      font-size: .75rem;
+    }
   }
 
-  .location-card-directions-button { 
-    span {
+  .location-card-directions-button {
+    padding: 0.45rem 0.75rem;
+
+    i {
       font-size: .75rem;
     }
   }
@@ -251,10 +250,10 @@
 }
 
 /* Responsive */
-@media (min-width: $breakpoint-md) {
+@media (min-width: 768px) {
 
   .content-wrapper {
-    flex-direction: row-reverse; 
+    flex-direction: row-reverse;
     gap: 2rem;
   }
 
@@ -272,6 +271,6 @@
     overflow-x: hidden;
     justify-content: center;
     gap: 2rem;
-    padding: 0;
+    padding: 1rem 0;
   }
 }
