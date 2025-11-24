@@ -4,18 +4,36 @@
         width: 100%;
         margin-top: 2rem;
     }
+
+    .students-hero,
+    .speakers-hero {
+        position: relative;
+    }
+
+    .speakers-hero {
+        z-index: 2;
+    }
+
+    .students-hero {
+        z-index: 1;
+    }
+
     .students-hero-image {
         position: relative;
         width: 100%;
         height: 60vh;
         overflow: hidden;
+        transform-origin: center center;
+        will-change: transform;
     }
+
     .students-hero-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 12px;
     }
+
     .students-hero__text {
         position: absolute;
         font-size: 4.5rem;
@@ -35,19 +53,24 @@
         position: relative;
         width: 100%;
         margin-top: 2rem;
+        box-shadow: 0px 0px 15px 8px rgba(102, 126, 234, 0.15);
+        border-radius: 12px;
+        will-change: transform;
     }
-    .speakers-hero__image {
+
+    .speakers-hero__content {
         position: relative;
         width: 100%;
-        height: 60vh;
+        height: 70vh;
         overflow: hidden;
-    }
-    .speakers-hero__image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        background: #fcfcfc;
         border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
     }
+
     .speakers-hero__text {
         position: absolute;
         font-size: 4.5rem;
@@ -60,23 +83,54 @@
         margin-bottom: 0;
         top: 5%;
         left: 3.2rem;
-        /*text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.21);*/
+        z-index: 2;
+    }
+
+    .waveform-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(8px, 2vw, 16px);
+        height: clamp(200px, 40vh, 320px);
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .waveform-bar {
+        border-radius: 50px;
+        transform-origin: center center;
+        flex-shrink: 0;
+        will-change: transform, height;
+    }
+
+    .students-block {
+        position: relative;
+        padding-bottom: 0;
     }
 
     @media (max-width: 768px) {
-        .students-hero__text {
+        .students-hero__text,
+        .speakers-hero__text {
             font-size: 2rem;
             margin-top: 1.2rem;
             margin-bottom: 1.2rem;
             white-space: normal;
             max-width: 90%;
+            left: 1rem;
+            line-height: 2rem;
+        }
+
+        .speakers-hero__content {
+            padding: 20px;
+            height: 55vh;
         }
     }
 </style>
 
 {{ $guests := where .Site.RegularPages "Section" "guests" }}
 {{ $numGuests := len $guests }}
-<section style="padding: 2rem 1rem 1.5rem; max-width: 1100px; margin: 4rem auto 0;">
+
+<section class="students-block" style="padding: 2rem 1rem 1.5rem; max-width: 1100px; margin: 4rem auto 0;">
     <div class="students-hero">
         <div class="students-hero-image">
             <img src="images/home/cisf-2023.webp" alt="CISF 2023 - Palermo">
@@ -85,9 +139,130 @@
     </div>
 
     <div class="speakers-hero">
-        <div class="speakers-hero__image">
-            <img src="images/home/speakers-exp.png" alt="">
+        <div class="speakers-hero__content">
             <h2 class="speakers-hero__text">{{ $numGuests }} Ospiti</h2>
+            <div class="waveform-container" id="waveform"></div>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        // overlapping cards
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".students-block",
+                start: "top top",
+                end: "+=75vh",
+                scrub: 1.2,
+                pin: true,
+                pinSpacing: false,
+                anticipatePin: 1,
+                fastScrollEnd: true,
+                preventOverlaps: true
+            }
+        });
+
+        tl.to(".speakers-hero", {
+            y: "-55vh",
+            ease: "none" // to reduce stutters
+        }, 0);
+
+        tl.to(".students-hero-image", {
+            scale: isMobile ? 0.88 : 0.80,
+            ease: "none"
+        }, 0);
+
+        // waveforms
+        const bars = [
+            { color: '#8B7FD6', width: 30, initialHeight: 140, offsetY: 0 },
+            { color: 'linear-gradient(180deg, #D4A75C 0%, #E8C68E 100%)', width: 30, initialHeight: 90, offsetY: -35 },
+            { color: '#2FAFB8', width: 30, initialHeight: 42, offsetY: 0 },
+            { color: '#147C8C', width: 30, initialHeight: 58, offsetY: 15 },
+            { color: '#A0674F', width: 30, initialHeight: 88, offsetY: -25 },
+            { color: '#2FAFB8', width: 30, initialHeight: 58, offsetY: 10 },
+            { color: '#8B4F5B', width: 30, initialHeight: 48, offsetY: 25 },
+            { color: '#C4A693', width: 30, initialHeight: 68, offsetY: -15 },
+            { color: '#5F68C4', width: 30, initialHeight: 130, offsetY: 5 },
+            { color: '#2F9DAC', width: 30, initialHeight: 88, offsetY: -10 },
+            { color: 'linear-gradient(180deg, #C7946F 0%, #E4B896 100%)', width: 30, initialHeight: 120, offsetY: -20 },
+            { color: '#8B7FD6', width: 30, initialHeight: 62, offsetY: 20 },
+            { color: '#3A4A5C', width: 30, initialHeight: 78, offsetY: -5 },
+            { color: '#2B5F6F', width: 30, initialHeight: 52, offsetY: 15 },
+            { color: 'linear-gradient(180deg, #3B7B99 0%, #5A9AB8 100%)', width: 30, initialHeight: 130, offsetY: -15 },
+            { color: '#4A7AB8', width: 30, initialHeight: 42, offsetY: -45 },
+            { color: '#D4A384', width: 30, initialHeight: 58, offsetY: 5 },
+            { color: '#4A6B7C', width: 30, initialHeight: 72, offsetY: -10 },
+            { color: 'linear-gradient(180deg, #A8C99F 0%, #C5DFB8 100%)', width: 30, initialHeight: 110, offsetY: -25 },
+            { color: '#447B7C', width: 30, initialHeight: 88, offsetY: 10 }
+        ];
+
+        const container = document.getElementById('waveform');
+        const barElements = [];
+
+        bars.forEach((bar) => {
+            const barEl = document.createElement('div');
+            barEl.className = 'waveform-bar';
+
+            if (bar.color.includes('linear-gradient')) {
+                barEl.style.background = bar.color;
+            } else {
+                barEl.style.backgroundColor = bar.color;
+            }
+
+            barEl.style.width = `${bar.width}px`;
+            barEl.style.height = `${bar.initialHeight}px`;
+            barEl.style.transform = `translateY(${bar.offsetY}px)`;
+
+            container.appendChild(barEl);
+            barElements.push({
+                el: barEl,
+                baseHeight: bar.initialHeight,
+                offsetY: bar.offsetY
+            });
+        });
+
+        // bar animation
+        function animateBar(barData) {
+            const { el, baseHeight, offsetY } = barData;
+
+            const variation = gsap.utils.random(0.6, 1.4);
+            const targetHeight = baseHeight * variation;
+            const duration = gsap.utils.random(1.2, 2.5);
+
+            gsap.to(el, {
+                height: targetHeight,
+                y: offsetY,
+                duration: duration,
+                ease: "power1.inOut",
+                onComplete: () => animateBar(barData)
+            });
+        }
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    barElements.forEach((barData, index) => {
+                        gsap.delayedCall(index * 0.05, () => animateBar(barData));
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.2 });
+
+        observer.observe(container);
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+    });
+</script>
