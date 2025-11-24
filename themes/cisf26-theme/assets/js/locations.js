@@ -1,9 +1,39 @@
 // locations.js
 export function initLocationsPage() {
+    gsap.registerPlugin(ScrollTrigger);
+
     const filtersContainer = document.querySelector('#location-filter-container');
     const markerMap = new Map();
 
+    const locationsPageTitle = document.querySelectorAll(".page-title-anim");
+
     if (!filtersContainer) return;
+
+    locationsPageTitle.forEach(l => {
+        const text = l.innerHTML.trim();
+        l.innerHTML = "";
+
+
+        text.split("").forEach(char => {
+            const span = document.createElement("span");
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+
+            l.appendChild(span);
+        })
+
+        gsap.from(l.querySelectorAll("span"), {
+            scrollTrigger: {
+                trigger: l,
+                start: "top 85%",
+                once: true
+            },
+            y: "100%",
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.05
+        });
+    });
 
 
     const filterButtons = filtersContainer.querySelectorAll(".filter-button");

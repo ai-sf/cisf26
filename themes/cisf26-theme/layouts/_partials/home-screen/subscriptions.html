@@ -72,7 +72,6 @@
             text.split("").forEach(char => {
                 const span = document.createElement("span");
 
-                // Se è uno spazio, usa &nbsp;
                 span.innerHTML = char === " " ? "&nbsp;" : char;
 
                 el.appendChild(span);
