@@ -87,27 +87,22 @@ export function initGuestScroller() {
     }
 
     const findGuests = (searchString) => {
-        let cards = document.getElementsByClassName('guest-card');
-        let searchHits = 0;
+        const cards = document.querySelectorAll('.guest-card');
+        const noResultsPane = document.getElementById('no-res-pane');
+        const searchTerm = searchString.toLowerCase().trim();
 
-        for (let i = 0; i < cards.length; i++) {
-            if((cards[i].getAttribute('data-modal-guest-name')).toLowerCase().includes(searchString.toLowerCase())) {
-                cards[i].style.display = '';
-                searchHits++;
-            }
-            else {
-                cards[i].style.display = 'none';
-                searchHits--;
-            }
-        }
+        let visibleCount = 0;
 
-        if(searchHits < 1) {
-            document.getElementById('no-res-pane').style.display = 'block';
-        }
-        else if (searchString === '')
-            document.getElementById('no-res-pane').style.display = 'none';
+        cards.forEach(card => {
+            const guestName = card.getAttribute('data-modal-guest-name').toLowerCase();
+            const isMatch = searchTerm === '' || guestName.includes(searchTerm);
 
-    }
+            card.style.display = isMatch ? '' : 'none';
+            if (isMatch) visibleCount++;
+        });
+
+        noResultsPane.style.display = visibleCount === 0 ? 'block' : 'none';
+    };
 
     searchBar.addEventListener('keyup', e => findGuests(e.target.value));
 }
