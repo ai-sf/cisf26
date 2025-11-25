@@ -132,6 +132,8 @@ a {
     font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.2s;
+    width: fit-content;
+    flex: 0 0 auto;
 
     &:hover {
       background: rgba($secondary-color, 0.1);

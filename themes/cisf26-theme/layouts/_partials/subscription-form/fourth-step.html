@@ -1,0 +1,200 @@
+<!-- Step 4 -->
+<div class="form-step" data-step="4">
+    <div class="form-group">
+        <label>Sei già iscritt ad AISF? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="cisf_yes" name="entry.532950537" value="aisf_sub_yes" required>
+                <label for="cisf_yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf_no" name="entry.532950537" value="aisf_sub_no">
+                <label for="cisf_no" class="radio-label">No, ma acconsento a iscrivermi</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conditional field -->
+    <div class="form-group" id="committee-group" style="display: none;">
+        <label for="aisf-committee">A quale comitato?<span class="required">*</span></label>
+        <select id="aisf-committee" name="entry.2122237580"></select>
+    </div>
+
+
+
+    <!-- Conditional field -->
+    <div class="form-group" id="aisf-roles-group" style="display: none;">
+        <label>Ricopri uno dei seguenti ruoli all'interno dell'Associazione? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="aisf-role-president" name="entry.603086968" value="aisf_role_president">
+                <label for="aisf-role-president" class="radio-label">Presidente Comitato Locale</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="aisf-exec-member" name="entry.603086968" value="aisf_role_exec_member">
+                <label for="aisf-exec-member" class="radio-label">Membro Esecutivo</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="aisf-no-role" name="entry.603086968" value="aisf_role_no">
+                <label for="aisf-no-role" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Hai già partecipato a CISF?<span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="cisf_attend_no" name="entry.1216570776" value="cisf_no" required>
+                <label for="cisf_attend_no" class="radio-label">Nessuna</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf_attend_yes_one" name="entry.1216570776" value="cisf_yes_one">
+                <label for="cisf_attend_yes_one" class="radio-label">Una</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf_attend_yes_two" name="entry.1216570776" value="cisf_yes_two">
+                <label for="cisf_attend_yes_two" class="radio-label">Più di una</label>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const aisfCommittees = [
+            {
+              title: "Nessuno",
+              formValue: "cl-none"
+            },
+            {
+                title: "Comitato Locale di Bari",
+                formValue: "cl-bari"
+            },
+            {
+                title: "Comitato Locale di Bologna",
+                formValue: "cl-bologna"
+            },
+            {
+                title: "Comitato Locale di Calabria",
+                formValue: "cl-calabria"
+            },
+            {
+                title: "Comitato Locale di Ferrara",
+                formValue: "cl-ferrara"
+            },
+            {
+                title: "Comitato Locale di Firenze",
+                formValue: "cl-firenze"
+            },
+            {
+                title: "Comitato Locale di Milano",
+                formValue: "cl-milano"
+            },
+            {
+                title: "Comitato Locale di Milano-Bicocca",
+                formValue: "cl-mibicocca"
+            },
+            {
+                title: "Comitato Locale di Napoli e Caserta",
+                formValue: "cl-napolicaserta"
+            },
+            {
+                title: "Comitato Locale di Padova",
+                formValue: "cl-padova"
+            },
+            {
+                title: "Comitato Locale di Palermo",
+                formValue: "cl-palermo"
+            },
+            {
+                title: "Comitato Locale di Pavia",
+                formValue: "cl-pavia"
+            },
+            {
+                title: "Comitato Locale di Perugia",
+                formValue: "cl-perugia"
+            },
+            {
+                title: "Comitato Locale di Pisa",
+                formValue: "cl-pisa"
+            },
+            {
+                title: "Comitato Locale di Roma Sapienza",
+                formValue: "cl-rmsapienza"
+            },
+            {
+                title: "Comitato Locale di Roma Tre",
+                formValue: "cl-rmtre"
+            },
+            {
+                title: "Comitato Locale di Salerno",
+                formValue: "cl-salerno"
+            },
+            {
+                title: "Comitato Locale di Torino",
+                formValue: "cl-torino"
+            },
+            {
+                title: "Comitato Locale di Trento",
+                formValue: "cl-trento"
+            },
+            {
+                title: "Comitato Locale di Trieste",
+                formValue: "cl-trieste"
+            },
+        ];
+
+        const radios = document.querySelectorAll('input[name="entry.532950537"]');
+        const committeeGroup = document.getElementById("committee-group");
+        const committeeSelect = document.getElementById("aisf-committee"); // dropdown itself;
+
+        const aisfRolesGroup = document.getElementById("aisf-roles-group");
+        const aisfRolesRadios = document.querySelectorAll('input[name="entry.603086968"]');
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", function () {
+                if (this.value === "aisf_sub_yes") {
+                    committeeGroup.style.display = "block";
+
+                    committeeSelect.innerHTML = "";
+
+                    const defaultOption = document.createElement("option");
+                    defaultOption.text = "Indica il comitato";
+                    defaultOption.value = "";
+                    defaultOption.disabled = true;
+                    defaultOption.selected = true;
+
+                    committeeSelect.add(defaultOption);
+
+                    committeeSelect.required = true;
+
+                    aisfCommittees.forEach(committee => {
+                        const option = document.createElement("option");
+                        option.text = committee.title;
+                        option.value = committee.formValue;
+                        committeeSelect.add(option);
+                    });
+
+                    aisfRolesGroup.style.display = "block";
+
+                    aisfRolesRadios.forEach(aisfRoleRadio => {
+                        aisfRoleRadio.setAttribute("required", "true");
+                    });
+                    // aisfRolesGroup.setAttribute("required", "true");
+
+                } else {
+                    committeeGroup.style.display = "none";
+                    committeeSelect.removeAttribute("required");
+                    committeeSelect.value = ""; // reset
+
+                    aisfRolesGroup.style.display = "none";
+                    aisfRolesRadios.forEach(aisfRoleRadio => {
+                        aisfRoleRadio.removeAttribute("required");
+                    });
+                    // aisfRolesGroup.removeAttribute("required");
+
+                }
+            });
+        });
+    });
+</script>

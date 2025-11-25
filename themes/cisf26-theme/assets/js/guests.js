@@ -1,7 +1,61 @@
 export function initGuestScroller() {
+    gsap.registerPlugin(ScrollTrigger);
+
     const searchBar = document.querySelector('#guest-searchbar');
     const noResultsPane = document.querySelector('#no-res-pane');
     noResultsPane.style.display = 'none';
+
+    // gsap anims
+    const guestsPageTitle = document.querySelectorAll(".page-title-anim");
+    const guestCards = document.querySelectorAll('.guest-card');
+
+    // title animation on page load
+    guestsPageTitle.forEach(letter => {
+        const text = letter.innerHTML.trim();
+        letter.innerHTML = "";
+
+        text.split("").forEach(char => {
+            const span = document.createElement("span");
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+
+            letter.appendChild(span);
+        });
+
+        gsap.from(letter.querySelectorAll("span"), {
+            scrollTrigger: {
+                trigger: letter,
+                start: "top 85%",
+                once: true
+            },
+            y: "100%",
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.05
+        })
+    })
+
+    // guests fade-in/fade-out on scroll
+    guestCards.forEach((card, index) => {
+        gsap.fromTo(card,
+            {
+                opacity: 0,
+                y: 30
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    end: "top 15%",
+                    toggleActions: "play none none reverse",
+                }
+            }
+        );
+    });
 
     document.addEventListener('click', (ev) => {
         const trigger = ev.target.closest('[data-modal-target]');
@@ -33,27 +87,22 @@ export function initGuestScroller() {
     }
 
     const findGuests = (searchString) => {
-        let cards = document.getElementsByClassName('guest-card');
-        let searchHits = 0;
+        const cards = document.querySelectorAll('.guest-card');
+        const noResultsPane = document.getElementById('no-res-pane');
+        const searchTerm = searchString.toLowerCase().trim();
 
-        for (let i = 0; i < cards.length; i++) {
-            if((cards[i].getAttribute('data-modal-guest-name')).toLowerCase().includes(searchString.toLowerCase())) {
-                cards[i].style.display = '';
-                searchHits++;
-            }
-            else {
-                cards[i].style.display = 'none';
-                searchHits--;
-            }
-        }
+        let visibleCount = 0;
 
-        if(searchHits < 1) {
-            document.getElementById('no-res-pane').style.display = 'block';
-        }
-        else if (searchString === '')
-            document.getElementById('no-res-pane').style.display = 'none';
+        cards.forEach(card => {
+            const guestName = card.getAttribute('data-modal-guest-name').toLowerCase();
+            const isMatch = searchTerm === '' || guestName.includes(searchTerm);
 
-    }
+            card.style.display = isMatch ? '' : 'none';
+            if (isMatch) visibleCount++;
+        });
+
+        noResultsPane.style.display = visibleCount === 0 ? 'block' : 'none';
+    };
 
     searchBar.addEventListener('keyup', e => findGuests(e.target.value));
 }

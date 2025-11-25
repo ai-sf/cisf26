@@ -1,0 +1,424 @@
+<div class="form-step" data-step="5">
+<!-- accommodation -->
+    <div class="form-group">
+        <label>Hai bisogno di alloggio durante CISF26?  <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-yes" name="entry.1050135865" value="cisf_room_yes" required>
+                <label for="cisf-room-yes" class="radio-label">Si (quota comprensiva di soggiorno per quattro notti, dal 13 al 17 di Aprile - 120€)</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-no" name="entry.1050135865" value="cisf_room_no">
+                <label for="cisf-room-no" class="radio-label">No (quota non comprensiva di soggiorno - 70€)</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROOM - Conditional Field -->
+    <div class="form-group" style="display: none" id="room-kind-group">
+        <label>Tipologia camera <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-boys" name="entry.1900013430" value="cisf_room_boys_only">
+                <label for="cisf-room-boys" class="radio-label">Solo ragazzi</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-girls" name="entry.1900013430" value="cisf_room_girls_only">
+                <label for="cisf-room-girls" class="radio-label">Solo ragazze</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-mixed" name="entry.1900013430" value="cisf_room_mixed">
+                <label for="cisf-room-mixed" class="radio-label">Mista</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf-room-no-preference" name="entry.1900013430" value="cisf_room_no_pref">
+                <label for="cisf-room-no-preference" class="radio-label">Indifferente</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROOM - Conditional Field -->
+    <div class="form-group" style="display: none" id="room-general-preference-container">
+        <label for="cisf-room-preferences">Indica le tue preferenze per la condivisione della stanza, selezionando un massimo di tre persone?</label>
+        <input type="text" id="cisf-room-preferences" name="entry.1236401782" placeholder="Mario Rossi, Giuseppe Verdi">
+    </div>
+
+    <!-- T-shirt  -->
+    <!-- XS, S, M, L, XL, XXL -->
+
+    <div class="form-group">
+        <label for="cisf-shirt">Taglia della maglia<span class="required">*</span></label>
+        <select id="cisf-shirt" name="entry.1538025516">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+    </div>
+
+    <!-- Physics theme  -->
+
+    <div class="form-group">
+        <div class="input-header">
+            <label>
+                Quale tematica della fisica ti interessa di più? Ordina la lista in base ai tuoi interessi<span class="required">*</span>
+            </label>
+            <button
+                    class="cisf-info-anchor-button field-info-modal-button"
+                    data-modal-target="#form-field-info-modal"
+                    data-modal-field-name="subjects"
+            >
+                ?
+            </button>
+        </div>
+        <ul id="subjects-list" class="sortable-list"></ul>
+    </div>
+
+    <div id="hidden-subjects"></div>
+
+    <!-- volunteers  -->
+
+    <div class="form-group">
+        <label>Sei nel gruppo volontari CISF26? <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="cisf_volunteer_yes" name="entry.1667927100" value="cisf_vol_yes" required>
+                <label for="cisf_volunteer_yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="cisf_volunteer_no" name="entry.1667927100" value="cisf_vol_no">
+                <label for="cisf_volunteer_no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parallel Session -->
+    <div class="form-group">
+        <div class="input-header">
+            <label>Vuoi presentare un tuo lavoro alla Parallel Session? <span class="required">*</span></label>
+            <button
+                class="cisf-info-anchor-button field-info-modal-button"
+                data-modal-target="#form-field-info-modal"
+                data-modal-field-name="parallel-session"
+            >
+                ?
+            </button>
+        </div>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-yes" name="entry.1956920736" value="parallel_session_yes" required>
+                <label for="parallel-session-yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-no" name="entry.1956920736" value="parallel_session_no">
+                <label for="parallel-session-no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+    <!-- Parallel Session Title -->
+    <div class="form-group" style="display: none;" id="parallel-session-work-title-container">
+        <label for="parallel-session-work-title-field">Se hai indicato si, qual è il titolo del tuo elaborato?<span class="required">*</span></label>
+        <input type="text" id="parallel-session-work-title-field" name="entry.1482473765" placeholder="La mia tesi Magistrale">
+    </div>
+
+    <!-- Parallel Session Abstract -->
+    <div class="form-group" style="display: none;" id="parallel-session-work-abstract-container">
+        <label for="parallel-session-work-abstract-title-field">Breve descrizione dell'elaborato (Max 2000 caratteri)<span class="required">*</span></label>
+        <textarea id="parallel-session-work-abstract-title-field" name="entry.1968469946" maxlength="2000" placeholder="Nella mia tesi magistrale..."></textarea>
+    </div>
+
+    <!-- Parallel Session Contact -->
+    <div class="form-group" style="display: none;" id="parallel-session-contact-container">
+        <label>Con la presente accetto di essere contattat dal Comitato Organizzatore per discutere delle modalità di presentazione dell'elaborato <span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-contacted-yes" name="entry.482524505" value="parallel_session_contact_yes">
+                <label for="parallel-session-contacted-yes" class="radio-label">Si, accetto</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="parallel-session-contact-no" name="entry.482524505" value="parallel_session_contact_no">
+                <label for="parallel-session-contact-no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const subjects = [
+        {
+            title: "Didattica della Fisica",
+            value: "didattica_della_fisica"
+        },
+        {
+            title: "Outreach e divulgazione",
+            value: "outreach_e_divulgazione"
+        },
+        {
+            title: "Astrofisica",
+            value: "astrofisica"
+        },
+        {
+            title: "Fisica Terrestre",
+            value: "fisica_terrestre"
+        },
+        {
+            title: "Fisica dell'Atmosfera e del Clima",
+            value: "fisica_atmosfera_e_clima"
+        },
+        {
+            title: "Fisica delle Particelle",
+            value: "fisica_particelle"
+        },
+        {
+            title: "Fisica Teorica",
+            value: "fisica_teorica"
+        },
+        {
+            title: "Fisica della Materia",
+            value: "fisica_materia"
+        },
+        {
+            title: "Fisica Nucleare e Subnucleare",
+            value: "fisica_nucleare_subnucleare"
+        }
+    ];
+
+    const subjectFieldNames = [
+        "entry.1062006308",
+        "entry.1118044858",
+        "entry.1741954400",
+        "entry.907451803",
+        "entry.1364572595",
+        "entry.300460686",
+        "entry.715091551",
+        "entry.1897383588",
+        "entry.1046714189"
+    ];
+
+    const list = document.getElementById("subjects-list");
+
+    /* === ROOM === */
+    const roomRadios = document.querySelectorAll('input[name="entry.1050135865"]');
+    // Room kind (e.g. cisf_room_boys_only, cisf_room_girls_only...)
+    const roomKindGroup = document.getElementById("room-kind-group");
+    const roomKindRadios = document.querySelectorAll('input[name="entry.1900013430"]');
+    // Room general pref (e.g. Mario Rossi, Paolo Verdi...)
+    const roomGeneralPreferenceTextFieldContainer = document.getElementById("room-general-preference-container");
+    const roomGeneralPreferenceTextField = document.getElementById("cisf-room-preferences");
+
+    roomRadios.forEach(roomRadio => {
+        roomRadio.addEventListener("change", function () {
+            if (this.value === "cisf_room_yes") {
+                // Show radio field
+                roomKindGroup.style.display = "block";
+                roomKindRadios.forEach(roomKindRadio => {
+                    roomKindRadio.setAttribute("required", "true");
+                });
+
+                // Show text field
+                roomGeneralPreferenceTextFieldContainer.style.display = "block";
+            }
+            else {
+                roomKindGroup.style.display = "none";
+                roomKindRadios.forEach(roomKindRadio => {
+                    roomKindRadio.removeAttribute("required");
+                });
+
+
+                roomGeneralPreferenceTextFieldContainer.style.display = "none";
+                roomGeneralPreferenceTextField.value = "";
+            }
+        })
+    });
+
+    /* === PARALLEL SESSION === */
+    const parallelSessionRadios = document.querySelectorAll('input[name="entry.1956920736"]');
+
+    const parallelSessionTitleContainer = document.getElementById("parallel-session-work-title-container");
+        const parallelSessionTitleTextField = document.getElementById("parallel-session-work-title-field");
+
+    const parallelSessionTitleAbstractContainer = document.getElementById("parallel-session-work-abstract-container");
+        const parallelSessionAbstractTextField = document.getElementById("parallel-session-work-abstract-title-field")
+
+    const parallelSessionContactContainer = document.getElementById("parallel-session-contact-container");
+        const parallelSessionContactRadio = document.querySelectorAll('input[name="entry.482524505"]');
+
+    parallelSessionRadios.forEach(radio => {
+        radio.addEventListener("change", function (){
+            if (this.value === "parallel_session_yes") {
+                parallelSessionTitleContainer.style.display = "block";
+                parallelSessionTitleAbstractContainer.style.display = "block";
+                parallelSessionContactContainer.style.display = "block";
+
+                // Mark required
+                parallelSessionTitleTextField.setAttribute("required", "true");
+                parallelSessionAbstractTextField.setAttribute("required", "true");
+                // parallelSessionContactRadio.setAttribute("required", "true");
+
+                parallelSessionContactRadio.forEach(pRadio => {
+                    pRadio.setAttribute("required", "true");
+                });
+            }
+            else {
+                parallelSessionTitleContainer.style.display = "none";
+                parallelSessionTitleAbstractContainer.style.display = "none";
+                parallelSessionContactContainer.style.display = "none";
+
+                // Reset value
+                parallelSessionTitleTextField.value = "";
+                parallelSessionAbstractTextField.value = "";
+
+                // Reset required prop
+                parallelSessionTitleTextField.removeAttribute("required");
+                parallelSessionAbstractTextField.removeAttribute("required");
+                // parallelSessionContactRadio.removeAttribute("required");
+
+                parallelSessionContactRadio.forEach(pRadio => {
+                    pRadio.removeAttribute("required");
+                });
+            }
+        })
+    })
+
+    /* ================== BUILD LIST ================== */
+
+    subjects.forEach(sub => {
+        const li = document.createElement("li");
+        li.textContent = sub.title;
+        li.classList.add("sortable-item");
+        li.setAttribute("draggable", "true");
+        li.dataset.value = sub.value;
+        list.appendChild(li);
+    });
+
+
+    /* =============================================================
+       DESKTOP DRAG & DROP
+    ============================================================= */
+
+    let draggingDesktop = null;
+
+    list.addEventListener("dragstart", (e) => {
+        if (!e.target.classList.contains("sortable-item")) return;
+        draggingDesktop = e.target;
+        e.target.classList.add("dragging");
+    });
+
+    list.addEventListener("dragend", (e) => {
+        e.target.classList.remove("dragging");
+        draggingDesktop = null;
+        updateHiddenFields();
+    });
+
+    list.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(list, e.clientY);
+        if (afterElement == null) {
+            list.appendChild(draggingDesktop);
+        } else {
+            list.insertBefore(draggingDesktop, afterElement);
+        }
+    });
+
+    function getDragAfterElement(container, y) {
+        const items = [...container.querySelectorAll(".sortable-item:not(.dragging)")];
+
+        return items.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - (box.top + box.height / 2);
+            if (offset < 0 && offset > closest.offset) {
+                return { offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+
+
+    /* =============================================================
+       MOBILE TOUCH DRAG
+    ============================================================= */
+
+    let draggingMobile = null;
+    let placeholder = null;
+
+    list.addEventListener("touchstart", function (e) {
+        const target = e.target.closest(".sortable-item");
+        if (!target) return;
+
+        draggingMobile = target;
+        draggingMobile.classList.add("dragging");
+
+        // Create placeholder
+        placeholder = document.createElement("li");
+        placeholder.className = "placeholder";
+        list.insertBefore(placeholder, draggingMobile.nextSibling);
+
+        e.preventDefault();
+    }, { passive: false });
+
+
+    list.addEventListener("touchmove", function (e) {
+        if (!draggingMobile) return;
+
+        const touch = e.touches[0];
+        const y = touch.clientY;
+
+        const items = [...list.querySelectorAll(".sortable-item:not(.dragging)")];
+
+        let afterElement = null;
+        for (let item of items) {
+            const box = item.getBoundingClientRect();
+            if (y < box.top + box.height / 2) {
+                afterElement = item;
+                break;
+            }
+        }
+
+        if (afterElement) {
+            list.insertBefore(placeholder, afterElement);
+        } else {
+            list.appendChild(placeholder);
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
+
+    list.addEventListener("touchend", function () {
+        if (!draggingMobile || !placeholder) return;
+
+        list.insertBefore(draggingMobile, placeholder);
+        draggingMobile.classList.remove("dragging");
+
+        placeholder.remove();
+        placeholder = null;
+        draggingMobile = null;
+
+        updateHiddenFields();
+    });
+
+
+
+    /* ================== HIDDEN FIELDS ================== */
+
+    function updateHiddenFields() {
+        const hiddenContainer = document.getElementById("hidden-subjects");
+        hiddenContainer.innerHTML = "";
+
+        const items = list.querySelectorAll(".sortable-item");
+
+        items.forEach((item, index) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = subjectFieldNames[index];
+            input.value = item.dataset.value;
+            hiddenContainer.appendChild(input);
+        });
+    }
+
+    updateHiddenFields();
+</script>

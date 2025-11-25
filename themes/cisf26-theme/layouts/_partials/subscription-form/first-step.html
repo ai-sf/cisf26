@@ -1,0 +1,111 @@
+<!-- Step 1 -->
+<div class="form-step active" data-step="1">
+
+    <div class="form-group">
+        <label>Genere o Pronomi<span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="gender-female" name="entry.1314486349" value="female">
+                <label for="gender-female" class="radio-label">Donna</label>
+            </div>
+
+            <div class="radio-option">
+                <input type="radio" id="gender-male" name="entry.1314486349" value="male" required>
+                <label for="gender-male" class="radio-label">Uomo</label>
+            </div>
+
+            <div class="radio-option">
+                <input type="radio" id="pronoun" name="entry.1314486349" value="neutral">
+                <label for="pronoun" class="radio-label">Preferisco il pronome neutro</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nome<span class="required">*</span></label>
+        <input type="text" id="name" name="entry.720304467" placeholder="Fabiola" required>
+    </div>
+    <div class="form-group">
+        <label for="surname">Cognome<span class="required">*</span></label>
+        <input type="text" id="surname" name="entry.1761187174" placeholder="Gianotti" required>
+    </div>
+
+    <div class="form-group">
+        <div class="input-header">
+            <label for="alias" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                <img src="{{ .Params.pride_icon | relURL }}" alt="alias-text-field" style="width: 20px; height: 20px; margin-right: 5px;">
+                Nome di elezione (Alias)
+            </label>
+            <button
+                    class="cisf-info-anchor-button field-info-modal-button"
+                    data-modal-target="#form-field-info-modal"
+                    data-modal-field-name="alias"
+            >
+                ?
+            </button>
+        </div>
+        <input type="text" id="alias" name="entry.660092797" placeholder="Elliot Page">
+    </div>
+
+    <div class="form-group">
+        <label for="birthdate">Data di nascita<span class="required">*</span></label>
+        <input type="date" id="birthdate" name="entry.309525043" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Cellulare<span class="required">*</span></label>
+        <input type="tel" id="phone" name="entry.2085700336" placeholder="123456789" required>
+    </div>
+
+    <div class="form-group">
+        <label>L'italiano è la tua lingua madre o lo parli fluentemente<span class="required">*</span></label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="italian_yes" name="entry.122368367" value="yes" required>
+                <label for="italian_yes" class="radio-label">Si</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="italian_no" name="entry.122368367" value="no">
+                <label for="italian_no" class="radio-label">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="input-header">
+            <label for="email">Indirizzo Email<span class="required">*</span></label>
+            <button
+                class="cisf-info-anchor-button field-info-modal-button"
+                data-modal-target="#form-field-info-modal"
+                data-modal-field-name="email"
+            >
+                ?
+            </button>
+        </div>
+
+        <input type="email" id="email" autocomplete="on" name="entry.131685819" placeholder="johndoe@mail.com" required>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const phoneInput = document.getElementById("phone");
+
+        phoneInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "");
+        });
+
+        phoneInput.addEventListener("paste", function (e) {
+            const pasteData = (e.clipboardData || window.clipboardData).getData("text");
+            if (/\D/.test(pasteData)) {
+                e.preventDefault();
+            }
+        });
+
+        phoneInput.addEventListener("drop", function (e) {
+            const text = e.dataTransfer.getData("text");
+            if (/\D/.test(text)) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

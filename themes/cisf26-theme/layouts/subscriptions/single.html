@@ -1,68 +1,153 @@
 {{ define "main" }}
-<div class="page-content">
-    {{ $now := now }}
-    {{ $start := time .Params.start_date }}
-    {{ $end := time .Params.end_date }}
+    <style>
+        .form-info-button {
+            text-align: end;
+        }
 
-    {{ if and (ge $now $start) (le $now $end) }}
-    <form id="custom-google-form"
-          action="https://docs.google.com/forms/d/e/1FAIpQLScOq262CVT2xSc6iassduh_AbQY75nYZZv9BRd8tn0U0TR0Eg/formResponse"
-          method="POST"
-          target="hidden_iframe"
-          onsubmit="formSubmitted()">
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        <label>
-            Nome:
-            <input type="text" id="nome" name="entry.2109614896" required>
-        </label>
+        .field-info-modal-button {
+            width: 25px !important;
+            height: 25px !important;
+            flex: 0 0 25px !important;
+            padding: 0 !important;
+            box-sizing: content-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin-top: -15px;
+        }
+    </style>
+    <div class="page-content" id="subscriptions-page">
+        <!-- Modal -->
+        <div id="form-info-modal" class="base-modal">
+            <div class="base-modal-content" style="max-height: 500px !important;">
+                <div class="modal-info body" style="text-align: left;user-select: none;‑webkit‑user‑select: none;margin-top: 1rem;font-size: .95rem; line-height: 1.5; color: #333; text-align: left; max-height: 280px; overflow-y: auto;"></div>
 
-        <!-- Email -->
-        <label>
-            Email:
-            <input type="email" id="email" name="entry.648108435" required>
-        </label>
-
-        <!-- Submit -->
-        <button type="submit">Invia iscrizione</button>
-    </form>
-
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <p id="form-success" style="display:none; color:green;">✅ Iscrizione inviata con successo!</p>
-
-    {{ else if lt $now $start }}
-        <div class="box">
-            <i class="fa-solid fa-triangle-exclamation exclamation"></i>
-            <p>
-                Le iscrizioni all'evento non sono ancora aperte.
-            </p>
+                <button class="close-modal">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
         </div>
-    {{ else }}
-        <div class="">
-            ❌ Le iscrizioni si sono chiuse il {{ $end.Format "02/01/2006" }}.
+
+        <div id="form-field-info-modal" class="base-modal">
+            <div class="base-modal-content" style="max-height: 500px !important;">
+                <div class="modal-form-field-info body" style="text-align: left;user-select: none;‑webkit‑user‑select: none;margin-top: 1rem;font-size: .95rem; line-height: 1.5; color: #333; text-align: left; max-height: 280px; overflow-y: auto;"></div>
+
+                <button class="close-modal">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
         </div>
-    {{ end }}
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById('gform');
-        const successMessage = document.getElementById('gform-success');
-        const iframe = document.querySelector('iframe[name="hidden_iframe"]');
-        let formSubmitted = false;
 
-        form.addEventListener('submit', function() {
-            formSubmitted = true;
-        });
 
-        iframe.addEventListener('load', function() {
-            if (formSubmitted) {
-                successMessage.style.display = 'block';
-                form.reset();
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
-                formSubmitted = false;
-            }
-        });
-    });
-</script>
+        <div class="container">
+            <div id="warningContainer">
+                <div class="box">
+                    <i class="fa-solid fa-triangle-exclamation exclamation"></i>
+                    <p>Le iscrizioni all'evento non sono ancora aperte.</p>
+                </div>
+            </div>
+
+            <div id="closedContainer" style="display: none;">
+                <div class="box">
+                    <i class="fa-solid fa-triangle-exclamation exclamation"></i>
+                    <p>Le iscrizioni si sono chiuse. Attendi l'esito.</p>
+                </div>
+            </div>
+
+
+            <div id="successContainer" style="display: none;">
+                <div class="form-card">
+                    <div class="form-content">
+                        <div class="cookie-success" id="confirmationMessage">
+                            <div class="success-icon"></div>
+                            <h3>Grazie!</h3>
+                            <p>Abbiamo ricevuto le tue informazioni.
+                                I risultati verranno condivisi entro il 10 Gennaio 2026 all'indirizzo email specificato durante la registrazione.<br />
+                                Qualora dovessi essere selezionat, il pagamento della quota di iscrizione dovrà essere effettuato entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59,
+                                pena l’esclusione dall’evento.
+                            </p>
+
+                            <div>
+                                {{ partial "subscription-form/selection-criteria-button.html" . }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="formContainer" style="display: none;">
+                <div class="form-card">
+                    <div class="form-info-button">
+                        <a class="cisf-info-anchor-button" data-modal-target="#form-info-modal" style="cursor: pointer; font-weight: 600">
+                            Info e Criteri di Selezione
+                        </a>
+                    </div>
+
+                    <div class="decorative-element"></div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h1 class="form-title">Cominciamo</h1>
+                            <p class="form-subtitle">Aiutaci a conoscerti e comprendere i tuoi bisogni in pochi step</p>
+                        </div>
+
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-steps">
+                                <span class="progress-step active" data-step="1" data-number="1">Su di te</span>
+                                <span class="progress-step" data-step="2" data-number="2">Dettagli aggiuntivi</span>
+                                <span class="progress-step" data-step="3" data-number="3">Università</span>
+                                <span class="progress-step" data-step="4" data-number="4">AISF</span>
+                                <span class="progress-step" data-step="5" data-number="5">CISF26</span>
+                                <span class="progress-step" data-step="6" data-number="6">Ultimo step</span>
+                            </div>
+                        </div>
+
+                        <div class="error-message" id="errorMessage"></div>
+
+                        <form id="multiStepForm" target="hidden_iframe">
+                            <!-- Step 1 -->
+                            {{ partial "subscription-form/first-step.html" . }}
+                            <!-- Step 2 -->
+                            {{ partial "subscription-form/second-step.html" . }}
+                            <!-- Step 3 -->
+                            {{ partial "subscription-form/third-step.html" . }}
+                            <!-- Step 4 -->
+                            {{ partial "subscription-form/fourth-step.html" . }}
+                            <!-- Step 5 -->
+                            {{ partial "subscription-form/fifth-step.html" . }}
+                            <!-- Step 6 -->
+                            {{ partial "subscription-form/sixth-step.html" . }}
+
+                            <div class="button-group">
+                                <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Indietro</button>
+                                <button type="button" class="btn-primary" id="nextBtn">Continua</button>
+                            </div>
+                        </form>
+
+                        <div class="success-message" id="successMessage">
+                            <div class="success-icon"></div>
+                            <h3>Grazie!</h3>
+                            <p>Abbiamo ricevuto le tue informazioni.
+                                I risultati verranno condivisi entro il 10 Gennaio 2026 all'indirizzo email specificato durante la registrazione.<br />
+                                Qualora dovessi essere selezionat, il pagamento della quota di iscrizione dovrà essere effettuato entro e non oltre Giovedì <strong>15 Gennaio 2026</strong> alle ore 23:59,
+                                pena l’esclusione dall’evento.
+                            </p>
+                            <div>
+                                {{ partial "subscription-form/selection-criteria-button.html" . }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {{ end }}

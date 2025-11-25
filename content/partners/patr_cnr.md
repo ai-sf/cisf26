@@ -5,6 +5,6 @@ website: "https://www.cnr.it//"
 logo: "images/partners/logo_CNR.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 3
+order: 4
 #id: "partners"
 ---

@@ -1,0 +1,127 @@
+<style>
+    .cisf-subscription-header {
+        font-size: 50px;
+        line-height: 1.2;
+        color: white;
+        text-align: center;
+    }
+    .subscriptions-subtitle {
+        font-size: 25px;
+        text-align: center;
+        padding: .5rem;
+    }
+
+    .letters-slide-down span {
+        display: inline-block;
+    }
+
+    .paragraph-slide-down {
+        display: block;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        max-width: 800px;
+    }
+
+    .paragraph-slide-down span {
+        display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+        .cisf-subscription-header {
+            font-size: 38px;
+            line-height: 1.3;
+            width: 90%;
+            margin: 0 auto;
+            word-break: break-word;
+        }
+
+        .paragraph-slide-down {
+            width: 90%;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .subscriptions-subtitle {
+            font-size: 25px;
+            padding: 0;
+        }
+    }
+</style>
+<section class="subscriptions-section" data-animate>
+    <h1 class="cisf-subscription-header letters-slide-down" data-attr="letters-slide-down text-split">Iscriviti a CISF26</h1>
+    <p class="subscriptions-subtitle paragraph-slide-down">
+        Puoi scegliere tra due modalità di partecipazione: <br />alloggio incluso (120&#8364;) <br /> oppure senza (70&#8364;) <br /><br /> In entrambi i casi
+        avrai accesso a tutte le attività scientifiche e sociali previste nei 5 giorni di conferenza.
+    </p>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        gsap.registerPlugin(ScrollTrigger);
+
+        const elements = document.querySelectorAll(".letters-slide-down");
+        const paragraphs = document.querySelectorAll(".paragraph-slide-down");
+
+        elements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = "";
+
+            text.split("").forEach(char => {
+                const span = document.createElement("span");
+
+                span.innerHTML = char === " " ? "&nbsp;" : char;
+
+                el.appendChild(span);
+            });
+
+            gsap.from(el.querySelectorAll("span"), {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 80%",
+                },
+                y: -120,
+                opacity: 0,
+                duration: 0.2,
+                ease: "power2.out",
+                stagger: 0.05
+            });
+        });
+
+        ScrollTrigger.refresh()
+
+        paragraphs.forEach(p => {
+            const text = p.innerHTML.trim(); // Usa innerHTML per preservare il <br />
+            p.innerHTML = "";
+
+            text.split(/(\s+|<br\s*\/?>)/).forEach(segment => {
+                if (segment && !segment.match(/<br\s*\/?>/)) {
+                    segment.split(' ').filter(word => word.length > 0).forEach(word => {
+                        const span = document.createElement("span");
+                        span.innerHTML = word + "&nbsp;";
+                        p.appendChild(span);
+                    });
+                } else if (segment.match(/<br\s*\/?>/)) {
+                    p.appendChild(document.createElement("br"));
+                }
+            });
+
+
+            gsap.from(p.querySelectorAll("span"), {
+                scrollTrigger: {
+                    trigger: p,
+                    start: "top 85%",
+                    once: true,
+                },
+                y: "100%",
+                opacity: 0,
+
+                duration: 0.8,
+                ease: "power3.out",
+                stagger: 0.05
+            });
+        });
+    })
+</script>

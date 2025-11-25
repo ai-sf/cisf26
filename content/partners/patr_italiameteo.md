@@ -5,6 +5,6 @@ description: "Description"
 logo: "images/partners/logo_ItaliaMeteo.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 4
+order: 5
 #id: "partners"
 ---

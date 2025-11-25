@@ -4,6 +4,7 @@ import { initButterflyBar} from "./butterfly-bar.js";
 import { initGuestScroller } from "./guests";
 import { initHomePage } from "./home";
 import { initAboutUsPage } from "./about";
+import { initSubscriptionsPage } from "./subscriptions";
 
 /**
  * Logics & Styling to close the Modal
@@ -63,7 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (document.querySelector('#about-us')) initAboutUsPage();
+    if (document.querySelector('#subscriptions-page')) {
+        initSubscriptionsPage();
+    }
 
+
+
+    // const touchHandler = (ev) => {
+    //     ev.preventDefault() // Prevent text selection
+    // }
+    // document.addEventListener('touchstart', touchHandler, {passive:false})
+    // document.addEventListener('touchmove', touchHandler, {passive:false})
+    // document.addEventListener('touchend', touchHandler, {passive:false})
+    // document.addEventListener('touchcancel', touchHandler, {passive:false})
+    
     initHomePage();
     initButterflyBar();
     initGuestScroller();

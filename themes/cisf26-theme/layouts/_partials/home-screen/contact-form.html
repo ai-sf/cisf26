@@ -1,0 +1,186 @@
+<style>
+    .qa-form-success-message {
+        display: none;
+    }
+    .qa-form-success-message.active {
+        display: block;
+    }
+</style>
+
+<section class="contact-section" data-animate>
+    <div class="form-card" style="text-align: start">
+
+        <div class="qa-form-success-message" id="successMessage">
+            <div class="success-icon"></div>
+            <h3 style="text-align: center; font-size: 25px;">Grazie per averci contattato!</h3>
+            <p style="text-align: center; font-size: 20px;">
+                Abbiamo ricevuto il tuo messaggio e prenderemo in carico la tua richiesta quanto prima.
+            </p>
+            <div style="text-align: center">
+                <button id="back-button" type="button">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Fai un'altra domanda</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-content" id="formContent">
+            <div class="form-header">
+                <h1 class="form-title">Inviaci un messaggio!</h1>
+                <p class="form-subtitle">Usa questo box per qualsiasi domanda tu abbia rispetto a CISF26</p>
+            </div>
+
+            <form id="qa-form" target="hidden_iframe">
+                <div class="form-group">
+                    <label for="name">Nome e Cognome <span class="required">*</span></label>
+                    <input id="name" type="text" name="entry.2127823262" placeholder="Fabiola Gianotti" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email-address">Email <span class="required">*</span></label>
+                    <input id="email-address" type="email" name="entry.669809030" autocomplete="on" placeholder="johndoe@mail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message-body">Di cosa hai bisogno? <span class="required">*</span></label>
+                    <textarea id="message-body" name="entry.1490964787" maxlength="1000" placeholder="Salve, avrei una curiosità..."></textarea>
+                </div>
+            </form>
+
+            <div class="button-group">
+                <button type="button" class="btn-primary" id="qa-submit">Invia messaggio</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const submitButton = document.querySelector("#qa-submit");
+        const form = document.querySelector("#qa-form");
+        const successMessage = document.getElementById('successMessage');
+        const formContent = document.getElementById('formContent');
+        const backButton = document.querySelector("#back-button");
+
+        function sanitizeString(inputString) {
+            if (typeof inputString !== 'string') return inputString;
+            // Rimuove i tag script e i tag HTML base
+            return inputString.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "")
+                .replace(/<[^>]*>/g, "");
+        }
+
+        function validate() {
+            // 1. Pulizia dei messaggi di errore precedenti
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach(group => {
+                const existingError = group.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+                group.querySelector('input, textarea')?.classList.remove('invalid');
+            });
+
+            let isValid = true;
+            const requiredInputs = document.querySelectorAll('#qa-form [required]');
+            const emailInput = document.getElementById('email-address');
+
+            // Espressione Regolare per una validazione email standard
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            /**
+             * Helper per mostrare errori
+             */
+            function displayError(inputElement, message) {
+                const formGroup = inputElement.closest('.form-group');
+                if (formGroup) {
+                    const errorElement = document.createElement('p');
+                    errorElement.className = 'error-message';
+                    errorElement.textContent = message;
+                    formGroup.appendChild(errorElement);
+                }
+                inputElement.classList.add('invalid');
+                isValid = false;
+            }
+
+            // --- 1. Controllo Campi Obbligatori e Sanificazione ---
+            requiredInputs.forEach(input => {
+                const value = input.value.trim();
+
+                if (value === "") {
+                    displayError(input, "Questo campo è obbligatorio.");
+                } else {
+                    // --- 3. Sanificazione del contenuto ---
+                    // Sanifichiamo il valore prima di rimetterlo nel campo
+                    const sanitizedValue = sanitizeString(value);
+                    input.value = sanitizedValue;
+
+                    // Per sicurezza, se il valore sanificato è vuoto o molto diverso, potremmo segnalare un errore.
+                    if (sanitizedValue.length < value.length) {
+                        // Questo è un controllo aggressivo, ma utile se si sospettano iniezioni
+                        // console.warn(`Sanificato contenuto potenzialmente malevolo in: ${input.name}`);
+                    }
+                }
+            });
+
+            // --- 2. Controllo Formato Email ---
+            if (emailInput && emailInput.value.trim() !== "") {
+                if (!emailRegex.test(emailInput.value)) {
+                    displayError(emailInput, "Inserisci un indirizzo email valido.");
+                }
+            }
+
+            return isValid;
+        }
+
+        /**
+         * Builds a query string containing user's data
+         */
+        function collectData() {
+            const data = {};
+            new FormData(form).forEach((value, key) => {
+                data[key] = encodeURIComponent(value);
+            });
+
+            // es. ["entry.123=value", "entry.456=value"]
+            const queryString = Object.keys(data)
+                .map(key => `${key}=${data[key]}`)
+                .join('&');
+
+            return queryString;
+        }
+
+
+        submitButton.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            if (!validate()) return;
+
+            const queryString = collectData();
+            const baseURL = "https://docs.google.com/forms/d/e/1FAIpQLSe8Co5vGaMPMXmznotaoL_hSGPWP-VZf0Nv_n__yfp6QZZEyA/formResponse";
+
+            const finalURL = `${baseURL}?${queryString}`;
+
+            fetch(
+                finalURL,
+                {
+                    method: "GET",
+                    mode: "no-cors"
+                }
+            )
+                .then(response => {
+                    formContent.style.display = "none";
+                    successMessage.classList.add('active');
+
+                    document.getElementById('qa-form').reset();
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+
+        backButton.addEventListener("click", function(event) {
+            formContent.style.display = "block";
+            successMessage.classList.remove('active');
+        })
+    });
+</script>

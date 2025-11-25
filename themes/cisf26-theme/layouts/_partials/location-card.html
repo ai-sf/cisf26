@@ -16,26 +16,26 @@
     
 >
     {{ with .Params.image }}
-        <div 
-            class="location-card-content" 
-            style="background-image: url('{{ . | relURL }}');"
-        >
-            <div class="location-card--body">
-                <h3>{{ $.Title }}</h3>
-                <div class="location-card--controls">
-                    <button class="location-card-fab-info-btn">
-                        <i class="fa-solid fa-info"></i>
-                    </button>
-                    
+        <div class="location-card-content" style="background-image: url('{{ . | relURL }}');">
+            <div style="display: flex; z-index: 999; position: absolute; flex-direction: column; padding: 13px; height: 100% !important;
+    justify-content: space-between;">
+                <a class="location-card-fab-info-btn">
+                    <i class="fa-solid fa-info"></i>
+                </a>
 
-                    <button class="location-card-directions-button">
-                        <a href="{{ $.Params.location_url }}" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-solid fa-route"></i>
-                            <span>Indicazioni</span>
-                        </a>
-                    </button>
+                <div style="display: flex; flex-direction: column;">
+                    <h3 class="location-name" style="">{{ $.Title }}</h3>
+                    <a href="{{ $.Params.location_url }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="location-card-directions-button">
+                        <i class="fa-solid fa-route"></i>
+                        <span>Indicazioni</span>
+                    </a>
                 </div>
             </div>
+
+
         </div>
     {{ end }}
 </div>
