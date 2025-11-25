@@ -79,3 +79,52 @@
   }
 
 }
+
+@media (max-width: 768px) {
+  .guests-wrapper {
+    gap: .5rem;
+  }
+
+  .guest-card {
+    width: 150px;
+    height: 220px;
+  }
+
+  .guest-card-content {
+    height: 100%;
+    justify-content: center;
+  }
+
+  .guest-card__img-mask {
+    min-height: 140px;
+    max-height: 140px;
+  }
+
+  .guest-name {
+    line-height: 16px;
+    font-size: 1rem;
+  }
+
+  .guest-role {
+    font-size: .8rem;
+    line-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // temp
+  .section-title {
+    font-size: 50px;
+    width: 270px;
+    /* word-break: break-word; */
+    overflow-wrap: break-word;
+    margin: 0 auto;
+    line-height: 60px;
+  }
+
+  .form-group {
+    width: 80% !important;
+    margin-top: 20px !important;
+  }
+}
