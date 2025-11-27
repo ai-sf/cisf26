@@ -1,11 +1,18 @@
 export function initAboutUsPage() {
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.clearScrollMemory("manual");
+    window.scrollTo(0, 0);
 
     const parent = document.getElementById('roma-tre-university');
     const image = document.querySelector("#my-image");
     const helloText = document.querySelector('#hello');
     const textLeft = document.querySelector('.hero__text--left');
     const textRight = document.querySelector('.hero__text--right');
+
+
+    // aisf-informative
+    const statItems = document.querySelectorAll('.stat-item');
+    const container = document.querySelector('#aisf-informative');
 
     /* Initial anim on page load
         helloText bumps out and img fades in
@@ -74,4 +81,43 @@ export function initAboutUsPage() {
             duration: 0.4,
             ease: "power2.out"
         }, 0.9);
+
+    // stats
+    const tl2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: container,
+            start: "top 60%",
+            end: "top 1%",
+            scrub: 1.2,
+            toggleActions: "play none none reverse",
+            // markers: true
+        }
+    });
+
+    statItems.forEach((item, index) => {
+        // tl2.to(item, {
+        //     opacity: 1,
+        //     color: "#3D2817",
+        //     duration: 1.5,
+        //     ease: "power2.out"
+        // }, index * 0.3);
+
+        tl2.fromTo(item,
+            {
+                opacity: 0.2,
+                y: 30,
+                color: "#8B5A2B"
+            },
+            {
+                opacity: 1,
+                y: 0,
+                color: "#3D2817",
+                duration: 0.5,
+                ease: "power2.out"
+            },
+            index * 0.8
+        );
+    });
+
+
 }
