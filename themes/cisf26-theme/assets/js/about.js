@@ -14,6 +14,9 @@ export function initAboutUsPage() {
     const statItems = document.querySelectorAll('.stat-item');
     const container = document.querySelector('#aisf-informative');
 
+    // team members
+    const memberCards = document.querySelectorAll('.organizer-card');
+
     /* Initial anim on page load
         helloText bumps out and img fades in
      */
@@ -119,5 +122,25 @@ export function initAboutUsPage() {
         );
     });
 
+    memberCards.forEach((member, index) => {
+        gsap.fromTo(member,
+            {
+                opacity: 0,
+                y: 30,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: member,
+                    start: "top 85%",
+                    end: "top 15%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    })
 
 }
