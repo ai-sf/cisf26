@@ -15,6 +15,7 @@ export function initAboutUsPage() {
     const container = document.querySelector('#aisf-informative');
 
     // team members
+    const membersPageSectionTitle = document.querySelectorAll(".members-section-title");
     const memberCards = document.querySelectorAll('.organizer-card');
 
     /* Initial anim on page load
@@ -121,6 +122,33 @@ export function initAboutUsPage() {
             index * 0.8
         );
     });
+
+    // animating members section
+    membersPageSectionTitle.forEach(letter => {
+        const text = letter.innerHTML.trim();
+        letter.innerHTML = "";
+
+        text.split("").forEach(char => {
+            const span = document.createElement("span");
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+
+            letter.appendChild(span);
+        });
+
+        gsap.from(letter.querySelectorAll("span"), {
+            scrollTrigger: {
+                trigger: letter,
+                start: "top 85%",
+                once: true
+            },
+            y: "100%",
+            opacity: 0,
+            duration: .8,
+            ease: "power3.out",
+            stagger: 0.05
+        })
+
+    })
 
     memberCards.forEach((member, index) => {
         gsap.fromTo(member,
