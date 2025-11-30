@@ -1,9 +1,7 @@
 ---
 name: Stefania Romano
 role: Coordinatrice CISF '26
-description: Laureata magistrale in Fisica, curriculum didattico, Università
-  degli studi di Roma Tre. Ora frequenta il Master di Secondo livello ComRis
-  sulla comunicazione scientifica presso la stessa università. Lei è la
-  referente contatti istituzionali e sponsor dell'evento.
+description: Laureata magistrale in Fisica all’Università Roma Tre e attualmente iscritta al Master 
+  di II livello ComRis in comunicazione scientifica. Referente per contatti istituzionali e sponsor dell’evento.
 image: images/uploads/stefania_romano_crop.webp
 ---
