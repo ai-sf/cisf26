@@ -1,0 +1,19 @@
+<section id="team-members" style="padding: 2rem 1rem 3rem; max-width: 1100px; margin: 0 auto; text-align: center;">
+    <h1 style="font-size: 50px;" class="members-section-title">Il Team</h1>
+
+    <div class="organizers-grid">
+        {{ range sort (.Site.GetPage "section" "organizer").RegularPages "Params.weight" }}
+        <div class="organizer-card">
+            <img src="{{ .Params.image | relURL }}" alt="{{ .Params.name }}" class="organizer-photo">
+            <div style="margin-left: 5px; margin-right: 5px;">
+                <h3 class="organizer-name">{{ .Params.name }}</h3>
+                <div>
+
+                </div>
+                <h4 class="organizer-role">{{ .Params.role }}</h4>
+                <p class="organizer-description">{{ .Params.description }}</p>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</section>
