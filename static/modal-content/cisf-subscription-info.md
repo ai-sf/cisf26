@@ -22,9 +22,11 @@ Sono disponibili in totale 150 posti. Le quote di partecipazione per l'evento so
 - 70 euro (senza alloggio).<br>
 
 Entrambe le quote di partecipazione comprendono:
-- Una colazione, un pranzo, il pranzo sociale, la serata finale e i coffee break;<br>
+- Una colazione, un pranzo convenzionato, il pranzo sociale, la serata finale e i coffee break;<br>
 - Welcome kit;<br>
-- Soggiorno presso la casa per ferie Seraphicum per le 4 notti dell'evento (solo quota con alloggio).<br>
+
+La quota con alloggio inoltre comprende:
+- Soggiorno presso la casa per ferie Seraphicum per le 4 notti dell'evento.<br>
 
 Entrambe le quote di partecipazione non comprendono:<br>
 - Spese di viaggio per raggiungere la conferenza;<br>
