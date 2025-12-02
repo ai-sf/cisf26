@@ -8,4 +8,6 @@ description: "Laureata magistrale in Fisica (curriculum Terrestre dell’Ambient
 presso FBK e l’Università di Trento."
 image: images/uploads/cristina_originale_compressed.webp
 weight: 30
+image_scale: 1
+image_position: "center 40%"
 ---
