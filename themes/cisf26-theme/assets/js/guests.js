@@ -75,7 +75,7 @@ export function initGuestScroller() {
             const guestData = trigger.dataset;
             modal.querySelector('.modal-speaker.image').src = guestData.modalGuestImage || '';
             modal.querySelector('.modal-speaker.name').textContent = guestData.modalGuestName || '--';
-            modal.querySelector('.modal-speaker.role').textContent = guestData.modalGuestRole || '';
+            modal.querySelector('.modal-speaker.role').textContent = guestData.modalGuestRole || '--';
             modal.querySelector('.modal-speaker.bio').innerHTML = guestData.guestBio || '--';
 
             modal.classList.add('open');

@@ -171,4 +171,38 @@ export function initAboutUsPage() {
         );
     })
 
+
+    // Team member modal
+    document.addEventListener('click', (ev) => {
+        const trigger = ev.target.closest('[data-modal-target]');
+        if(trigger) {
+            ev.preventDefault();
+            const modalId = trigger.dataset.modalTarget || '';
+            const selector = modalId.startsWith('#') ? modalId : `#${modalId}`;
+            const modal = document.querySelector(selector);
+            openModal(modal, trigger);
+            return;
+        }
+    })
+
+    const openModal = (modal, trigger) => {
+        console.log('triggering open modal');
+        if (!modal) return;
+
+        if(modal && trigger) {
+            console.log('dataset', trigger.dataset);
+            const memberData = trigger.dataset;
+            modal.querySelector('.modal-team-member.image').src = memberData.modalMemberPicture || "";
+            modal.querySelector('.modal-team-member.name').textContent = memberData.modalMemberName || '--';
+            modal.querySelector('.modal-team-member.role').textContent = memberData.modalMemberRole || '';
+            modal.querySelector('.modal-team-member.bio').innerHTML = memberData.modalMemberBio || '--';
+
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+
+            const pageContent = document.querySelector('.page-content');
+            pageContent.classList.add('page-content-modal-open');
+        }
+    }
+
 }

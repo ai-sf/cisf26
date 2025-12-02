@@ -1,11 +1,28 @@
 {{ define "main" }}
-    {{ partial "about-us/cover.html" . }}
-    <div class="about-us-page-wrapper">
-        {{ partial "about-us/aisf.html" . }}
+    <div class="page-content" style="padding: 0 !important;">
+        <!-- Team Member Modal -->
+        <div id="team-member-modal" class="base-modal" style="padding-top: 15px;">
+            <div class="base-modal-content">
+                <img class="modal-team-member image" src="" alt="">
+                <h3 class="modal-team-member name"></h3>
+                <p class="modal-team-member role"></p>
+                <div class="modal-team-member bio"></div>
 
+                <button class="close-modal">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+        {{ partial "about-us/cover.html" . }}
+        <div class="about-us-page-wrapper">
+            {{ partial "about-us/aisf.html" . }}
+
+        </div>
+        {{ partial "about-us/aisf-informative.html" . }}
+        {{ partial "about-us/team-members.html" . }}
+        <!-- {{ partial "about-us/press-kit.html" . }} -->
+        {{ partial "about-us/contacts.html" . }}
     </div>
-    {{ partial "about-us/aisf-informative.html" . }}
-    {{ partial "about-us/team-members.html" . }}
-    {{ partial "about-us/contacts.html" . }}
-    <!-- {{ partial "about-us/press-kit.html" . }} -->
 {{ end }}

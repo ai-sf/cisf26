@@ -1,4 +1,12 @@
-<div class="team-member-card">
+<div class="team-member-card"
+    data-modal-target="#team-member-modal"
+     data-modal-member-name="{{ .Params.name }}"
+     data-modal-member-role="{{ .Params.role }}"
+     data-modal-member-picture="{{ .Params.image | relURL }}"
+     data-modal-member-bio="{{ .Params.description }}"
+
+
+>
     <img src="{{ .Params.image | relURL }}" alt="{{ .Params.name }}" class="team-member-photo">
     <div style="margin-left: 5px; margin-right: 5px; height: 100%; display: flex; flex-direction: column;">
         <h3 class="team-member-name">{{ .Params.name }}</h3>
