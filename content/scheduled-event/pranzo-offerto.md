@@ -1,6 +1,6 @@
 ---
-name: Pranzo offerto
-title: Pranzo offerto
+name: Pranzo convenzionato
+title: Pranzo convenzionato
 day: wednesday
 weight: 3
 start_time: 13:30
