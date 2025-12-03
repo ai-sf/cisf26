@@ -2,7 +2,7 @@
 name: Physics Drink
 title: Physics Drink
 day: tuesday
-weight: 3
+weight: 5
 coverImage: images/uploads/physics_and_drinks.webp
 start_time: 16:00
 end_time: 17:00

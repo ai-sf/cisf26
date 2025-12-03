@@ -1,6 +1,6 @@
 ---
 name: Umberto Gravante
 role: IT Manager
-description: Ha intrapreso una carriera nel mondo del IT ed è l'attuale IT Manager di CISF26.
+description: Tech Leader di una nota azienda nel settore del gambling. È volontario e IT Manager di CISF'26.
 image: images/organizers/umberto_gravante.webp
 ---

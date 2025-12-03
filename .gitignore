@@ -4,3 +4,4 @@
 /resources/
 jsconfig.json
 .hugo_build.lock
+*.Zone.Identifier
