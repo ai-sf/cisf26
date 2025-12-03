@@ -3,12 +3,13 @@ export function initAboutUsPage() {
     ScrollTrigger.clearScrollMemory("manual");
     window.scrollTo(0, 0);
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
     const parent = document.getElementById('roma-tre-university');
     const image = document.querySelector("#my-image");
     const helloText = document.querySelector('#hello');
     const textLeft = document.querySelector('.hero__text--left');
     const textRight = document.querySelector('.hero__text--right');
-
 
     // aisf-informative
     const statItems = document.querySelectorAll('.stat-item');
@@ -16,114 +17,115 @@ export function initAboutUsPage() {
 
     // team members
     const membersPageSectionTitle = document.querySelectorAll(".members-section-title");
-    const memberCards = document.querySelectorAll('.organizer-card');
+    const memberCards = document.querySelectorAll('.team-member-card');
 
     /* Initial anim on page load
         helloText bumps out and img fades in
      */
-    gsap.from(helloText, {
-        opacity: 0,
-        scale: 0.5,
-        duration: 1,
-        ease: "back.out(1.7)",
-        delay: 0.2
-    });
+    if (helloText) {
+        gsap.from(helloText, {
+            opacity: 0,
+            scale: 0.5,
+            duration: 1,
+            ease: "back.out(1.7)",
+            delay: 0.2
+        });
+    }
 
-    gsap.from(image, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.5
-    });
+    if (image) {
+        gsap.from(image, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            ease: "power2.out",
+            delay: 0.5
+        });
+    }
 
     // Binding timeline to scroll event
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: parent,
-            start: "top top",
-            end: "+=150%",
-            scrub: 1.5,
-            pin: true,
-            anticipatePin: 1
-        }
-    });
+    if (parent && image) {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: parent,
+                start: "top top",
+                end: isMobile ? "+=100%" : "+=150%",
+                scrub: isMobile ? 1 : 1.5,
+                pin: true,
+                anticipatePin: 1
+            }
+        });
 
-    // What happens on scroll
-    tl.to(helloText, {
-        opacity: 0,
-        y: -50,
-        duration: 0.2,
-        ease: "power2.in"
-    }, 0)
-        .to(image, {
-            width: "100vw",
-            height: "100vh",
-            maxWidth: "100vw",
-            borderRadius: "0px",
-            outlineWidth: "0px",
-            top: "50%",
-            left: "50%",
-            duration: 1,
-            ease: "power1.inOut"
-        }, 0.1)
-        .fromTo(textLeft, {
+        // What happens on scroll
+        tl.to(helloText, {
             opacity: 0,
-            x: -100
-        }, {
-            opacity: 1,
-            x: 0,
-            duration: 0.4,
-            ease: "power2.out"
-        }, 0.8)
-        .fromTo(textRight, {
-            opacity: 0,
-            x: 100
-        }, {
-            opacity: 1,
-            x: 0,
-            duration: 0.4,
-            ease: "power2.out"
-        }, 0.9);
+            y: -50,
+            duration: 0.2,
+            ease: "power2.in"
+        }, 0)
+            .to(image, {
+                width: "100vw",
+                height: "100vh",
+                maxWidth: "100vw",
+                borderRadius: "0px",
+                outlineWidth: "0px",
+                top: "50%",
+                left: "50%",
+                duration: isMobile ? 0.7 : 1,
+                ease: "power1.inOut"
+            }, 0.1)
+            .fromTo(textLeft, {
+                opacity: 0,
+                x: isMobile ? -50 : -100
+            }, {
+                opacity: 1,
+                x: 0,
+                duration: isMobile ? 0.5 : 0.4,
+                ease: "power2.out"
+            }, isMobile ? 0.5 : 0.8)
+            .fromTo(textRight, {
+                opacity: 0,
+                x: isMobile ? 50 : 100
+            }, {
+                opacity: 1,
+                x: 0,
+                duration: isMobile ? 0.5 : 0.4,
+                ease: "power2.out"
+            }, isMobile ? 0.6 : 0.9);
+    }
 
     // stats
-    const tl2 = gsap.timeline({
-        scrollTrigger: {
-            trigger: container,
-            start: "top 60%",
-            end: "top 1%",
-            scrub: 1.2,
-            toggleActions: "play none none reverse",
-            // markers: true
-        }
-    });
+    if (container && statItems.length > 0) {
+        const tl2 = gsap.timeline({
+            scrollTrigger: {
+                trigger: container,
+                start: "top 60%",
+                end: "top 1%",
+                scrub: 1.2,
+                toggleActions: "play none none reverse",
+                // markers: true
+            }
+        });
 
-    statItems.forEach((item, index) => {
-        // tl2.to(item, {
-        //     opacity: 1,
-        //     color: "#3D2817",
-        //     duration: 1.5,
-        //     ease: "power2.out"
-        // }, index * 0.3);
+        statItems.forEach((item, index) => {
+            tl2.fromTo(item,
+                {
+                    opacity: 0.2,
+                    y: 30,
+                    color: "#8B5A2B"
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    color: "#3D2817",
+                    duration: 0.5,
+                    ease: "power2.out"
+                },
+                index * 0.8
+            );
+        });
+    }
 
-        tl2.fromTo(item,
-            {
-                opacity: 0.2,
-                y: 30,
-                color: "#8B5A2B"
-            },
-            {
-                opacity: 1,
-                y: 0,
-                color: "#3D2817",
-                duration: 0.5,
-                ease: "power2.out"
-            },
-            index * 0.8
-        );
-    });
-
-    // animating members section
+    // animating members section title
     membersPageSectionTitle.forEach(letter => {
         const text = letter.innerHTML.trim();
         letter.innerHTML = "";
@@ -131,7 +133,6 @@ export function initAboutUsPage() {
         text.split("").forEach(char => {
             const span = document.createElement("span");
             span.innerHTML = char === " " ? "&nbsp;" : char;
-
             letter.appendChild(span);
         });
 
@@ -143,14 +144,14 @@ export function initAboutUsPage() {
             },
             y: "100%",
             opacity: 0,
-            duration: .8,
+            duration: 0.8,
             ease: "power3.out",
             stagger: 0.05
-        })
+        });
+    });
 
-    })
-
-    memberCards.forEach((member, index) => {
+    // animating member cards
+    memberCards.forEach((member) => {
         gsap.fromTo(member,
             {
                 opacity: 0,
@@ -169,13 +170,12 @@ export function initAboutUsPage() {
                 }
             }
         );
-    })
-
+    });
 
     // Team member modal
     document.addEventListener('click', (ev) => {
         const trigger = ev.target.closest('[data-modal-target]');
-        if(trigger) {
+        if (trigger) {
             ev.preventDefault();
             const modalId = trigger.dataset.modalTarget || '';
             const selector = modalId.startsWith('#') ? modalId : `#${modalId}`;
@@ -183,13 +183,13 @@ export function initAboutUsPage() {
             openModal(modal, trigger);
             return;
         }
-    })
+    });
 
     const openModal = (modal, trigger) => {
         console.log('triggering open modal');
         if (!modal) return;
 
-        if(modal && trigger) {
+        if (modal && trigger) {
             console.log('dataset', trigger.dataset);
             const memberData = trigger.dataset;
             modal.querySelector('.modal-team-member.image').src = memberData.modalMemberPicture || "";
@@ -201,8 +201,18 @@ export function initAboutUsPage() {
             document.body.classList.add('modal-open');
 
             const pageContent = document.querySelector('.page-content');
-            pageContent.classList.add('page-content-modal-open');
+            if (pageContent) {
+                pageContent.classList.add('page-content-modal-open');
+            }
         }
-    }
+    };
 
+    // Refresh ScrollTrigger on resize (todo: improve)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 250);
+    });
 }

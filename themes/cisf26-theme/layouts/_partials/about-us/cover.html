@@ -1,6 +1,5 @@
 <style>
     #about-us {
-        /*background: #81E4EC;*/
         background: linear-gradient(0deg,rgba(0, 43, 96, 0.9) 0%, rgba(0, 43, 96, 0.65) 100%);
         overflow: hidden;
         position: relative;
@@ -56,10 +55,11 @@
         white-space: nowrap;
         opacity: 0;
         z-index: 4;
+        line-height: 1.1;
     }
 
     .hero__text--left {
-        top: 10%;
+        top: 17%;
         left: 2rem;
     }
 
@@ -69,21 +69,50 @@
     }
 
     @media (max-width: 768px) {
+        #about-us {
+            background: linear-gradient(0deg,rgba(0, 43, 96, 0.95) 0%, rgba(0, 43, 96, 0.75) 100%);
+        }
+
         .roma-univ {
-            width: 80%;
+            width: 85%;
+            max-width: 400px;
+            outline: 6px solid white;
+            border-radius: 16px;
+        }
+
+        #hello {
+            top: 15%;
+            font-size: clamp(2.5rem, 12vw, 4rem);
+            max-width: 90%;
         }
 
         .hero__text {
+            font-size: clamp(1.8rem, 6vw, 3rem);
             white-space: normal;
-            max-width: 80%;
+            max-width: 85%;
+            line-height: 1.2;
         }
 
         .hero__text--left {
             left: 1rem;
+            top: 15%;
         }
 
         .hero__text--right {
             right: 1rem;
+            bottom: 15%;
+            text-align: right;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero__text {
+            font-size: clamp(1.5rem, 7vw, 2.5rem);
+        }
+
+        .roma-univ {
+            width: 90%;
+            outline: 4px solid white;
         }
     }
 </style>
