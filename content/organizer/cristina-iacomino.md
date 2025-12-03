@@ -4,9 +4,10 @@ date: 2023-10-27T10:15:00+02:00
 draft: false
 name: Cristina Iacomino
 role: Segretaria CISF26 & Co-IT manager
-description: "Laureata magistrale in Fisica, curriculum Terrestre e
-  dell'ambiente, Università degli Studi di Roma Tre. Attualmente è dottoranda
-  presso FBK e l'università di Trento. "
+description: "Laureata magistrale in Fisica (curriculum Terrestre dell’Ambiente) all’Università Roma Tre. Ora dottoranda 
+presso FBK e l’Università di Trento."
 image: images/uploads/cristina_originale_compressed.webp
 weight: 30
+image_scale: 1
+image_position: "center 40%"
 ---

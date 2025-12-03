@@ -1,0 +1,23 @@
+<div class="team-member-card"
+    data-modal-target="#team-member-modal"
+     data-modal-member-name="{{ .Params.name }}"
+     data-modal-member-role="{{ .Params.role }}"
+     data-modal-member-picture="{{ .Params.image | relURL }}"
+     data-modal-member-bio="{{ .Params.description }}"
+
+
+>
+    <div class="team-member-photo-wrapper">
+        <img
+            src="{{ .Params.image | relURL }}"
+            alt="{{ .Params.name }}"
+            class="team-member-photo"
+            style="{{ if .Params.image_position }}object-position: {{ .Params.image_position }};{{ end }}{{ if .Params.image_scale }}transform: scale({{ .Params.image_scale }});{{ end }}">
+    </div>
+
+    <div style="margin-left: 5px; margin-right: 5px; display: flex; flex-direction: column;">
+        <h3 class="team-member-name">{{ .Params.name }}</h3>
+        <h4 class="team-member-role">{{ .Params.role }}</h4>
+        <p class="team-member-bio">{{ .Params.description }}</p>
+    </div>
+</div>

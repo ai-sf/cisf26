@@ -1,0 +1,129 @@
+<style>
+    #about-us {
+        background: linear-gradient(0deg,rgba(0, 43, 96, 0.9) 0%, rgba(0, 43, 96, 0.65) 100%);
+        overflow: hidden;
+        position: relative;
+    }
+
+    #roma-tre-university {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .roma-univ {
+        position: absolute;
+        width: 60%;
+        max-width: 500px;
+        height: auto;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        outline: 10px solid white;
+        border-radius: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        will-change: transform, width, height, border-radius;
+    }
+
+    #hello {
+        text-align: center;
+        font-size: clamp(3rem, 10vw, 80px);
+        margin: 0;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        opacity: 1;
+        color: white;
+    }
+
+    .hero__text {
+        position: absolute;
+        font-size: clamp(1.5rem, 4vw, 5.7rem);
+        font-weight: 700;
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        margin: 0;
+        white-space: nowrap;
+        opacity: 0;
+        z-index: 4;
+        line-height: 1.1;
+    }
+
+    .hero__text--left {
+        top: 17%;
+        left: 2rem;
+    }
+
+    .hero__text--right {
+        bottom: 10%;
+        right: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        #about-us {
+            background: linear-gradient(0deg,rgba(0, 43, 96, 0.95) 0%, rgba(0, 43, 96, 0.75) 100%);
+        }
+
+        .roma-univ {
+            width: 85%;
+            max-width: 400px;
+            outline: 6px solid white;
+            border-radius: 16px;
+        }
+
+        #hello {
+            top: 15%;
+            font-size: clamp(2.5rem, 12vw, 4rem);
+            max-width: 90%;
+        }
+
+        .hero__text {
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            white-space: normal;
+            max-width: 85%;
+            line-height: 1.2;
+        }
+
+        .hero__text--left {
+            left: 1rem;
+            top: 15%;
+        }
+
+        .hero__text--right {
+            right: 1rem;
+            bottom: 15%;
+            text-align: right;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero__text {
+            font-size: clamp(1.5rem, 7vw, 2.5rem);
+        }
+
+        .roma-univ {
+            width: 90%;
+            outline: 4px solid white;
+        }
+    }
+</style>
+
+<!-- TODO: Excluding page-content makes the slide better. However, there's somethin off with "Ciao" and scrolling -->
+<!--<section class="page-content" id="about-us">-->
+<section id="about-us">
+    <div id="roma-tre-university">
+        <h1 id="hello">Ciao! 👋</h1>
+        <img src="/cisf26/images/about-us/romatre-globo.jpeg" id="my-image" class="roma-univ" alt="university">
+        <h2 class="hero__text hero__text--left">Siamo il Comitato Locale</h2>
+        <h2 class="hero__text hero__text--right">AISF Roma Tre</h2>
+    </div>
+</section>
