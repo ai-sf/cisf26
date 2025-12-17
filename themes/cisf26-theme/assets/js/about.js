@@ -224,8 +224,8 @@ export function initAboutUsPage() {
     presskitDownloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
         let anchorElement = document.createElement('a');
-        anchorElement.setAttribute('href', '/cisf26/docs/v4_uuids.txt');
-        anchorElement.setAttribute('download', 'cisf26-presskit');
+        anchorElement.setAttribute('href', '/cisf26/docs/cisf26-presskit.zip');
+        anchorElement.setAttribute('download', 'cisf26-presskit.zip');
 
         document.body.appendChild(anchorElement);
         anchorElement.click();
