@@ -7,13 +7,6 @@ pageScript: "aboutus.js"
 
 title_highlight: "AISF Roma Tre"
 subtitle: "AISF - Associazione Italiana Studenti di Fisica"
-header_images:
-  - src: "images/about/globe.png"
-    alt: "Globo terrestre"
-  - src: "images/about/building.png"
-    alt: "Università degli Studi Roma Tre"
-  - src: "images/about/classroom-people.png"
-    alt: "Studenti universitari in aula"
 ---
 
 Nata nel 2014, oggi conta oltre 1400 membri e 19 Comitati Locali.
