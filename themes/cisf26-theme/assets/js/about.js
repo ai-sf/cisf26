@@ -19,6 +19,10 @@ export function initAboutUsPage() {
     const membersPageSectionTitle = document.querySelectorAll(".members-section-title");
     const memberCards = document.querySelectorAll('.team-member-card');
 
+    // presskit download button
+    const presskitDownloadBtn = document.querySelector("#presskitButton");
+    console.log('presskit download', presskitDownloadBtn);
+
     /* Initial anim on page load
         helloText bumps out and img fades in
      */
@@ -215,4 +219,17 @@ export function initAboutUsPage() {
             ScrollTrigger.refresh();
         }, 250);
     });
+
+
+    presskitDownloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let anchorElement = document.createElement('a');
+        anchorElement.setAttribute('href', '/cisf26/docs/v4_uuids.txt');
+        anchorElement.setAttribute('download', 'cisf26-presskit');
+
+        document.body.appendChild(anchorElement);
+        anchorElement.click();
+
+        document.body.removeChild(anchorElement);
+    })
 }
