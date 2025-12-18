@@ -57,7 +57,7 @@ export function initSubscriptionsPage() {
     // TIME WINDOW
     // -------------------------------
     const openingTimestamp = new Date('2025-11-17T19:00:00+01:00');
-    const closingTimestamp = new Date('2025-12-18T23:59:00+01:00');
+    const closingTimestamp = new Date('2025-12-18T23:58:50+01:00');
 
     const now = new Date();
 
@@ -275,4 +275,16 @@ export function initSubscriptionsPage() {
     // -------------------------------
     updateProgress();
     updateStepTexts(1);
+
+
+    function refreshPageStatus() {
+        const now = new Date();
+        if (now > closingTimestamp) {
+            warningContainer.style.display = "none";
+            formContainer.style.display = "none";
+            closedContainer.style.display = "block";
+        }
+    }
+
+    setInterval(refreshPageStatus, 10000);
 }
