@@ -1,6 +1,6 @@
 ---
-name: Pranzo libero
-title: Pranzo libero
+name: Pausa pranzo
+title: Pausa pranzo
 day: thursday
 weight: 2
 start_time: 13:00

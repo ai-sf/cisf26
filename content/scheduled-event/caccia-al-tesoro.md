@@ -3,7 +3,7 @@ name: Caccia al Tesoro
 title: Caccia al Tesoro
 day: wednesday
 weight: 7
-start_time: 22:00
+start_time: 21:30
 end_time: 00:00
 description: |-
   **Caccia al Tesoro:**

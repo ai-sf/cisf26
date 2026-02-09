@@ -1,6 +1,6 @@
 ---
-name: Talk sponsor principale
-title: Talk sponsor principale
+name: Talk sponsor
+title: Talk sponsor 
 day: friday
 weight: 2
 start_time: 10:30
