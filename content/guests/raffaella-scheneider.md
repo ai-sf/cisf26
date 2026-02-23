@@ -1,8 +1,8 @@
 ---
-title: Leonetta Baldassarre 
-role: "Professoressa Associata, Università di Roma La Sapienza"
-bio: Leonetta Baldassarre è Professoressa Associata presso il Dipartimento di Fisica dell’Università La Sapienza di Roma, dove è stata PI del progetto SIR MINDS (Mid-Infrared Nanospectroscopy with Doped Semiconductors). Ha utilizzato la spettroscopia infrarossa per affrontare diversi temi scientifici, che spaziano dallo studio dell’elettrodinamica a bassa energia nei solidi fino all’applicazione di approcci plasmonici nell’infrarosso medio per la nano-spettroscopia e il sensing. Più recentemente, la sua attività di ricerca si è concentrata sullo sviluppo di apparati di spettroscopia Raman con eccitazione nell’infrarosso, finalizzati allo studio delle interazioni elettrone-fonone ed elettrone-elettrone nei materiali bidimensionali.
+title: Raffaella Schneider
+role: "Professoressa Ordinaria, Università di Roma La Sapienza"
+bio: Raffaella Schneider è Professoressa Ordinaria di Astrofisica alla Sapienza Università di Roma, dove coordina la classe di scienze e tecnologie della Scuola Superiore di Studi Avanzati. Si occupa della formazione delle prime stelle, galassie e buchi neri, della reionizzazione cosmica e dell’arricchimento chimico.  Ha guidato importanti progetti di ricerca europei e collabora con numerosi istituti internazionali, contribuendo a interpretare le scoperte dei telescopi JWST e ALMA. Con una forte attenzione alla formazione e alla parità di genere nella scienza, ha supervisionato molte giovani persone impegnate oggi nella ricerca in Italia e all’estero.
 draft: false
-image: images/guests/leonetta_baldassarre.webp
+image: images/guests/raffaella_scheneider.webp
 weight: 7
 ---
