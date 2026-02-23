@@ -428,6 +428,20 @@ button {
   position: relative;
 }
 
+.info-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #dd7c2f 0%, #dd791c 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 12px 32px rgba(229, 129, 51, 0.3);
+  position: relative;
+}
+
 .success-icon::before {
   content: '';
   position: absolute;
@@ -435,6 +449,16 @@ button {
   height: 120px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.1);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.info-icon::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(229, 129, 51, 0.1);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -461,6 +485,15 @@ button {
 }
 
 .success-icon::after {
+  content: '✓';
+  font-size: 56px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+.info-icon::after {
   content: '✓';
   font-size: 56px;
   color: white;

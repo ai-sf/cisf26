@@ -1,11 +1,11 @@
 ---
-name: "Evento serale"
-title: "Evento serale"
+name: "Sessione Plenaria"
+title: "Sessione Plenaria"
 day: tuesday
-weight: 6
+weight: 3
 coverImage: 
-start_time: 21:00
-end_time: 22:30
+start_time: 11:30
+end_time: 13:00
 description: 
 draft: false
 context: 

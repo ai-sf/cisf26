@@ -3,6 +3,7 @@ import { initLocationsPage } from "./locations.js";
 import { initButterflyBar} from "./butterfly-bar.js";
 import { initGuestScroller } from "./guests";
 import { initHomePage } from "./home";
+import { initAboutUsPage } from "./about";
 import { initSubscriptionsPage } from "./subscriptions";
 
 /**
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initLocationsPage();
     }
 
+    if (document.querySelector('#about-us')) initAboutUsPage();
     if (document.querySelector('#subscriptions-page')) {
         initSubscriptionsPage();
     }
@@ -75,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // document.addEventListener('touchmove', touchHandler, {passive:false})
     // document.addEventListener('touchend', touchHandler, {passive:false})
     // document.addEventListener('touchcancel', touchHandler, {passive:false})
-
-
+    
     initHomePage();
     initButterflyBar();
     initGuestScroller();
+
 });
