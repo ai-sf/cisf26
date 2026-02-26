@@ -80,6 +80,16 @@ theme = 'cisf26-theme'
     icon = "fa-hand-holding-heart"
     bottombar = true
     mobile_sort = 4
+[[menus.main]]
+  identifier = ""
+  name = "Thesis"
+  pageRef = "/thesis"
+  [menus.main.params]
+    show_desktop = true
+    desktop_sort = 5
+    icon = ""
+    bottombar = true
+    mobile_sort = 5
 
 [params]
     siteTitle = "CISF26"
