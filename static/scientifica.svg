@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Green rectangle top-left -->
+  <rect x="0" y="0" width="93" height="62" fill="#008037"/>
+  <!-- Red rectangle top-right -->
+  <rect x="187" y="0" width="93" height="62" fill="#cc1214"/>
+  <!-- Letter S -->
+  <text
+    x="140"
+    y="290"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="260"
+    font-weight="400"
+    fill="#3d3a3a"
+    text-anchor="middle"
+    dominant-baseline="auto"
+  >S</text>
+</svg>
