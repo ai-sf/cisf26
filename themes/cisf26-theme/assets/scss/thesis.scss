@@ -460,7 +460,7 @@ html { scroll-behavior: smooth; }
 
 /* ---- CTA FINALE ---- */
 .cta-final {
-  background: var(--green);
+  background: $secondary-color;
   text-align: center;
   padding: 140px 8vw;
   position: relative;
@@ -483,7 +483,7 @@ html { scroll-behavior: smooth; }
 
 .cta-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
@@ -494,7 +494,7 @@ html { scroll-behavior: smooth; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid $accent-color-2;
+  border: none;
   color: $accent-color-2;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
@@ -547,12 +547,6 @@ nav.scrolled {
   letter-spacing: 0.08em;
 }
 .nav-deadline span { color: var(--yellow); font-weight: 700; }
-
-@media (max-width: $breakpoint-md) {
-  .cta-buttons {
-    flex-direction: column;
-  }
-}
 
 @media (max-width: 900px) {
   .thesis-hero { grid-template-columns: 1fr; padding: 100px 6vw 60px; }
