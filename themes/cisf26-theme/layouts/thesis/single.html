@@ -1,7 +1,7 @@
 {{ define "main" }}
 
     <!-- HERO -->
-    <section class="thesis-hero">
+    <section id="thesis" class="thesis-hero">
         <div class="hero-noise"></div>
 
         <div class="hero-left">
@@ -17,19 +17,30 @@
                 La migliore tesi di laurea in ambito STEM vale un grant di <strong style="color:var(--yellow)">3.000€</strong> e molto di più. Candidati entro il 15 marzo.
             </p>
 
-            <div class="hero-cta">
-                <a
-                    href="https://scientifica.vc/academy/thesis/application-form/"
-                    target="_blank"
-                    class="btn-primary"
-                >
-                    Candidati ora
-                </a>
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 2rem;">
+                <button type="button" class="btn-primary thesis-button">
+                    Candidati ora →
+                </button>
                 <div class="deadline-badge">
-                    <strong>15 Marzo 2026</strong>
+                    <strong>15 marzo 2026</strong>
                     scadenza candidature
                 </div>
             </div>
+
+
+<!--            <div class="hero-cta">-->
+<!--                <a-->
+<!--                    href="https://scientifica.vc/academy/thesis/application-form/"-->
+<!--                    target="_blank"-->
+<!--                    class="btn-primary"-->
+<!--                >-->
+<!--                    Candidati ora-->
+<!--                </a>-->
+<!--                <div class="deadline-badge">-->
+<!--                    <strong>15 Marzo 2026</strong>-->
+<!--                    scadenza candidature-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
         <div class="hero-right">
@@ -54,43 +65,40 @@
     </section>
 
     <!-- WHAT IS -->
-    <section class="what">
+    <section style="padding: 120px 8vw" class="what">
     <!--    <div class="label-tag">L'iniziativa</div>-->
         <h2 class="section-title">Cosa premia<br><em>Thesis?</em></h2>
 
         <div class="what-grid">
             <div>
                 <p class="big-quote">"Thesis è l'iniziativa di Scientifica che premia le migliori tesi di laurea in ambito STEM."</p>
-                <p class="what-text">Un programma pensato per valorizzare la ricerca accademica dei giovani talenti italiani, con l'obiettivo di connettere università e industria attraverso i progetti più innovativi.</p>
+                <p class="what-text">Un programma pensato per valorizzare la ricerca accademica dei giovani talenti italiani,
+                    con l'obiettivo di connettere università e industria attraverso i progetti più innovativi.
+                    <br />
+                    <strong>Chi vincerà avrà la possibilità di scegliere il premio che preferisce.</strong>
+                </p>
             </div>
 
             <div class="prizes-list reveal">
                 <div class="prize-item">
                     <div class="prize-icon">💰</div>
                     <div class="prize-content">
-                        <h4>Grant da 3.000€</h4>
-                        <p>Premio in denaro direttamente ai candidati selezionati per il loro lavoro di tesi.</p>
+                        <h3>Grant da 3.000€</h3>
+                        <p>Premio in denaro.</p>
                     </div>
                 </div>
                 <div class="prize-item">
                     <div class="prize-icon">🚀</div>
                     <div class="prize-content">
-                        <h4>Collaborazione con una startup</h4>
+                        <h3>Collaborazione con una startup</h3>
                         <p>Avvia una collaborazione retribuita con una startup del portfolio di Scientifica.</p>
                     </div>
                 </div>
                 <div class="prize-item">
                     <div class="prize-icon">🔬</div>
                     <div class="prize-content">
-                        <h4>Laboratori di ricerca</h4>
+                        <h3>Laboratori di ricerca</h3>
                         <p>Intraprendi una collaborazione retribuita all'interno dei laboratori di ricerca di Scientifica.</p>
-                    </div>
-                </div>
-                <div class="prize-item">
-                    <div class="prize-icon">🎤</div>
-                    <div class="prize-content">
-                        <h4>Pitch a CISF26</h4>
-                        <p>I 10 finalisti selezionati presenteranno il proprio lavoro tramite un pitch di 3–5 minuti durante CISF26.</p>
                     </div>
                 </div>
             </div>
@@ -98,54 +106,34 @@
     </section>
 
     <!-- PROCESS -->
-    <section class="process">
-    <!--    <div class="label-tag" style="color:rgba(250,245,228,0.3)">Come funziona</div>-->
+    <section style="padding: 120px 8vw" class="process">
         <h2 class="section-title">Il percorso<br><em style="color:var(--yellow)">verso il premio</em></h2>
 
         <div class="steps-timeline reveal">
             <div class="step">
                 <div class="step-num">01</div>
-                <span class="step-icon">📋</span>
+                <span class="step-icon">📝</span>
                 <h3>Candidatura</h3>
-                <p>Compila il form, specificando di essere membro AISF. <span class="step-highlight">Scadenza: 15 marzo 2026.</span> Assicurati di aver rinnovato l'iscrizione AISF.</p>
+                <p>Compila il form, specificando di essere membro AISF. <span class="step-highlight">Scadenza: 15 marzo 2026.</span> Assicurati di aver rinnovato l'iscrizione ad AISF.</p>
             </div>
             <div class="step">
                 <div class="step-num">02</div>
-                <span class="step-icon">🔍</span>
+                <span class="step-icon">🔎</span>
                 <h3>Selezione dei 10 finalisti</h3>
                 <p>Scientifica seleziona i <span class="step-highlight">10 migliori lavori</span> in ambito STEM. I finalisti vengono invitati a CISF26.</p>
             </div>
             <div class="step">
                 <div class="step-num">03</div>
-                <span class="step-icon">🏆</span>
+                <span class="step-icon">🔬</span>
                 <h3>Premio AISF a CISF26</h3>
                 <p>Grazie alla collaborazione con CISF26, <span class="step-highlight">almeno un premio è riservato a un membro AISF.</span> Presenta il tuo pitch di 3–5 minuti.</p>
             </div>
         </div>
     </section>
 
-    <!-- CISF COLLAB -->
-    <section class="collab">
-    <!--    <div class="label-tag">La collaborazione speciale</div>-->
-        <div class="collab-inner">
-            <div>
-                <h2 class="section-title">CISF26 ×<br><em style="color:var(--green)">AISF</em></h2>
-                <p class="collab-text">Grazie alla collaborazione esclusiva tra Scientifica e CISF26, almeno uno dei premi dell'edizione 2026 sarà assegnato a un membro AISF. Un'opportunità unica per chi fa parte della community della fisica italiana.</p>
-                <p class="collab-text" style="margin-top: 16px;">I dieci finalisti selezionati avranno l'opportunità di presentare il proprio lavoro tramite un pitch di 3–5 minuti al congresso.</p>
-            </div>
-            <div>
-                <div class="cisf-card">
-                    <div class="cisf-logo">Cφ</div>
-                    <h3>CISF26</h3>
-                    <p>Congresso Italiano degli Studenti di Fisica 2026 — la vetrina più importante per i giovani fisici italiani.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHO CAN APPLY -->
+    <!-- REQUIREMENTS-->
     <section class="who" id="applicants">
-    <!--    <div class="label-tag">Chi può candidarsi</div>-->
+        <!--    <div class="label-tag">Chi può candidarsi</div>-->
         <h2 class="section-title">Requisiti per<br><em>partecipare</em></h2>
 
         <div class="who-grid reveal">
@@ -167,6 +155,25 @@
         </div>
     </section>
 
+    <!-- CISF COLLAB -->
+    <section class="collab">
+    <!--    <div class="label-tag">La collaborazione speciale</div>-->
+        <div class="collab-inner">
+            <div>
+                <h2 class="section-title">CISF26 ×<br><em style="color:var(--green)">AISF</em></h2>
+                <p class="collab-text">Grazie alla collaborazione esclusiva tra Scientifica e CISF26, almeno uno dei premi dell'edizione 2026 sarà assegnato a un membro AISF. Un'opportunità unica per chi fa parte della community della fisica italiana.</p>
+                <p class="collab-text" style="margin-top: 16px;">L* dieci finalist* selezionat* avranno l'opportunità di presentare il proprio lavoro tramite un pitch di 3–5 minuti durante CISF26.</p>
+            </div>
+            <div>
+                <div class="cisf-card">
+                    <div class="cisf-logo">Cφ</div>
+                    <h3>CISF26</h3>
+                    <p>Conferenza Italiana Studenti di Fisica 2026 — la vetrina più importante per i giovani fisici italiani.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-final">
         <h2 class="section-title">Pront* a candidarti?</h2>
@@ -178,17 +185,6 @@
     </section>
 
     <script>
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2.5)';
-                ring.style.transform = 'scale(1.4)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                ring.style.transform = 'scale(1)';
-            });
-        });
-
         // Scroll nav
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
