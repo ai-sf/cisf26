@@ -1,4 +1,12 @@
 <!-- Overlay -->
+<style>
+    .bottom-link-icon {
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: -0.125em;
+        display: inline-block;
+    }
+</style>
 <div class="mobile-popup-overlay"></div>
 
 <!-- Bottom sheet -->
@@ -9,8 +17,12 @@
         {{ range sort (where .Site.Menus.main "Params.bottombar" true) "Params.mobile_sort" "asc" }}
         <li>
             <a href="{{ .URL }}" class="bottom-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
-                <i class="fa-solid {{ .Params.icon }}"></i>
-                <span>{{ .Name }}</span>
+            {{ if hasPrefix .Params.icon "fa-" }}
+            <i class="fa-solid {{ .Params.icon }}"></i>
+            {{ else }}
+            <img src="{{ .Params.icon | relURL }}" alt="{{ .Name }}" class="bottom-link-icon">
+            {{ end }}
+            <span>{{ .Name }}</span>
             </a>
         </li>
         {{ end }}
@@ -24,11 +36,11 @@
 
     <!-- Extra actions -->
     <ul class="bottom-extra">
-        {{- range (where .Site.Menus.main "Params.bottombar" false).ByWeight }}
+        {{- range (where (where .Site.Menus.main "Params.bottombar" false) "Params.show_mobile" true).ByWeight }}
         <li class="">
             <a href="{{ .URL }}" class="bottom-extra-item {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
-                <i class="fa-solid {{ .Params.icon }}"></i>
-                <span>{{ .Name }}</span>
+            <i class="fa-solid {{ .Params.icon }}"></i>
+            <span>{{ .Name }}</span>
             </a>
         </li>
         {{- end }}

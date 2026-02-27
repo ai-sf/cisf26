@@ -16,6 +16,7 @@ theme = 'cisf26-theme'
     desktop_sort = 7
     icon = "fa-users"
     bottombar = false
+    show_mobile = true
 [[menus.main]]
   identifier = "building-solid"
   name = "Strutture"
@@ -26,6 +27,7 @@ theme = 'cisf26-theme'
     desktop_sort = 6
     icon = "fa-building-columns"
     bottombar = false
+    show_mobile = true
 [[menus.main]]
   identifier = "clipboard-user-solid"
   name = "Ospiti"
@@ -36,6 +38,7 @@ theme = 'cisf26-theme'
     desktop_sort = 5
     icon = "fa-clipboard-user"
     bottombar = false
+    show_mobile = true
 [[menus.main]]
   identifier = "calendar-solid"
   name = "Programma"
@@ -47,6 +50,7 @@ theme = 'cisf26-theme'
     icon = "fa-calendar-days"
     bottombar = true
     mobile_sort = 2
+    show_mobile = true
 [[menus.main]]
   identifier = "handshake-solid"
   name = "Partners"
@@ -58,17 +62,19 @@ theme = 'cisf26-theme'
     icon = "fa-handshake"
     bottombar = true
     mobile_sort = 1
+    show_mobile = true
 [[menus.main]]
   identifier = "signature-solid"
   name = "Iscriviti"
   pageRef = "/subscriptions/"
   weight = 70
   [menus.main.params]
-    show_desktop = true
+    show_desktop = false
     desktop_sort = 3
     icon = "fa-file-signature"
-    bottombar = true
+    bottombar = false
     mobile_sort = 3
+    show_mobile = false
 [[menus.main]]
   identifier = "support-solid"
   name = "Sostienici"
@@ -80,6 +86,18 @@ theme = 'cisf26-theme'
     icon = "fa-hand-holding-heart"
     bottombar = true
     mobile_sort = 4
+    show_mobile = true
+[[menus.main]]
+  identifier = ""
+  name = "Thesis"
+  pageRef = "/thesis"
+  [menus.main.params]
+    show_desktop = true
+    desktop_sort = 5
+    icon = "scientifica.svg"
+    bottombar = true
+    mobile_sort = 3
+    show_mobile = true
 
 [params]
     siteTitle = "CISF26"
