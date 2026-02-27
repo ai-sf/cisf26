@@ -189,21 +189,6 @@ html { scroll-behavior: smooth; }
 /* ---- SECTION SHARED ---- */
 .thesis-hero { padding: 120px 8vw; }
 
-.label-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  display: flex; align-items: center; gap: 10px;
-}
-.label-tag::before {
-  content: '';
-  width: 24px; height: 1px;
-  background: var(--text-muted);
-}
-
 .section-title {
   /*font-family: 'Playfair Display', serif;*/
   font-size: clamp(36px, 4vw, 56px);
@@ -244,7 +229,6 @@ html { scroll-behavior: smooth; }
 
 .prize-item {
   background: $light-grey;
-  //border: 1px solid rgba(0,0,0,0.07);
   border-radius: 14px;
   padding: 20px 24px;
   display: flex;
@@ -252,18 +236,9 @@ html { scroll-behavior: smooth; }
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  //display: flex;
   flex-direction: row;
   align-items: center;
   user-select: none;
-}
-.prize-item::before {
-  content: '';
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--yellow);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
 }
 .prize-item:hover { transform: translateX(4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
 .prize-item:hover::before { transform: scaleY(1); }
@@ -277,7 +252,6 @@ html { scroll-behavior: smooth; }
 }
 
 .prize-content h3 {
-  //font-size: 15px;
   font-weight: 600;
   color: $dark-grey;
   margin: 0;
@@ -352,7 +326,7 @@ html { scroll-behavior: smooth; }
 
 /* ---- CISF COLLAB ---- */
 .collab {
-  background: var(--yellow);
+  background: #F5F5F3;
   position: relative; overflow: hidden;
 }
 
@@ -384,13 +358,14 @@ html { scroll-behavior: smooth; }
 }
 
 .cisf-card {
-  background: var(--green);
+  background: $secondary-color;
   border-radius: 20px;
   padding: 48px 36px;
   text-align: center;
   position: relative;
   transform: rotate(-1deg);
   transition: transform 0.4s ease;
+  user-select: none;
 }
 .cisf-card:hover { transform: rotate(0deg) scale(1.02); }
 
@@ -450,6 +425,7 @@ html { scroll-behavior: smooth; }
   overflow: hidden;
   transition: all 0.3s ease;
   border: 1px solid rgba(0,0,0,0.05);
+  user-select: none;
 }
 .who-card::after {
   content: '';
@@ -463,14 +439,16 @@ html { scroll-behavior: smooth; }
 .who-card:hover::after { transform: scaleX(1); }
 
 .who-number {
-  width: 36px; height: 36px;
+  width: 40px;
+  height: 40px;
   background: $dark-grey;
-  color: var(--yellow);
+  color: white;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Space Mono', monospace;
-  font-size: 13px; font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
 }
 
 .who-card h4 {
@@ -485,7 +463,8 @@ html { scroll-behavior: smooth; }
   background: var(--green);
   text-align: center;
   padding: 140px 8vw;
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .cta-final .section-title {
@@ -503,22 +482,27 @@ html { scroll-behavior: smooth; }
 }
 
 .cta-buttons {
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
   position: relative; z-index: 2;
 }
 
 .btn-ghost {
-  display: inline-flex; align-items: center; gap: 10px;
-  border: 1px solid rgba(250,245,228,0.2);
-  color: rgba(250,245,228,0.6);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid $accent-color-2;
+  color: $accent-color-2;
+  font-size: 0.9rem;
   letter-spacing: 0.08em;
   padding: 15px 28px;
-  border-radius: 4px;
+  border-radius: 12px;
   text-decoration: none;
   transition: all 0.25s ease;
+  cursor: pointer;
 }
 .btn-ghost:hover {
   border-color: rgba(250,245,228,0.5);
@@ -563,6 +547,12 @@ nav.scrolled {
   letter-spacing: 0.08em;
 }
 .nav-deadline span { color: var(--yellow); font-weight: 700; }
+
+@media (max-width: $breakpoint-md) {
+  .cta-buttons {
+    flex-direction: column;
+  }
+}
 
 @media (max-width: 900px) {
   .thesis-hero { grid-template-columns: 1fr; padding: 100px 6vw 60px; }
