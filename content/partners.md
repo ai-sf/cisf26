@@ -13,4 +13,7 @@ collaborators:
   - name: "Dipartimento Matematica e Fisica - Roma Tre"
     logo: "images/partners/logo_dmf_white.webp"
     link: "https://matematicafisica.uniroma3.it/"
+  - name: "Scientifica Academy"
+    logo: "images/partners/logo-scientifica-academy.webp"
+    link: "https://scientifica.vc/academy/"
 ---
