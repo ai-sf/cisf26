@@ -4,5 +4,5 @@ website: https://datameteo.education/
 logo: images/partners/logo_datameteo_edu.webp
 category: Partners
 draft : false
-order: 1
+order: 2
 ---
