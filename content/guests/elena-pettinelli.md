@@ -1,18 +1,8 @@
 ---
 title: Elena Pettinelli
 role: "Professoressa Ordinaria, Università degli Studi di Roma Tre. "
-bio: Elena Pettinelli è professoressa di Fisica Terrestre presso il Dipartimento
-  di Matematica e Fisica dell’Università degli Studi Roma Tre, dove dirige il
-  Laboratorio di Fisica della Terra e dei Pianeti. È direttrice del Master di II
-  livello ComRis (Comunicazione della Scienza e della Ricerca Scientifica) dello
-  stesso ateneo. La sua attività di ricerca si concentra sull’esplorazione
-  geofisica planetaria. È membro dell’ESA Lunar Science Team (Strategy for
-  Science at the Moon 2020–2030), co-investigatrice della missione ESA JUICE per
-  lo studio dei satelliti ghiacciati di Giove e responsabile italiana dello
-  strumento WISDOM a bordo del rover ESA ExoMars, dedicato alla ricerca di
-  tracce biologiche su Marte. Ha inoltre contribuito ai progetti ACQUA e MARSIS
-  dell’ESA.
-draft: true
-image: images/guests/Portrait_placeholder.webp
+bio: Professoressa ordinaria presso il Dipartimento di Matematica e Fisica dell’Università degli Studi di Roma Tre, conduce ricerche in geofisica planetaria, con un focus sulla caratterizzazione elettromagnetica dei simulanti del suolo marziano e sulle tecniche di inversione dei dati radar. Ha ricevuto numerosi premi internazionali e pubblicato 115 lavori scientifici, inclusi 4 su Science e 3 capitoli di libri. È Direttrice del Master in Comunicazione della Scienza e Ricerca Scientifica (COMRIS). Ha contribuito a diversi progetti, tra cui la missione ESA JUICE (JUpiter ICy moons Explorer), lanciata nel 2023.
+draft: false
+image: images/guests/elena-pettinelli.webp
 weight: 1
 ---

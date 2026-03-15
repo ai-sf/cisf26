@@ -5,6 +5,6 @@ description: "Description"
 logo: "images/partners/logo_romatre.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 1
+order: 3
 #id: "partners"
 ---

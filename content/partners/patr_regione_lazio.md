@@ -5,6 +5,6 @@ description: "Description"
 logo: "images/partners/logo-regione-lazio.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 1
+order: 2
 #id: "partners"
 ---

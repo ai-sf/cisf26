@@ -5,6 +5,6 @@ description: "INGV"
 logo: "images/partners/logo-ingv.webp"
 category: "Con il patrocinio di"
 draft: false
-order: 1
+order: 7
 #id: "partners"
 ---
