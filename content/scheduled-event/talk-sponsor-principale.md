@@ -1,5 +1,5 @@
 ---
-name: Talk sponsor
+name: Talk Scientifica Academy e premiazione Thesis
 title: Talk sponsor 
 day: friday
 weight: 2
@@ -8,4 +8,7 @@ end_time: 12:00
 draft: false
 coverImage: images/events/microphone-704255_1280.webp
 context: thematic-sessions
+address:
+  display_name: Rettorato Universitá Roma Tre
+  location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---

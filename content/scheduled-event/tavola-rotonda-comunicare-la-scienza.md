@@ -12,11 +12,15 @@ draft: false
 speakers:
   - elena-pettinelli
   - licia-troisi
-  - livia-giacomin
   - roberta-fulci
+  - luca-famooss-paolini
+  - elisa-nichelli
   - adele-youssef
 context: thematic-sessions
 event_date: 2026-04-13T18:00:00
+address:
+  display_name: Rettorato Universitá Roma Tre
+  location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---
 address:
   display_name: Rettorato Universitá Roma Tre

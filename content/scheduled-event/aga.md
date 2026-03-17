@@ -10,4 +10,7 @@ description: AGA, l'Assemblea Generale Annuale, in cui avverrà l’elezione del
 coverImage: images/events/AGA-event-venue.webp
 draft: false
 context: institutional-moments
+address:
+  display_name: Rettorato Universitá Roma Tre
+  location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---
