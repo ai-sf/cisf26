@@ -9,6 +9,6 @@ draft: false
 coverImage: images/events/ai-generated-9099011_1280.webp
 context: social-events
 address:
-  display_name: Rettorato, Universitá Roma Tre
-  location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
+  display_name: Seraphicum Roma
+  location_url: https://maps.app.goo.gl/9yzhmywVztyeQs9Q8
 ---
