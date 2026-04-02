@@ -10,8 +10,8 @@ description:
 draft: false
 context: 
 address:
-  display_name: Dipartimento di Giurisprudenza, Universitá Roma Tre
-  location_url: https://maps.app.goo.gl/WcYHkXaqj25oaExr9
+  display_name: Aula Magna, Rettorato, Universitá Roma Tre
+  location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 speakers:
   - francesco-agrusti
 ---
