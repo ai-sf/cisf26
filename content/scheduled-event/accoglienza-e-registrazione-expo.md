@@ -12,7 +12,7 @@ speakers: []
 context: institutional-moments
 event_date: 2026-04-13T09:00:00
 address:
-  display_name: Atrio, Rettorato, Universitá Roma Tre
+  display_name: Atrio, Rettorato, Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 coverImage: images/locations/rettorato.webp
 ---

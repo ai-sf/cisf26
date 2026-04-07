@@ -11,7 +11,7 @@ context: institutional-moments
 event_date: 2026-04-07T11:21:00
 coverImage: images/locations/rettorato.webp
 address:
-  display_name: Aula Magna, Rettorato, Universitá Roma Tre
+  display_name: Aula Magna, Rettorato, Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---
 coverImage: images/uploads/rettorato_5-2048x1152-1.webp
