@@ -1,6 +1,28 @@
 {{ define "main" }}
+<style>
+    .filters-bar {
+        padding: 0 5vw 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.7s 0.25s ease both;
+    }
+</style>
 <div class="page-content schedule-page">
-    {{/* ── SPEAKER MODAL ── */}}
+    <!-- DESCRIPTION MODAL -->
+    <div id="description-modal" class="base-modal">
+        <div class="base-modal-content">
+            <h3 class="modal-description name"></h3>
+            <p class="modal-description description"></p>
+            <button class="close-modal">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- SPEAKER MODAL -->
     <div id="speaker-modal" class="base-modal">
         <div class="base-modal-content">
             <img class="modal-speaker image" src="" alt="">
@@ -19,7 +41,7 @@
     </section>
 
     {{/* ── CATEGORY FILTERS ── */}}
-    <div class="filters-container">
+    <div class="filters-bar">
         <button class="filter-button active" data-filter="all">Tutto</button>
         {{ $contextPages := site.GetPage "section" "contexts" }}
         {{ range $contextPages.RegularPages }}
@@ -124,13 +146,23 @@
                 tab.addEventListener('click', () => setActiveDay(i));
             });
 
-            // ── SPEAKER MODAL ──
+            // -- DESCRIPTION MODAL --
+            const descriptionModal = document.getElementById('description-modal');
+
+            // -- SPEAKER MODAL --
             const modal = document.getElementById('speaker-modal');
             const modalImg = modal.querySelector('.modal-speaker.image');
             const modalName = modal.querySelector('.modal-speaker.name');
             const modalRole = modal.querySelector('.modal-speaker.role');
             const modalBio = modal.querySelector('.modal-speaker.bio');
             const closeBtn = modal.querySelector('.close-modal');
+
+            document.addEventListener('click', e => {
+                const trigger = e.target.closest('[data-modal-target="#description-modal"]');
+                if (!trigger) return;
+                console.log('should be opening the event description modal')
+                descriptionModal.classList.add('open');
+            });
 
             document.addEventListener('click', e => {
                 const trigger = e.target.closest('[data-modal-target="#speaker-modal"]');
