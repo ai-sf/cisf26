@@ -17,9 +17,9 @@ speakers:
 context: thematic-sessions
 event_date: 2026-04-13T18:00:00
 address:
-  display_name: Aula Magna, Rettorato, Universitá Roma Tre
+  display_name: Aula Magna, Rettorato, Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
-coverImage: images/uploads/rettorato_5-2048x1152-1.webp
+coverImage: images/locations/rettorato.webp
 ---
 address:
   display_name: Rettorato Universitá Roma Tre

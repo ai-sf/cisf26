@@ -9,8 +9,9 @@ draft: false
 speakers: []
 context: institutional-moments
 event_date: 2026-04-13T15:00:00
+description: "Evento di apertura della Conferenza"
 address:
-  display_name: Rettorato Universitá Roma Tre
+  display_name: Rettorato Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---
 address:

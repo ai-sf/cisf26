@@ -11,6 +11,6 @@ context: plenary-sessions
 speakers:
   - francesco-agrusti
 address:
-  display_name: Aula Magna, Rettorato Universitá Roma Tre
+  display_name: Aula Magna, Rettorato Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---

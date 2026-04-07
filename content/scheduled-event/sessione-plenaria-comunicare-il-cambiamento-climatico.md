@@ -13,6 +13,6 @@ draft: false
 description2: "Marcello Petitta e Giulia Andrighetto dialogano a due voci su uno dei temi principali di questa conferenza: comunicare il Cambiamento Climatico."
 context: plenary-sessions
 address:
-  display_name: Aula Magna, Rettorato, Universitá Roma Tre
+  display_name: Aula Magna, Rettorato, Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---
