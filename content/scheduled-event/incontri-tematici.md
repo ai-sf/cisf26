@@ -7,8 +7,7 @@ start_time: 9:30
 end_time: 13:00
 description: >-
   **Incontri Tematici**: 
-
-  «A tu per tu con la fisica» : piccoli forum da 15 persone, che si confrontano con uno o più ricercatori per scoprire gli aspetti più affascinanti dei loro campi di ricerca. Un’occasione preziosa per conoscere nel dettaglio quale sia il mestiere del fisico.
+  «A tu per tu con la fisica»: piccoli forum da 15 persone, che si confrontano con uno o più ricercatori per scoprire gli aspetti più affascinanti dei loro campi di ricerca. Un’occasione preziosa per conoscere nel dettaglio quale sia il mestiere del fisico.
 speakers:
   - antonello-pasini
   - biagio-di-micco
@@ -28,7 +27,7 @@ coverImage: images/events/classroom-2093744_1280.webp
 draft: false
 context: thematic-sessions
 address:
-  display_name: Dipartimento di Fisica, Universitá Roma Tre
+  display_name: Dipartimento di Fisica, Università Roma Tre
   location_url: https://maps.app.goo.gl/Pc9e3SGuyu6QWcyJ7
 
 ---

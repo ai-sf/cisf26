@@ -10,6 +10,6 @@ context: social-events
 description: "Colazione offerta con ascolto del podcast SWIMmers, in collaborazione con Roma3 Radio."
 coverImage: images/locations/rettorato.webp
 address:
-  display_name: Rettorato, Universitá Roma Tre
+  display_name: Rettorato, Università Roma Tre
   location_url: https://maps.app.goo.gl/qdPH4RkPfAp46mv87
 ---
