@@ -8,13 +8,49 @@
         flex-wrap: wrap;
         animation: fadeUp 0.7s 0.25s ease both;
     }
+
+    .event-description-modal.name {
+        font-size: 1.35rem;
+    }
+
+    .event-description-modal.description {
+        text-align: left;
+    }
+
+    .event-description-modal.speakers {
+        display: none;
+    }
+    .event-description-modal-header {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        color: #1d1d1d;
+        font-weight: 600;
+    }
 </style>
 <div class="page-content schedule-page">
     <!-- DESCRIPTION MODAL -->
-    <div id="description-modal" class="base-modal">
+    <div id="event-description-modal" class="base-modal" data-ctx>
         <div class="base-modal-content">
-            <h3 class="modal-description name"></h3>
-            <p class="modal-description description"></p>
+
+            <div class="event-description-modal-header">
+                <span class="event-description-modal event-cat-badge"></span>
+                <div>
+                    <span class="event-description-modal day"></span>
+                    <span class="event-description-modal start"></span>
+                    -
+                    <span class="event-description-modal end"></span>
+                </div>
+
+            </div>
+            <h3 class="event-description-modal name"></h3>
+            <p class="event-description-modal description"></p>
+            <div class="event-description-modal speakers">
+                <h4>Speakers</h4>
+                <div id="event-description-modal-speakers-container"></div>
+            </div>
             <button class="close-modal">
                 <i class="fa-solid fa-circle-xmark"></i>
             </button>
@@ -35,12 +71,12 @@
         </div>
     </div>
 
-    {{/* ── PAGE HEADER ── */}}
+    <!-- PAGE HEADER -->
     <section class="schedule-intro">
         {{ .Content }}
     </section>
 
-    {{/* ── CATEGORY FILTERS ── */}}
+    <!-- CATEGORY FILTERS -->
     <div class="filters-bar">
         <button class="filter-button active" data-filter="all">Tutto</button>
         {{ $contextPages := site.GetPage "section" "contexts" }}
@@ -52,10 +88,10 @@
         {{ end }}
     </div>
 
-    {{/* ── SCHEDULE SECTION ── */}}
+    <!-- SCHEDULE SECTION -->
     <section class="schedule-section">
 
-        {{/* Build $byDay map */}}
+        <!-- Build $byDay map
         {{ $events := (where (site.GetPage "section" "scheduled-event").RegularPages "Draft" false) }}
         {{ $byDay := dict }}
         {{ range $events }}
@@ -64,7 +100,7 @@
         {{ $byDay = merge $byDay (dict $day $list) }}
         {{ end }}
 
-        {{/* ── MOBILE DATE TABS ── */}}
+        <!- MOBILE DATE TABS -->
         <div class="date-nav" id="dateNav">
             {{ $dayKeys := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
             {{ $tabIndex := 0 }}
@@ -82,12 +118,12 @@
             {{ end }}
         </div>
 
-        {{/* ── SCROLL HINT (desktop only) ── */}}
+        <!-- SCROLL HINT (desktop only) -->
         <div class="scroll-hint">
             <span>←→</span> Scorri orizzontalmente per vedere tutti i giorni
         </div>
 
-        {{/* ── DAYS GRID ── */}}
+        <!-- DAYS GRID -->
         <div class="days-scroll" id="daysScroll">
             {{ $colIndex := 0 }}
             {{ range $day := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
@@ -108,48 +144,13 @@
         </div>
 
     </section>
+</div>
+<script>
+    (function() {
+        /* NEW */
+        function initAvatarModal(trigger) {
+            console.log('trigger ->', trigger);
 
-    <script>
-        (function () {
-
-            // ── FILTER LOGIC ──
-            // Cards are .base-card with data-context matching filter slugs
-            const filterBtns = document.querySelectorAll('.filter-button');
-            const eventCards = document.querySelectorAll('.base-card');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    const filter = btn.dataset.filter;
-                    eventCards.forEach(card => {
-                        const match = filter === 'all' || card.dataset.context === filter;
-                        card.closest('.base-card').style.display = match ? '' : 'none';
-                    });
-                });
-            });
-
-            // ── MOBILE DATE NAV ──
-            const dateTabs   = document.querySelectorAll('.date-tab');
-            const dayColumns = document.querySelectorAll('.day-column');
-
-            function setActiveDay(index) {
-                dateTabs.forEach(t => t.classList.remove('active'));
-                if (dateTabs[index]) dateTabs[index].classList.add('active');
-
-                dayColumns.forEach(col => col.classList.remove('mobile-active'));
-                if (dayColumns[index]) dayColumns[index].classList.add('mobile-active');
-            }
-
-            dateTabs.forEach((tab, i) => {
-                tab.addEventListener('click', () => setActiveDay(i));
-            });
-
-            // -- DESCRIPTION MODAL --
-            const descriptionModal = document.getElementById('description-modal');
-
-            // -- SPEAKER MODAL --
             const modal = document.getElementById('speaker-modal');
             const modalImg = modal.querySelector('.modal-speaker.image');
             const modalName = modal.querySelector('.modal-speaker.name');
@@ -157,28 +158,82 @@
             const modalBio = modal.querySelector('.modal-speaker.bio');
             const closeBtn = modal.querySelector('.close-modal');
 
-            document.addEventListener('click', e => {
-                const trigger = e.target.closest('[data-modal-target="#description-modal"]');
-                if (!trigger) return;
-                console.log('should be opening the event description modal')
-                descriptionModal.classList.add('open');
-            });
+            modalImg.src = trigger.dataset.speakerImage || '';
+            modalImg.alt = trigger.dataset.speakerName || '--';
+            modalName.textContent = trigger.dataset.speakerName || '--';
+            modalRole.textContent = trigger.dataset.speakerRole || '--';
+            modalBio.innerHTML  = trigger.dataset.speakerBio || '--';
+            modal.classList.add('open');
+        }
 
-            document.addEventListener('click', e => {
-                const trigger = e.target.closest('[data-modal-target="#speaker-modal"]');
-                if (!trigger) return;
-                modalImg.src = trigger.dataset.speakerImage || '';
-                modalImg.alt = trigger.dataset.speakerName || '';
-                modalName.textContent = trigger.dataset.speakerName || '';
-                modalRole.textContent = trigger.dataset.speakerRole || '';
-                modalBio.innerHTML  = trigger.dataset.speakerBio || '';
+        function initEvDescriptionModal(trigger) {
+            const days = {
+                'monday': 'Lunedì',
+                'tuesday': 'Martedì',
+                'wednesday': 'Mercoledì',
+                'thursday': 'Giovedì',
+                'friday': 'Venerdì',
+            }
+
+            const modal = document.getElementById('event-description-modal');
+            console.log('MODAL ->', modal);
+
+            const { eventName, eventDescription, eventContext, eventSpeakers, eventDay, eventStartTime, eventEndTime } = trigger.dataset;
+            // console.log('event name', eventName);
+            // console.log('eventDescription', eventDescription);
+            // console.log('eventContext', eventContext);
+            // console.log('eventSpeakers', eventSpeakers);
+            // console.log('eventDay', eventDay);
+            // console.log('eventStartTime', eventStartTime);
+            // console.log('eventEndTime', eventEndTime);
+
+            /* Check whether the evnet has a description. If such field does not exist or is empty, prevent opening the modal */
+            if(!eventDescription || eventDescription.length === 0) return;
+            else {
+                /* Modal Header */
+                const modalDay = modal.querySelector('.event-description-modal.day');
+                const modalStartTime = modal.querySelector('.event-description-modal.start');
+                const modalEndTime = modal.querySelector('.event-description-modal.end');
+                const modalContext = modal.querySelector('.event-description-modal.event-cat-badge');
+
+                /* Modal Inner body */
+                const modalEventName = modal.querySelector('.event-description-modal.name');
+                const modalEventDescription = modal.querySelector('.event-description-modal.description');
+
+
+                modalEventName.textContent = eventName || '--';
+                modalEventDescription.innerHTML = marked.parse(eventDescription);
+
+                modalContext.innerHTML = eventContext;
+                modalDay.textContent = days[eventDay] || '--';
+                modalStartTime.textContent = eventStartTime || '++';
+                modalEndTime.textContent = eventEndTime || '--';
+
+
+
+
+
+
                 modal.classList.add('open');
-            });
+            }
 
-            closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-            modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 
-        })();
-    </script>
-</div>
+            // const modalEventName = modal.querySelector('modal-')
+        }
+
+        document.addEventListener('click', (e) => {
+            console.log('click');
+            const trigger = e.target.closest('[data-modal-target]');
+            if (!trigger) return;
+
+            if (trigger.matches("[data-modal-target='#event-description-modal']")) {
+                initEvDescriptionModal(trigger);
+            }
+
+            if (trigger.matches("[data-modal-target='#speaker-modal']")) {
+                initAvatarModal(trigger);
+            }
+        });
+    })();
+</script>
 {{ end }}
