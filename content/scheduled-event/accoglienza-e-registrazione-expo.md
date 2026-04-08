@@ -6,9 +6,9 @@ weight: 1
 start_time: 10:00
 end_time: 14:45
 description: "**Accoglienza** e **registrazione** dei partecipanti, 9:00 -
-  14:45 presso l'atro del Rettorato dell'Università degli Studi di Roma Tre. Parallelamente apertura **EXPO** e stand espositivi. L'EXPO è aperto anche al pubblico. Il Rettorato è raggiungibile a piedi da Metro Garbatella e da Metro San Paolo (Linea B)."
+  14:45 presso l'atrio del Rettorato dell'Università degli Studi di Roma Tre. <br /> Parallelamente apertura **EXPO** e stand **espositivi**.<br />L'EXPO è aperto anche al pubblico.<br />Il Rettorato è raggiungibile a piedi da Metro Garbatella e da Metro San Paolo (Linea B)."
 draft: false
-speakers: []
+speakers: [ ]
 context: institutional-moments
 event_date: 2026-04-13T09:00:00
 address:
