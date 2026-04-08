@@ -261,7 +261,7 @@
   flex-shrink: 0;
   transition: transform 0.2s ease;
 
-  &:hover { transform: scale(1.1); }
+  //&:hover { transform: scale(1.1); }
 
   img {
     width: 32px;
@@ -293,6 +293,7 @@
 
   &:hover { color: $accent-color-1; }
 }
+
 
 // ── SPEAKER MODAL ─────────────────────────────
 
@@ -391,3 +392,5 @@
     scroll-snap-align: unset;
   }
 }
+
+
