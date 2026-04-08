@@ -55,7 +55,7 @@ document.addEventListener('click', (event) => {
 // --- Page initializers ---
 document.addEventListener('DOMContentLoaded', () => {
     // Init schedule page if schedule container exists
-    if (document.querySelector('.schedule-grid')) {
+    if (document.querySelector('.schedule-section')) {
         initSchedulePage();
     }
     // Init locations page if map exists
