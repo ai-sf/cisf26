@@ -22,9 +22,6 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-            linear-gradient(rgba($secondary-color, 0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba($secondary-color, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
   }
