@@ -277,19 +277,24 @@
 // ── LOCATION ──────────────────────────────────
 
 .base-card-address-container {
-  margin-top: 8px;
+  width: 100%;
+  margin-top: 5px;
+  text-align: center;
 }
 
 .card-location {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  //gap: 5px;
   font-size: 12px;
   color: rgba($secondary-color, 0.45);
   text-decoration: none;
   transition: color 0.2s;
 
-  i { font-size: 11px; }
+  i {
+    font-size: 11px;
+    margin-right: 0;
+  }
 
   &:hover { color: $accent-color-1; }
 }
