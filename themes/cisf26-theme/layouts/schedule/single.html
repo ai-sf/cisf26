@@ -188,15 +188,16 @@
         <!-- MOBILE DATE TABS -->
         <div class="date-nav" id="dateNav">
             {{ range $i, $day := $validDays }}
-            <div class="date-tab{{ if eq $i 0 }} active{{ end }}" data-day="{{ $i }}">
-        <span class="tab-day-name">
-            {{ i18n (printf "days.short.%s" (lower $day))
-            | default (substr $day 0 3 | upper) }}
-        </span>
-                <span class="tab-day-num">
-            {{ i18n (printf "days.date.%s" (lower $day)) | default "–" }}
-        </span>
-            </div>
+                <div class="date-tab{{ if eq $i 0 }} active{{ end }}" data-day="{{ $i }}">
+                    <span class="tab-day-name">
+                        {{ $shortKey := printf "days.short.%s" (lower $day) }}
+                        {{ $fullKey := printf "days.%s" (lower $day) }}
+
+                        {{ i18n $shortKey
+                           | default (substr (i18n $fullKey) 0 3)
+                           | default (substr $day 0 3 | upper) }}
+                    </span>
+                </div>
             {{ end }}
         </div>
 
