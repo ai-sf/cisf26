@@ -114,12 +114,10 @@
     .event-speakers {
         display: flex; align-items: center; gap: 4px;
         margin-top: 2px;
+        overflow-x: scroll;
+        width: 100%;
     }
 
-    .mic-icon {
-        font-size: 14px;
-        margin-right: 2px;
-    }
 
 </style>
 <div
@@ -148,6 +146,25 @@
         <div class="event-title">{{ .Params.name }}</div>
 
         <div class="event-meta">
+            {{ with .Params.speakers }}
+            <div class="event-speakers">
+
+                {{ range . }}
+                {{ $speaker := site.GetPage (printf "/guests/%s" .) }}
+                {{ with $speaker }}
+                <button class="speaker-avatar"
+                        data-modal-target="#speaker-modal"
+                        data-speaker-name="{{ .Title }}"
+                        data-speaker-role="{{ .Params.role }}"
+                        data-speaker-image="{{ .Params.image | relURL }}"
+                        data-speaker-bio="{{ .Params.bio | safeHTML }}">
+                    <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                </button>
+                {{ end }}
+                {{ end }}
+
+            </div>
+            {{ end }}
 
             <!-- Uses context and finds for their label in contexts content dir -->
             {{ with .Params.context }}
@@ -159,31 +176,6 @@
                         <span class="event-cat-badge">{{ $ctxPage.Params.label }}</span>
                 {{ end }}
             {{ end }}
-
-            <!--
-            {{ with .Params.speakers }}
-                <div class="event-speakers">
-                    <span class="mic-icon">
-                        <i class="fa-solid fa-microphone mic"></i>
-                    </span>
-
-                    {{ range . }}
-                        {{ $speaker := site.GetPage (printf "/guests/%s" .) }}
-                        {{ with $speaker }}
-                            <button class="speaker-avatar"
-                                    data-modal-target="#speaker-modal"
-                                    data-speaker-name="{{ .Title }}"
-                                    data-speaker-role="{{ .Params.role }}"
-                                    data-speaker-image="{{ .Params.image | relURL }}"
-                                    data-speaker-bio="{{ .Params.bio | safeHTML }}">
-                                <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
-                            </button>
-                        {{ end }}
-                    {{ end }}
-
-                </div>
-            {{ end }}
-            -->
 
             {{ with .Params.address }}
                 <div class="base-card-address-container">

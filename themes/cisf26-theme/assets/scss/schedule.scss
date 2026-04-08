@@ -255,8 +255,9 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  flex-shrink: 0;
+  //flex-shrink: 0;
   transition: transform 0.2s ease;
+  flex: 0 !important;
 
   //&:hover { transform: scale(1.1); }
 
