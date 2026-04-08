@@ -132,6 +132,8 @@
     data-event-day="{{ .Params.day }}"
     data-event-start-time="{{ .Params.start_time }}"
     data-event-end-time="{{ .Params.end_time }}"
+    data-event-location-name="{{ .Params.address.display_name }}"
+    data-event-location-url="{{ .Params.address.location_url }}"
 >
     {{ with .Params.coverImage }}
         <img class="event-image" src="{{ . | relURL}}" alt="{{ $.Params.title }}">
@@ -145,8 +147,16 @@
         <div class="event-title">{{ .Params.name }}</div>
 
         <div class="event-meta">
+
+            <!-- Uses context and finds for their label in contexts content dir -->
             {{ with .Params.context }}
-                <span class="event-cat-badge">{{ . }}</span>
+                {{ $ctxName := . }}
+                {{ $ctxPages := where site.RegularPages "Params.name" $ctxName }}
+
+                {{ if gt (len $ctxPages) 0 }}
+                    {{ $ctxPage := index $ctxPages 0 }}
+                        <span class="event-cat-badge">{{ $ctxPage.Params.label }}</span>
+                {{ end }}
             {{ end }}
 
             <!--
