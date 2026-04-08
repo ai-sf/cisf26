@@ -1,4 +1,0 @@
----
-label: "Tutto"
-name: "all"
----

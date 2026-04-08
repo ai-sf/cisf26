@@ -1,4 +1,3 @@
-import { initSchedulePage } from './schedule.js';
 import { initLocationsPage } from "./locations.js";
 import { initButterflyBar} from "./butterfly-bar.js";
 import { initGuestScroller } from "./guests";
@@ -54,10 +53,6 @@ document.addEventListener('click', (event) => {
 
 // --- Page initializers ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Init schedule page if schedule container exists
-    if (document.querySelector('.schedule-grid')) {
-        initSchedulePage();
-    }
     // Init locations page if map exists
     if (document.querySelector('#map')) {
         initLocationsPage();

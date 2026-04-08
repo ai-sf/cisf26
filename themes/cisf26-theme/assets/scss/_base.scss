@@ -4,6 +4,23 @@
   box-sizing: border-box;
 }
 
+:root {
+  --yellow: #F5E642;
+  --green: #1A3A2A;
+  --cream: #FAF5E4;
+  --accent-gold: #C9A84C;
+  --accent-lime: #B8E04A;
+  --text-muted: #6B7A65;
+
+  --social-events: #E8A020;
+  --institutional-moments: #7C5CBF;
+  --panel: #2E8B57;
+  --plenary-sessions: #0D7C7C;
+  --thematic-sessions: #C0392B;
+  --lab-visits: #1A5E8A;
+  --default: #555;
+}
+
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;

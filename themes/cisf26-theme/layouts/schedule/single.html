@@ -1,11 +1,131 @@
 {{ define "main" }}
-<div class="page-content schedule-grid">
-    <div id="speaker-modal" class="base-modal">
+<style>
+    .filters-bar {
+        padding: 0 5vw 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.7s 0.25s ease both;
+    }
+
+    .event-description-modal.name {
+        font-size: 1.35rem;
+    }
+
+    .event-description-modal.description {
+        text-align: left;
+    }
+
+    .event-description-modal.speakers {
+        display: none;
+    }
+    .event-description-modal-header {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        color: #1d1d1d;
+        font-weight: 600;
+    }
+    .schedule-wrapper {
+        padding: 0 5vw 80px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #0D7C7C transparent;
+    }
+
+    .schedule-wrapper::-webkit-scrollbar { height: 4px; }
+    .schedule-wrapper::-webkit-scrollbar-track { background: transparent; }
+    .schedule-wrapper::-webkit-scrollbar-thumb { background: #0D7C7C; border-radius: 2px; }
+
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(280px, 1fr));
+        gap: 16px;
+        min-width: 1400px;
+    }
+
+
+
+    .day-column {}
+
+    .day-header {
+        background: #0E1C2A;
+        color: #fff;
+        border-radius: 12px 12px 0 0;
+        padding: 16px 20px;
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 70px;
+        position: sticky;
+        top: 64px;
+        z-index: 10;
+    }
+
+    .day-header-name {
+        font-family: 'JetBrains Mono', serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .day-header {
+            margin-bottom: 12px;
+        }
+        .schedule-grid {
+            grid-template-columns: 1fr;
+            min-width: 0;
+        }
+        .schedule-wrapper {
+            overflow-x: visible;
+        }
+        .day-column {
+            display: none;
+        }
+        .day-column.mobile-active {
+            display: block;
+        }
+    }
+
+</style>
+<div class="page-content schedule-page">
+    <!-- DESCRIPTION MODAL -->
+    <div id="event-description-modal" class="base-modal" data-ctx>
         <div class="base-modal-content">
-            <img class="modal-speaker image" src="" alt="">
-            <h3 class="modal-speaker name"></h3>
-            <p class="modal-speaker role"></p>
-            <div class="modal-speaker bio"></div>
+
+            <div class="event-description-modal-header">
+                <!-- <span class="event-description-modal event-cat-badge"></span> -->
+                <span class="event-description-modal day"></span>
+                <span class="event-description-modal start"></span>
+                -
+                <span class="event-description-modal end"></span>
+
+            </div>
+            <h3 class="event-description-modal name"></h3>
+            <p class="event-description-modal description"></p>
+            <div class="event-description-modal speakers">
+                <h4>Speakers</h4>
+                <div id="event-description-modal-speakers-container"></div>
+            </div>
+
+            <div class="event-description-modal base-card-address-container">
+                <a href=""
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="card-location"
+                >
+                    <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.9rem;"></span>
+                </a>
+            </div>
 
             <button class="close-modal">
                 <i class="fa-solid fa-circle-xmark"></i>
@@ -13,45 +133,224 @@
         </div>
     </div>
 
+
+    <!-- SPEAKER MODAL -->
+    <div id="speaker-modal" class="base-modal">
+        <div class="base-modal-content">
+            <img class="modal-speaker image" src="" alt="">
+            <h3 class="modal-speaker name"></h3>
+            <p class="modal-speaker role"></p>
+            <div class="modal-speaker bio"></div>
+            <button class="close-modal">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- PAGE HEADER -->
     <section class="schedule-intro">
         {{ .Content }}
     </section>
 
-    <div class="filters-container">
+    <!-- CATEGORY FILTERS -->
+    <div class="filters-bar">
+        <button class="filter-button active" data-filter="all">Tutto</button>
         {{ $contextPages := site.GetPage "section" "contexts" }}
         {{ range $contextPages.RegularPages }}
         <button class="filter-button" data-filter="{{ .Params.name | urlize }}">
+            <span class="filter-dot" style="background: var(--{{ .Params.name | urlize }})"></span>
             {{ .Params.label }}
         </button>
         {{ end }}
     </div>
 
-    <section style="padding: 2rem 1rem 3rem; max-width: 1100px; margin: 0 auto;">
+    <!-- SCHEDULE SECTION -->
+    <section class="schedule-section">
+
+        <!-- Build $byDay map
         {{ $events := (where (site.GetPage "section" "scheduled-event").RegularPages "Draft" false) }}
         {{ $byDay := dict }}
         {{ range $events }}
         {{ $day := .Params.day | default "ALTRO" }}
         {{ $list := (index $byDay $day | default (slice)) | append . }}
         {{ $byDay = merge $byDay (dict $day $list) }}
+        {{ end }} -->
+
+        {{ $allDays := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
+        {{ $validDays := slice }}
+
+        {{ range $day := $allDays }}
+        {{ with index $byDay $day }}
+        {{ $validDays = $validDays | append $day }}
+        {{ end }}
         {{ end }}
 
-        <div class="days-scroll">
-            {{ range $day := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
-            {{ with index $byDay $day }}
-            <div class="day-column">
-                <div class="day-title-container">
-                    <h2 class="day-title">{{ i18n (printf "days.%s" (lower $day)) }}</h2>
-                </div>
+        <!-- MOBILE DATE TABS -->
+        <div class="date-nav" id="dateNav">
+            {{ range $i, $day := $validDays }}
+                <div class="date-tab{{ if eq $i 0 }} active{{ end }}" data-day="{{ $i }}">
+                    <span class="tab-day-name">
+                        {{ $shortKey := printf "days.short.%s" (lower $day) }}
+                        {{ $fullKey := printf "days.%s" (lower $day) }}
 
-                {{ range sort . "Params.weight" }}
-                {{ partial "event-card.html" . }}
-                {{ end }}
-            </div>
-            {{ end }}
+                        {{ i18n $shortKey
+                           | default (substr (i18n $fullKey) 0 3)
+                           | default (substr $day 0 3 | upper) }}
+                    </span>
+                </div>
             {{ end }}
         </div>
+
+        <!-- SCROLL HINT (desktop only) -->
+        <div class="scroll-hint">
+            <span>←→</span> Scorri orizzontalmente per vedere tutti i giorni
+        </div>
+
+        <div class="schedule-wrapper">
+            <div class="schedule-grid" id="scheduleGrid">
+                {{ range $i, $day := $validDays }}
+                {{ $events := index $byDay $day }}
+                <div class="day-column {{ if eq $i 0 }} mobile-active {{ end }}" data-col="{{ $i }}">
+                    <div class="day-header">
+                        <span class="day-header-name">{{ i18n (printf "days.%s" (lower $day)) }}</span>
+                    </div>
+                    <div class="events-list">
+                        {{ range sort $events "Params.weight" }}
+                            {{ partial "event-card.html" . }}
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+
+
     </section>
-
-
 </div>
+<script>
+    (function() {
+        /* FILTERS */
+        const filterBtns = document.querySelectorAll(".filter-button");
+        const eventCards = document.querySelectorAll(".event-card");
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                console.log('filter', filter);
+
+                eventCards.forEach(c => {
+                    console.log('card', c);
+                    if (filter === 'all' || c.dataset.ctx === filter)
+                        c.classList.remove('hidden');
+                    else
+                        c.classList.add('hidden');
+                });
+            });
+        });
+
+        /* MOBILE DAY TABS MGMT */
+        const dateTabs = document.querySelectorAll(".date-tab");
+        const dayColumns = document.querySelectorAll(".day-column");
+
+        function setActiveDay(index) {
+            dateTabs.forEach(t => t.classList.remove('active'));
+            dateTabs[index].classList.add('active');
+
+            dayColumns.forEach(col => col.classList.remove('mobile-active'));
+            dayColumns[index].classList.add('mobile-active');
+        }
+
+        dateTabs.forEach((tab, i) => {
+            tab.addEventListener('click', () => setActiveDay(i));
+        })
+
+        /* MODAL MGMT */
+        function initAvatarModal(trigger) {
+            console.log('trigger ->', trigger);
+
+            const modal = document.getElementById('speaker-modal');
+            const modalImg = modal.querySelector('.modal-speaker.image');
+            const modalName = modal.querySelector('.modal-speaker.name');
+            const modalRole = modal.querySelector('.modal-speaker.role');
+            const modalBio = modal.querySelector('.modal-speaker.bio');
+            const closeBtn = modal.querySelector('.close-modal');
+
+            modalImg.src = trigger.dataset.speakerImage || '';
+            modalImg.alt = trigger.dataset.speakerName || '--';
+            modalName.textContent = trigger.dataset.speakerName || '--';
+            modalRole.textContent = trigger.dataset.speakerRole || '--';
+            modalBio.innerHTML  = trigger.dataset.speakerBio || '--';
+            modal.classList.add('open');
+        }
+
+        function initEvDescriptionModal(trigger) {
+            const days = {
+                'monday': 'Lunedì',
+                'tuesday': 'Martedì',
+                'wednesday': 'Mercoledì',
+                'thursday': 'Giovedì',
+                'friday': 'Venerdì',
+            }
+
+            const modal = document.getElementById('event-description-modal');
+
+
+            const { eventName, eventDescription, eventSpeakers, eventDay, eventStartTime, eventEndTime, eventLocationName, eventLocationUrl } = trigger.dataset;
+
+            /* Check whether the evnet has a description. If such field does not exist or is empty, prevent opening the modal */
+            if(!eventDescription || eventDescription.length === 0) return;
+            else {
+                /* Modal Header */
+                const modalDay = modal.querySelector('.event-description-modal.day');
+                const modalStartTime = modal.querySelector('.event-description-modal.start');
+                const modalEndTime = modal.querySelector('.event-description-modal.end');
+
+                /* Modal Inner body */
+                const modalEventName = modal.querySelector('.event-description-modal.name');
+                const modalEventDescription = modal.querySelector('.event-description-modal.description');
+
+                /* Modal Location */
+                const modalLocationContainer = modal.querySelector('.base-card-address-container');
+                const modalLocationLink = modalLocationContainer?.querySelector('.card-location');
+                const modalLocationText = modalLocationContainer?.querySelector('span');
+
+                modalEventName.textContent = eventName || '--';
+                modalEventDescription.innerHTML = marked.parse(eventDescription);
+
+                modalDay.textContent = days[eventDay] || '--';
+                modalStartTime.textContent = eventStartTime || '++';
+                modalEndTime.textContent = eventEndTime || '--';
+
+                if (eventLocationName && eventLocationUrl) {
+                    modalLocationLink.href = eventLocationUrl;
+                    modalLocationText.textContent = eventLocationName;
+
+                    modalLocationContainer.style.display = '';
+                } else
+                    modalLocationContainer.style.display = 'none';
+
+                modal.classList.add('open');
+            }
+
+
+            // const modalEventName = modal.querySelector('modal-')
+        }
+
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[data-modal-target]');
+            if (!trigger) return;
+
+            if (trigger.matches("[data-modal-target='#event-description-modal']")) {
+                initEvDescriptionModal(trigger);
+            }
+
+            if (trigger.matches("[data-modal-target='#speaker-modal']")) {
+                initAvatarModal(trigger);
+            }
+        });
+    })();
+</script>
 {{ end }}
