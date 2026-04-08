@@ -107,23 +107,29 @@
         {{ $day := .Params.day | default "ALTRO" }}
         {{ $list := (index $byDay $day | default (slice)) | append . }}
         {{ $byDay = merge $byDay (dict $day $list) }}
+        {{ end }}-->
+
+        {{ $allDays := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
+        {{ $validDays := slice }}
+
+        {{ range $day := $allDays }}
+        {{ with index $byDay $day }}
+        {{ $validDays = $validDays | append $day }}
+        {{ end }}
         {{ end }}
 
-        <!- MOBILE DATE TABS -->
+        <!-- MOBILE DATE TABS -->
         <div class="date-nav" id="dateNav">
-            {{ $dayKeys := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
-            {{ $tabIndex := 0 }}
-            {{ range $day := $dayKeys }}
-            {{ with index $byDay $day }}
-            <div class="date-tab{{ if eq $tabIndex 0 }} active{{ end }}" data-day="{{ $tabIndex }}">
-                <span class="tab-day-name">
-                    {{ i18n (printf "days.short.%s" (lower $day))
-                    | default (substr $day 0 3 | upper) }}
-                </span>
-                <span class="tab-day-num">{{ i18n (printf "days.date.%s" (lower $day)) | default "–" }}</span>
+            {{ range $i, $day := $validDays }}
+            <div class="date-tab{{ if eq $i 0 }} active{{ end }}" data-day="{{ $i }}">
+        <span class="tab-day-name">
+            {{ i18n (printf "days.short.%s" (lower $day))
+            | default (substr $day 0 3 | upper) }}
+        </span>
+                <span class="tab-day-num">
+            {{ i18n (printf "days.date.%s" (lower $day)) | default "–" }}
+        </span>
             </div>
-            {{ $tabIndex = add $tabIndex 1 }}
-            {{ end }}
             {{ end }}
         </div>
 
@@ -134,21 +140,18 @@
 
         <!-- DAYS GRID -->
         <div class="days-scroll" id="daysScroll">
-            {{ $colIndex := 0 }}
-            {{ range $day := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
-            {{ with index $byDay $day }}
-            <div class="day-column{{ if eq $colIndex 0 }} mobile-active{{ end }}" data-col="{{ $colIndex }}">
+            {{ range $i, $day := $validDays }}
+            {{ $events := index $byDay $day }}
+            <div class="day-column{{ if eq $i 0 }} mobile-active{{ end }}" data-col="{{ $i }}">
                 <div class="day-title-container">
                     <h2 class="day-title">{{ i18n (printf "days.%s" (lower $day)) }}</h2>
                 </div>
                 <div class="events-list">
-                    {{ range sort . "Params.weight" }}
+                    {{ range sort $events "Params.weight" }}
                     {{ partial "event-card.html" . }}
                     {{ end }}
                 </div>
             </div>
-            {{ $colIndex = add $colIndex 1 }}
-            {{ end }}
             {{ end }}
         </div>
 
