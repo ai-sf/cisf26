@@ -3,7 +3,6 @@ title: "Programma"
 draft: false
 layout: "/schedule/single"
 title_highlight: "Schedule"
-pageScript: "schedule.js"
 ---
 
 # Programma
