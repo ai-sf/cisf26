@@ -251,6 +251,22 @@
             });
         });
 
+        /* MOBILE DAY TABS MGMT */
+        const dateTabs = document.querySelectorAll(".date-tab");
+        const dayColumns = document.querySelectorAll(".day-column");
+
+        function setActiveDay(index) {
+            dateTabs.forEach(t => t.classList.remove('active'));
+            dateTabs[index].classList.add('active');
+
+            dayColumns.forEach(col => col.classList.remove('mobile-active'));
+            dayColumns[index].classList.add('mobile-active');
+        }
+
+        dateTabs.forEach((tab, i) => {
+            tab.addEventListener('click', () => setActiveDay(i));
+        })
+
         /* MODAL MGMT */
         function initAvatarModal(trigger) {
             console.log('trigger ->', trigger);
