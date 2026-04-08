@@ -29,6 +29,73 @@
         color: #1d1d1d;
         font-weight: 600;
     }
+    .schedule-wrapper {
+        padding: 0 5vw 80px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #0D7C7C transparent;
+    }
+
+    .schedule-wrapper::-webkit-scrollbar { height: 4px; }
+    .schedule-wrapper::-webkit-scrollbar-track { background: transparent; }
+    .schedule-wrapper::-webkit-scrollbar-thumb { background: #0D7C7C; border-radius: 2px; }
+
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(280px, 1fr));
+        gap: 16px;
+        min-width: 1400px;
+    }
+
+
+
+    .day-column {}
+
+    .day-header {
+        background: #0E1C2A;
+        color: #fff;
+        border-radius: 12px 12px 0 0;
+        padding: 16px 20px;
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 70px;
+        position: sticky;
+        top: 64px;
+        z-index: 10;
+    }
+
+    .day-header-name {
+        font-family: 'JetBrains Mono', serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .day-header {
+            margin-bottom: 12px;
+        }
+        .schedule-grid {
+            grid-template-columns: 1fr;
+            min-width: 0;
+        }
+        .schedule-wrapper {
+            overflow-x: visible;
+        }
+        .day-column {
+            display: none;
+        }
+        .day-column.mobile-active {
+            display: block;
+        }
+    }
+
 </style>
 <div class="page-content schedule-page">
     <!-- DESCRIPTION MODAL -->
@@ -107,7 +174,7 @@
         {{ $day := .Params.day | default "ALTRO" }}
         {{ $list := (index $byDay $day | default (slice)) | append . }}
         {{ $byDay = merge $byDay (dict $day $list) }}
-        {{ end }}-->
+        {{ end }} -->
 
         {{ $allDays := slice "monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday" }}
         {{ $validDays := slice }}
@@ -138,28 +205,52 @@
             <span>←→</span> Scorri orizzontalmente per vedere tutti i giorni
         </div>
 
-        <!-- DAYS GRID -->
-        <div class="days-scroll" id="daysScroll">
-            {{ range $i, $day := $validDays }}
-            {{ $events := index $byDay $day }}
-            <div class="day-column{{ if eq $i 0 }} mobile-active{{ end }}" data-col="{{ $i }}">
-                <div class="day-title-container">
-                    <h2 class="day-title">{{ i18n (printf "days.%s" (lower $day)) }}</h2>
+        <div class="schedule-wrapper">
+            <div class="schedule-grid" id="scheduleGrid">
+                {{ range $i, $day := $validDays }}
+                {{ $events := index $byDay $day }}
+                <div class="day-column {{ if eq $i 0 }} mobile-active {{ end }}" data-col="{{ $i }}">
+                    <div class="day-header">
+                        <span class="day-header-name">{{ i18n (printf "days.%s" (lower $day)) }}</span>
+                    </div>
+                    <div class="events-list">
+                        {{ range sort $events "Params.weight" }}
+                            {{ partial "event-card.html" . }}
+                        {{ end }}
+                    </div>
                 </div>
-                <div class="events-list">
-                    {{ range sort $events "Params.weight" }}
-                    {{ partial "event-card.html" . }}
-                    {{ end }}
-                </div>
+                {{ end }}
             </div>
-            {{ end }}
         </div>
+
 
     </section>
 </div>
 <script>
     (function() {
-        /* NEW */
+        /* FILTERS */
+        const filterBtns = document.querySelectorAll(".filter-button");
+        const eventCards = document.querySelectorAll(".event-card");
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                console.log('filter', filter);
+
+                eventCards.forEach(c => {
+                    console.log('card', c);
+                    if (filter === 'all' || c.dataset.ctx === filter)
+                        c.classList.remove('hidden');
+                    else
+                        c.classList.add('hidden');
+                });
+            });
+        });
+
+        /* MODAL MGMT */
         function initAvatarModal(trigger) {
             console.log('trigger ->', trigger);
 
@@ -188,17 +279,9 @@
             }
 
             const modal = document.getElementById('event-description-modal');
-            console.log('MODAL ->', modal);
+
 
             const { eventName, eventDescription, eventSpeakers, eventDay, eventStartTime, eventEndTime, eventLocationName, eventLocationUrl } = trigger.dataset;
-            console.log('evento location name', eventLocationName);
-            console.log('event location url', eventLocationUrl);
-            // console.log('event name', eventName);
-            // console.log('eventDescription', eventDescription);
-            // console.log('eventSpeakers', eventSpeakers);
-            // console.log('eventDay', eventDay);
-            // console.log('eventStartTime', eventStartTime);
-            // console.log('eventEndTime', eventEndTime);
 
             /* Check whether the evnet has a description. If such field does not exist or is empty, prevent opening the modal */
             if(!eventDescription || eventDescription.length === 0) return;
@@ -240,7 +323,6 @@
         }
 
         document.addEventListener('click', (e) => {
-            console.log('click');
             const trigger = e.target.closest('[data-modal-target]');
             if (!trigger) return;
 
