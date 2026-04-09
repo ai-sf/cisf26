@@ -23,6 +23,7 @@ speakers:
   - leonetta-baldassarre
   - raffaella-scheneider
   - vittorio-lubciz
+  - fabrizio-petrucci
 coverImage: images/events/classroom-2093744_1280.webp
 draft: false
 context: thematic-sessions
