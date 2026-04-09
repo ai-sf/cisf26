@@ -5,6 +5,7 @@ day: tuesday
 weight: 2
 start_time: 10:30
 end_time: 11:30
+description: "Il coffee break sarà riservato esclusivamente alle persone partecipanti alla CISF."
 draft: false
 speakers: []
 context: social-events

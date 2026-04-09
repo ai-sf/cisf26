@@ -7,7 +7,7 @@ start_time: 9:30
 end_time: 10:30
 draft: false
 context: social-events
-description: "Colazione offerta con ascolto del podcast SWIMmers, in collaborazione con Roma3 Radio."
+description: "Cornetti offerti con ascolto del podcast SWIMmers, in collaborazione con Roma3 Radio."
 coverImage: images/locations/rettorato.webp
 address:
   display_name: Rettorato, Università Roma Tre

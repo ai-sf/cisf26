@@ -7,7 +7,7 @@ coverImage: images/uploads/business-business-people-businessman-busy-cafe-coffee
 start_time: 16:00
 end_time: 16:30
 draft: false
-description: "Il coffee break sarà riservato esclusivamente alle persone partecipanti alla CISF"
+description: "Il coffee break sarà riservato esclusivamente alle persone partecipanti alla CISF."
 speakers: []
 context: social-events
 event_date: 2026-04-13T17:00:00

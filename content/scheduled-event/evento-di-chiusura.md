@@ -8,6 +8,7 @@ end_time: 16:30
 draft: false
 speakers:
 context: institutional-moments
+description: "Cerimonia di chiusura della CISF26."
 event_date: 2026-04-07T11:21:00
 coverImage: images/locations/rettorato.webp
 address:
